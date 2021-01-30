@@ -24,10 +24,15 @@ const features_list = [
 function Home() {
     return(
         <div className="home-body">
+
+            <h1 className="home-title">Welcome to The Hierarchy!</h1>
+
+            <hr className="banner-divider"/>
+
             <div className="banner">
-                <img src={BannerLeft} alt="Hierarchy Banner"/>
+                <img className="banner-left" src={BannerLeft} alt="Hierarchy Banner"/>
                 <img className="banner-middle" src={BannerMiddle} alt="Hierarchy Banner"/>
-                <img src={BannerRight} alt="Hierarchy Banner"/>
+                <img className="banner-right" src={BannerRight} alt="Hierarchy Banner"/>
             </div>
 
             <hr className="banner-divider"/>
@@ -54,6 +59,7 @@ function Home() {
 
                 <em>So, you do think you have what it takes to become on top of The Hierarchy? Find out now!</em>
             </div>
+
 
         </div>
     )

@@ -2,15 +2,36 @@
     background-color: #7fcbab;
 }
 
-.banner {
-    display: flex;
-    flex: 1 1 auto;
+.home-title {
     margin: 0 auto;
-    background-color: #7fcbab;
+    padding: 10px 10px;
 }
 
-.banner * {
+.banner {
+    position: relative;
+    background-color: #7fcbab;
     height: 200px;
+}
+
+.banner img {
+    height: 100%;
+}
+
+.banner-left {
+    position: absolute;
+    left: 0;
+}
+
+.banner-middle {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+}
+
+.banner-right {
+    position: absolute;
+    right: 0;
 }
 
 .banner-divider {
@@ -24,7 +45,7 @@
 .text-box {
     display: block;
     width: 60%;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 10px;
     border-radius: 10px;
     background-color: #23272a;
