@@ -14,14 +14,14 @@
     font-size: 40px;
 }
 
-.ad-box div * {
+.ad-box * {
     flex-grow: 1;
 }
 
-.left-ad-box {
+.ad-box-left {
     margin: 10px 5%;
 }
 
-.right-ad-box {
+.ad-box-right {
     margin: 10px 70%;
 }

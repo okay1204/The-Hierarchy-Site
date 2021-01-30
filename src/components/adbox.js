@@ -1,10 +1,10 @@
-import React from 'react';
 import '../styles/adbox.css'
 
-function AdBox(props) {
+function AdBox({children, pos}) {
+
     return (
-        <div className="ad-box">
-            {props.children}
+        <div className={`ad-box ${pos === 'left' ? 'ad-box-left' : 'ad-box-right'}`}>
+            {children}
         </div>
     )
 }
