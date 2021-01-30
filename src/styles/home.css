@@ -1,10 +1,39 @@
+.homeBody {
+    height: 100vh;
+    background-color: #7fcbab;
+}
+
 .banner {
-    flex-grow: 1;
-    background-color: red;
+    display: flex;
+    flex: 1 1 auto;
+    margin: 0 auto;
+    background-color: #7fcbab;
 }
 
 .banner * {
     height: 200px;
 }
 
-/* Banner Background Color: #77c79f */
+.bannerMiddle {
+    margin: 0 auto;
+}
+
+.textBox {
+    display: block;
+    width: 75%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #2c2f33;
+    color: white;
+}
+
+.featuredList {
+    display: block;
+    margin: 0 auto;
+}
+
+.featuredList ul {
+    text-align: left;
+    list-style: "✅  ";
+}
