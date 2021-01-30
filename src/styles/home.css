@@ -1,0 +1,10 @@
+.banner {
+    flex-grow: 1;
+    background-color: red;
+}
+
+.banner * {
+    height: 200px;
+}
+
+/* Banner Background Color: #77c79f */
