@@ -42,26 +42,6 @@
     margin: 0 auto;
 }
 
-.left-text-box {
-    display: block;
-    width: 60%;
-    margin: 10px 5%;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #23272a;
-    color: white;
-}
-
-.left-text-box div {
-    display: flex;
-    align-items: center;
-
-    font-size: 60px;
-}
-
-.left-text-box div * {
-    flex-grow: 1;
-}
 
 .featured-list {
     display: table;
