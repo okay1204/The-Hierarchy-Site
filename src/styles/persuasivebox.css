@@ -1,0 +1,30 @@
+.persuasive-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #23272a;
+}
+
+.persuasive-box * {
+    font-size: 2em;
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+.persuasive-box img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+}
+
+.persuasive-box-left {
+    margin-left: 5%;
+}
+
+.persuasive-box-right {
+    margin-left: 45%;
+}
+

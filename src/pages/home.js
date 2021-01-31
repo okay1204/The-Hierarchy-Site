@@ -5,7 +5,7 @@ import BannerMiddle from '../images/banner middle.png'
 import BannerLeft from '../images/banner left.png'
 import PlaceHolder from '../images/placeholder.ico'
 
-import AdBox from '../components/adbox'
+import PersuasiveBox from '../components/persuasivebox'
 
 function Home() {
     return(
@@ -23,10 +23,10 @@ function Home() {
 
             <hr className="banner-divider"/>
 
-            <AdBox pos="left">
+            <PersuasiveBox pos="left">
                 <img src={PlaceHolder} alt="placeholder"></img>
                 <span>An economy server taken to a whole new level</span>
-            </AdBox>
+            </PersuasiveBox>
 
 
         </div>

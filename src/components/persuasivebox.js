@@ -1,6 +1,6 @@
-import '../styles/adbox.css'
+import '../styles/persuasivebox.css'
 
-function AdBox({children, pos}) {
+function PersuasiveBox({children, pos}) {
 
     return (
         <div className={`persuasive-box ${pos === 'left' ? 'persuasive-box-left' : 'persuasive-box-right'}`}>
@@ -9,4 +9,4 @@ function AdBox({children, pos}) {
     )
 }
 
-export default AdBox;
+export default PersuasiveBox;
