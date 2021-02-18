@@ -41,23 +41,3 @@
 .banner-middle {
     margin: 0 auto;
 }
-
-
-.featured-list {
-    display: table;
-    margin: 0 auto;
-    text-align: left;
-    list-style: "✅  ";
-}
-
-.featured-list li {
-    margin: 10px 0;
-}
-
-@media only screen and (max-width: 900px) {
-
-    .text-box {
-        width: 90%;
-    }
-
-}

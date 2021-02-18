@@ -3,9 +3,12 @@
     justify-content: space-around;
     align-items: center;
     width: 50%;
+    margin: 20px auto;
     padding: 10px;
     border-radius: 10px;
-    background-color: #23272a;
+
+    background-image: url('../images/discord\ background.png');
+    background-position: center;
 }
 
 .persuasive-box * {
@@ -20,11 +23,12 @@
     height: auto;
 }
 
-.persuasive-box-left {
-    margin-left: 5%;
-}
+@media only screen and (max-width: 900px) {
 
-.persuasive-box-right {
-    margin-left: 45%;
-}
+    .persuasive-box {
+        width: 90%;
+        margin: 20px auto;
+        flex-direction: column;
+    }
 
+}
