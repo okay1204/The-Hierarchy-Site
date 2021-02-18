@@ -23,8 +23,14 @@ function PersuasiveBox({children, pos}) {
 
     const elements = (pos === 'right' && dimensions.width > 900) ? [...children].reverse() : children
 
+    let fade = ''
+
+    if (dimensions.width > 900) {
+        fade = pos === 'right' ? 'fade-in-right' : 'fade-in-left'
+    }
+
     return (
-        <div className='persuasive-box'>
+        <div className={`persuasive-box ${fade}`}>
             {elements}
         </div>
     );
