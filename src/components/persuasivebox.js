@@ -1,39 +1,46 @@
 import '../styles/persuasivebox.css'
 import React from 'react'
+import { Animated } from 'react-animated-css'
 
-function PersuasiveBox({children, pos}) {
+function PersuasiveBox({ children, pos, animate = false }) {
+	const [dimensions, setDimensions] = React.useState({
+		width: window.innerWidth,
+	})
+	const elementRef = React.useRef(null)
+	const [visible, setVisible] = React.useState(true)
 
-    const [dimensions, setDimensions] = React.useState({
-        width: window.innerWidth
-    });
+	React.useEffect(() => {
+		const resizeFunc = () => setDimensions({ width: window.innerWidth })
+		const scrollFunc = () => setVisible(getY() < getWindowY())
 
-    React.useEffect(() => {
-        function handleResize() {
-            setDimensions({
-                width: window.innerWidth
-            })
-        }
+		window.addEventListener('resize', resizeFunc)
+		window.addEventListener('scroll', scrollFunc)
 
-        window.addEventListener('resize', handleResize)
+		return e => {
+			window.removeEventListener('resize', resizeFunc)
+			window.removeEventListener('scroll', scrollFunc)
+		}
+	}, [])
 
-        return _ => {
-            window.removeEventListener('resize', handleResize)
-        }
-    }, [])
+	const elements =
+		pos === 'right' && dimensions.width > 900
+			? [...children].reverse()
+			: children
 
-    const elements = (pos === 'right' && dimensions.width > 900) ? [...children].reverse() : children
+	const getY = () => elementRef.current.getBoundingClientRect().y
+	const getWindowY = () =>
+		window.scrollY + document.documentElement.clientHeight
 
-    let fade = ''
-
-    if (dimensions.width > 900) {
-        fade = pos === 'right' ? 'fade-in-right' : 'fade-in-left'
-    }
-
-    return (
-        <div className={`persuasive-box ${fade}`}>
-            {elements}
-        </div>
-    );
+	return (
+		<Animated
+			animationIn={pos === 'right' ? 'bounceInRight' : 'bounceInLeft'}
+			animationOut='fadeOut'
+			isVisible={visible}
+			innerRef={elementRef}
+		>
+			<div className='persuasive-box'>{elements}</div>
+		</Animated>
+	)
 }
 
-export default PersuasiveBox;
+export default PersuasiveBox
