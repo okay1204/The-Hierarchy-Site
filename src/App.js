@@ -7,7 +7,7 @@ function App() {
   return (
 		<Router>
       <div className='App'>
-      <NavBar active='/'/>
+      <NavBar/>
           <Switch>
             {routes.map(route => (
               <Route

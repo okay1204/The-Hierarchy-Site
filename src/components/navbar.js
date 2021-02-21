@@ -8,13 +8,13 @@ const links = {
     Stats: '/stats'
 }
 
-function NavBar({active}) {
+function NavBar() {
 
     const buttons = []
 
     for (const [key, value] of Object.entries(links)) {
         buttons.push(
-            <a href={value} className={value === active ? 'active' : ''}>{key}</a>
+            <a href={value} className={value === window.location.pathname ? 'active' : ''}>{key}</a>
         )
     }
 
