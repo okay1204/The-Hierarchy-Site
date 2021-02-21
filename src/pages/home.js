@@ -42,7 +42,7 @@ function Home() {
 
 			<hr className='banner-divider' />
 
-			{[...messages, ...messages].map((message, idx) => (
+			{[...messages].map((message, idx) => (
 				<PersuasiveBox pos={idx % 2 ? 'left' : 'right'}>
 					<img src={PlaceHolder} alt='placeholder'></img>
 					<span>{message}</span>

@@ -1,5 +1,6 @@
 .home-body {
     background-color: #7fcbab;
+    overflow: hidden;
 }
 
 .home-title {
