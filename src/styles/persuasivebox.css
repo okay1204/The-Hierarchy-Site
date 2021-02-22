@@ -1,5 +1,4 @@
 .persuasive-box {
-    position: relative;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -16,44 +15,13 @@
     font-size: 2em;
     font-family: 'Lato', sans-serif;
     color: white;
-    position: relative;
 }
 
 .persuasive-box img {
     max-width: 200px;
     width: 100%;
     height: auto;
-
-    position: relative;
 }
-
-.fade-in-left img {
-    animation: fade-in-left 1s;
-}
-
-.fade-in-left span {
-    animation: fade-in-right 1s;
-}
-
-.fade-in-right img {
-    animation: fade-in-right 1s;
-}
-
-.fade-in-right span {
-    animation: fade-in-left 1s;
-}
-
-
-@keyframes fade-in-left {
-    from {opacity: 0; right: 100px;}
-    to {opacity: 1; right: 0px;}
-}
-
-@keyframes fade-in-right {
-    from {opacity: 0; left: 100px;}
-    to {opacity: 1; left: 0px;}
-}
-
 
 @media only screen and (max-width: 900px) {
 

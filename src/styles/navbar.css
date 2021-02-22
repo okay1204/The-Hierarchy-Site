@@ -13,7 +13,7 @@
 }
 
 .navbar-pages {
-    margin: 30px;
+    margin: 10px 20px;
     display: flex;
     justify-content: space-around;
 }

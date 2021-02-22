@@ -14,7 +14,7 @@ function NavBar() {
 
     for (const [key, value] of Object.entries(links)) {
         buttons.push(
-            <a href={value} className={value === window.location.pathname ? 'active' : ''}>{key}</a>
+            <a href={value} className={value === `/${window.location.pathname.split('/')[1]}` ? 'active' : ''}>{key}</a>
         )
     }
 
