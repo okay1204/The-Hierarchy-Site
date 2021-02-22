@@ -2,6 +2,7 @@ import './App.css';
 import routes from './routes';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/navbar'
+import Footer from './components/footer'
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
             ))}
           </Switch>
 
-        
+      <Footer />
       </div>
 		</Router>
 	)
