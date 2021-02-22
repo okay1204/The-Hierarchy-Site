@@ -4,11 +4,15 @@ import '../styles/persuasivebox.css'
 import BannerRight from '../images/banner right.png'
 import BannerMiddle from '../images/banner middle.png'
 import BannerLeft from '../images/banner left.png'
+
 import PersuasiveBox from '../components/persuasivebox'
+import ExplainBox from '../components/explainbox'
 
 import MoneyBag from '../images/money bag.png'
 import Crowd from '../images/crowd.png'
 import Strategy_Board from '../images/strategy board.png'
+
+import Shop from '../images/shop.png'
 
 
 function Home() {
@@ -24,7 +28,7 @@ function Home() {
 	let idx = 0
 	for (const [key, value] of Object.entries(messages)) {
 		persuasive_boxes.push(
-			<PersuasiveBox pos={idx % 2 ? 'left' : 'right'}>
+			<PersuasiveBox reverse={Boolean(idx % 2)}>
 				<img src={value} alt='placeholder'></img>
 				<span>{key}</span>
 			</PersuasiveBox>
@@ -61,6 +65,18 @@ function Home() {
 
 			{persuasive_boxes}
 
+			{/* <hr className='home-divider' />
+			
+			<ExplainBox pos='right'>
+				<img src={Shop}/>
+				<div>
+					<h2>Shop with price changes by the hour</h2>
+					<p>the shop is good the shop is g
+						ood yesthe shop is good yesthe shop is
+						 good yesthe shop is good yesyesthe shop is
+						  good yesthe shop is good yesthe shop is good yes</p>
+				</div>
+			</ExplainBox> */}
 			
 		</div>
 	)

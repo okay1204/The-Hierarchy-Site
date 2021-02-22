@@ -2,7 +2,7 @@ import '../styles/persuasivebox.css'
 import React from 'react'
 import { Animated } from 'react-animated-css'
 
-function PersuasiveBox({ children, pos }) {
+function PersuasiveBox({ children, reverse }) {
 	const [dimensions, setDimensions] = React.useState({
 		width: window.innerWidth
 	})
@@ -22,23 +22,20 @@ function PersuasiveBox({ children, pos }) {
 		}
 	}, [])
 
-	const elements =
-		pos === 'right' && dimensions.width > 900
-			? [...children].reverse()
-			: children
-
 	const getY = () => elementRef.current.getBoundingClientRect().y
 	const getWindowY = () =>
 		window.scrollY + document.documentElement.clientHeight
 
+	console.log(`persuasive-box ${reverse ? 'reverse' : ''}`)
+
 	return (
 		<Animated
-			animationIn={pos === 'right' ? 'bounceInRight' : 'bounceInLeft'}
+			animationIn={reverse ? 'bounceInRight' : 'bounceInLeft'}
 			animationOut='fadeOut'
 			isVisible={visible}
 			innerRef={elementRef}
 		>
-			<div className='persuasive-box'>{elements}</div>
+			<div className={`persuasive-box ${reverse && 'reverse'}`}>{children}</div>
 		</Animated>
 	)
 }
