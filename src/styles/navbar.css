@@ -1,4 +1,5 @@
 .navbar {
+    overflow: hidden;
     display: flex;
     background-color: #23272a;
     align-items: center;
@@ -20,12 +21,18 @@
 .navbar-pages a {
     text-decoration: none;
     padding: 20px;
+    
     margin: 0 20px;
-    transition: color ease-in 0.15s;
-    -webkit-transition: color ease-in 0.15s;
-    -o-transition: color ease-in 0.15s;
-    -moz-transition: color ease-in 0.15s;
 
+    transition: color ease-in 150ms;
+    -webkit-transition: color ease-in 150ms;
+    -o-transition: color ease-in 150ms;
+    -moz-transition: color ease-in 150ms;
+
+    transition: transform ease-in-out 150ms;
+    -webkit-transition: transform ease-in-out 150ms;
+    -o-transition: transform ease-in-out 150ms;
+    -moz-transition: transform ease-in-out 150ms;
 }
 
 .navbar-pages a::before {
@@ -34,14 +41,15 @@
     position: absolute;
     height: 5px;
     width: 0%;
-    background-color: black;
-
-    top: 0;
+    background-color: gold;
+    
+    transition: width ease-in-out 150ms;
+    -webkit-transition: width ease-in-out 150ms;
+    -o-transition: width ease-in-out 150ms;
+    -moz-transition: width ease-in-out 150ms;
+    
+    bottom: 0;
     left: 0;
-    transition: all ease-in-out 150ms;
-    -webkit-transition: all ease-in-out 150ms;
-    -o-transition: all ease-in-out 150ms;
-    -moz-transition: all ease-in-out 150ms;
 }
 
 .navbar-pages a:hover::before {
@@ -50,6 +58,7 @@
 
 .navbar-pages a:not(.active) {
     color: white;
+    transform: scale(1, 1);
 }
 
 .navbar-pages a:hover,
