@@ -8,6 +8,7 @@ function App() {
 		<Router>
       <div className='App'>
       <NavBar/>
+      
           <Switch>
             {routes.map(route => (
               <Route
@@ -19,6 +20,8 @@ function App() {
               />
             ))}
           </Switch>
+
+        
       </div>
 		</Router>
 	)
