@@ -31,6 +31,12 @@
 .widget {
     margin: 20px;
     display: block;
+
+    max-width: 400px;
+    max-height: 500px;
+
+    width: 90%;
+    height: 500px;
 }
 
 .join-button {
@@ -44,15 +50,26 @@
     border-radius: 10px;
 
     transition: background-color ease 500ms;
-
-
-
-    -webkit-user-select: none; /* Safari */        
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
+    -webkit-transition: background-color ease 500ms;
+    -moz-transition: background-color ease 500ms;
+    -ms-transition: background-color ease 500ms;
+    -o-transition: background-color ease 500ms;
 }
 
 .join-button:hover {
     background-color: #5c72c2;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .join-flex {
+        margin: 20px auto;
+        flex-direction: column;
+    }
+
+    .join-text {
+        width: 95%;
+        font-size: 50px;
+    }
+
 }

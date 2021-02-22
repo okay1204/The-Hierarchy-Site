@@ -37,7 +37,7 @@ function Home() {
 		<div className='home-body'>
 			<h1 className='home-title'>Welcome to The Hierarchy!</h1>
 
-			<hr className='banner-divider' />
+			<hr className='home-divider' />
 
 			<div className='banner'>
 				<img
@@ -57,9 +57,11 @@ function Home() {
 				/>
 			</div>
 
-			<hr className='banner-divider' />
+			<hr className='home-divider' />
 
 			{persuasive_boxes}
+
+			
 		</div>
 	)
 }
