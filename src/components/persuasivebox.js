@@ -3,21 +3,16 @@ import React from 'react'
 import { Animated } from 'react-animated-css'
 
 function PersuasiveBox({ children, reverse }) {
-	const [dimensions, setDimensions] = React.useState({
-		width: window.innerWidth
-	})
+
 	const elementRef = React.useRef(null)
 	const [visible, setVisible] = React.useState(true)
 
 	React.useEffect(() => {
-		const resizeFunc = () => setDimensions({ width: window.innerWidth })
 		const scrollFunc = () => setVisible(getY() < getWindowY())
 
-		window.addEventListener('resize', resizeFunc)
 		window.addEventListener('scroll', scrollFunc)
 
 		return _ => {
-			window.removeEventListener('resize', resizeFunc)
 			window.removeEventListener('scroll', scrollFunc)
 		}
 	}, [])

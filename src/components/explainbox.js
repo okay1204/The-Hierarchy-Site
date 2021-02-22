@@ -1,7 +1,10 @@
-function ExplainBox({children, pos}) {
+import '../styles/explainbox.css'
+
+function ExplainBox({children, reverse=false}) {
+
     return (
-        <div className='explain-box'>
-            
+        <div className={`explain-box ${reverse ? 'reverse' : ''}`}>
+            {children}
         </div>
     )
 }

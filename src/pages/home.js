@@ -29,7 +29,7 @@ function Home() {
 	for (const [key, value] of Object.entries(messages)) {
 		persuasive_boxes.push(
 			<PersuasiveBox reverse={Boolean(idx % 2)}>
-				<img src={value} alt='placeholder'></img>
+				<img src={value} alt=''></img>
 				<span>{key}</span>
 			</PersuasiveBox>
 		)
@@ -65,18 +65,15 @@ function Home() {
 
 			{persuasive_boxes}
 
-			{/* <hr className='home-divider' />
+			<hr className='home-divider' />
 			
-			<ExplainBox pos='right'>
-				<img src={Shop}/>
+			<ExplainBox reverse={true}>
+				<img src={Shop} alt='The shop on the discord server'/>
 				<div>
-					<h2>Shop with price changes by the hour</h2>
-					<p>the shop is good the shop is g
-						ood yesthe shop is good yesthe shop is
-						 good yesthe shop is good yesyesthe shop is
-						  good yesthe shop is good yesthe shop is good yes</p>
+					<h2>Complex Shop System</h2>
+					<p>A shop that sells items to aid you towards reaching the top of The Hierarchy. Prices go up and down every 3 hours!</p>
 				</div>
-			</ExplainBox> */}
+			</ExplainBox>
 			
 		</div>
 	)
