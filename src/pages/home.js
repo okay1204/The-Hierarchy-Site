@@ -4,17 +4,34 @@ import '../styles/persuasivebox.css'
 import BannerRight from '../images/banner right.png'
 import BannerMiddle from '../images/banner middle.png'
 import BannerLeft from '../images/banner left.png'
-import PlaceHolder from '../images/placeholder.ico'
 import PersuasiveBox from '../components/persuasivebox'
 
+import MoneyBag from '../images/money bag.png'
+import Crowd from '../images/crowd.png'
+import Strategy_Board from '../images/strategy board.png'
+
+
 function Home() {
-	const messages = [
-		'An economy server taken to a whole new level',
+	const messages = {
+		'An economy server taken to a whole new level': MoneyBag,
 
-		'200+ players to compete against',
+		'200+ players to compete against': Crowd,
 
-		'Tons of different strategies to utilize',
-	]
+		'Tons of different strategies to utilize': Strategy_Board,
+	}
+
+	const persuasive_boxes = []
+	let idx = 0
+	for (const [key, value] of Object.entries(messages)) {
+		persuasive_boxes.push(
+			<PersuasiveBox pos={idx % 2 ? 'left' : 'right'}>
+				<img src={value} alt='placeholder'></img>
+				<span>{key}</span>
+			</PersuasiveBox>
+		)
+
+		idx++ 
+	}
 
 	return (
 		<div className='home-body'>
@@ -42,12 +59,7 @@ function Home() {
 
 			<hr className='banner-divider' />
 
-			{[...messages].map((message, idx) => (
-				<PersuasiveBox pos={idx % 2 ? 'left' : 'right'}>
-					<img src={PlaceHolder} alt='placeholder'></img>
-					<span>{message}</span>
-				</PersuasiveBox>
-			))}
+			{persuasive_boxes}
 		</div>
 	)
 }
