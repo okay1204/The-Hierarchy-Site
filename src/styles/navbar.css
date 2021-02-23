@@ -3,6 +3,12 @@
     display: flex;
     background-color: #23272a;
     align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
 }
 
 .logo {
@@ -77,4 +83,30 @@
     -moz-transform: scale(1.25, 1.25);
     -ms-transform: scale(1.25, 1.25);
     -o-transform: scale(1.25, 1.25);
+}
+
+.help-button img {
+    display: block;
+    padding: 20px;
+    max-width: 80px;
+    height: auto;
+
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%);
+    -ms-filter: brightness(100%);
+
+    transition: all ease-in-out 250ms;
+    -webkit-transition: all ease-in-out 250ms;
+    -moz-transition: all ease-in-out 250ms;
+    -o-transition: all ease-in-out 250ms;
+}
+
+.help-button img:hover {
+    filter: brightness(70%);
+
+    transform: rotate(20deg);
+    -webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
 }

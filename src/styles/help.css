@@ -1,0 +1,5 @@
+#video-frame {
+    pointer-events: none;
+    display: block;
+    width: 100%;
+}

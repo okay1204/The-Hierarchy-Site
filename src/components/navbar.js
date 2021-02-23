@@ -1,6 +1,7 @@
 import '../styles/navbar.css'
 
 import Logo from '../images/logo.png'
+import Help from '../images/help.png'
 
 const links = {
     Home: '/',
@@ -18,12 +19,18 @@ function NavBar() {
         )
     }
 
+    /* eslint-disable */
     return (
         <div className='navbar'>
-            <a href='/'><img src={Logo} className='logo' alt='Logo'/></a>
-            <div className='navbar-pages'>
-                {buttons}
+            <div className='navbar-left'>
+                <a href='/'><img src={Logo} className='logo' alt='Logo'/></a>
+                <div className='navbar-pages'>
+                    {buttons}
+                </div>
+                <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO'></a>
             </div>
+
+            <a class='help-button' href='/help'><img src={Help} alt='help'/></a>
         </div>
     )
 }
