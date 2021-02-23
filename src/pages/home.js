@@ -13,6 +13,7 @@ import Crowd from '../images/crowd.png'
 import Strategy_Board from '../images/strategy board.png'
 
 import Shop from '../images/shop.png'
+import Universities from '../images/universities.png'
 
 
 function Home() {
@@ -78,13 +79,13 @@ function Home() {
 			<hr className='home-divider' />
 
 			<ExplainSection reverse={false}>
-				<img src={Shop} alt='The shop on the discord server'/>
+				<img src={Universities} alt='The shop on the discord server'/>
 				<div>
-					<h2>Complex Shop System</h2>
-					<p>A shop that sells items to aid you towards reaching the top of The Hierarchy. Prices go up and down every 3 hours!</p>
+					<h2>Many Universities</h2>
+					<p>Lots of Universities to study at to achieve different majors. Pass the final and get a new job!</p>
 				</div>
 			</ExplainSection>
-			
+
 		</div>
 	)
 }
