@@ -21,8 +21,6 @@ function PersuasiveBox({ children, reverse }) {
 	const getWindowY = () =>
 		window.scrollY + document.documentElement.clientHeight
 
-	console.log(`persuasive-box ${reverse ? 'reverse' : ''}`)
-
 	return (
 		<Animated
 			animationIn={reverse ? 'bounceInRight' : 'bounceInLeft'}

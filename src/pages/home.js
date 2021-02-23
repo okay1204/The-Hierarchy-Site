@@ -6,7 +6,7 @@ import BannerMiddle from '../images/banner middle.png'
 import BannerLeft from '../images/banner left.png'
 
 import PersuasiveBox from '../components/persuasivebox'
-import ExplainBox from '../components/explainbox'
+import ExplainSection from '../components/explainsection'
 
 import MoneyBag from '../images/money bag.png'
 import Crowd from '../images/crowd.png'
@@ -67,13 +67,23 @@ function Home() {
 
 			<hr className='home-divider' />
 			
-			<ExplainBox reverse={true}>
+			<ExplainSection reverse={true}>
 				<img src={Shop} alt='The shop on the discord server'/>
 				<div>
 					<h2>Complex Shop System</h2>
 					<p>A shop that sells items to aid you towards reaching the top of The Hierarchy. Prices go up and down every 3 hours!</p>
 				</div>
-			</ExplainBox>
+			</ExplainSection>
+
+			<hr className='home-divider' />
+
+			<ExplainSection reverse={false}>
+				<img src={Shop} alt='The shop on the discord server'/>
+				<div>
+					<h2>Complex Shop System</h2>
+					<p>A shop that sells items to aid you towards reaching the top of The Hierarchy. Prices go up and down every 3 hours!</p>
+				</div>
+			</ExplainSection>
 			
 		</div>
 	)
