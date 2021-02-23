@@ -14,9 +14,16 @@ function NavBar() {
     const buttons = []
 
     for (const [key, value] of Object.entries(links)) {
-        buttons.push(
-            <a href={value} className={value === `/${window.location.pathname.split('/')[1]}` ? 'active' : ''}>{key}</a>
-        )
+
+        if (key !== 'Join') {
+            buttons.push(
+                <a href={value} className={value === `/${window.location.pathname.split('/')[1]}` ? 'active' : ''}>{key}</a>
+            )
+        } else {
+            buttons.push(
+                <a href={value} target='_blank' rel='noreferrer'>{key}</a>
+            )
+        }
     }
 
     /* eslint-disable */
