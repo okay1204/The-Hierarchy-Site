@@ -2,12 +2,13 @@ import '../styles/persuasivebox.css'
 import React from 'react'
 import { Animated } from 'react-animated-css'
 
-function PersuasiveBox({ children, pos, animate = false }) {
+function PersuasiveBox({ children, pos}) {
 	const [dimensions, setDimensions] = React.useState({
 		width: window.innerWidth,
 	})
 	const elementRef = React.useRef(null)
 	const [visible, setVisible] = React.useState(true)
+
 
 	React.useEffect(() => {
 		const resizeFunc = () => setDimensions({ width: window.innerWidth })
@@ -16,7 +17,7 @@ function PersuasiveBox({ children, pos, animate = false }) {
 		window.addEventListener('resize', resizeFunc)
 		window.addEventListener('scroll', scrollFunc)
 
-		return e => {
+		return _ => {
 			window.removeEventListener('resize', resizeFunc)
 			window.removeEventListener('scroll', scrollFunc)
 		}
@@ -40,7 +41,7 @@ function PersuasiveBox({ children, pos, animate = false }) {
 		>
 			<div className='persuasive-box'>{elements}</div>
 		</Animated>
-	)
+	) 
 }
 
 export default PersuasiveBox
