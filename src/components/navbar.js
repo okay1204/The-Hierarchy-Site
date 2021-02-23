@@ -4,7 +4,7 @@ import Logo from '../images/logo.png'
 
 const links = {
     Home: '/',
-    Join: '/join',
+    Join: 'https://discord.gg/pZXFsSETnx',
     Stats: '/stats'
 }
 
