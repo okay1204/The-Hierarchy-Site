@@ -1,0 +1,54 @@
+.explain-box {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    align-items: center;
+    flex-direction: row;
+}
+
+.explain-box.reverse {
+    flex-direction: row-reverse;
+}
+
+.explain-text-wrapper {
+    display: block;
+    width: 50%;
+}
+
+.explain-text-wrapper h2 {
+    font-family: 'Lato', sans-serif;
+    font-size: 2rem;
+    color: black;
+}
+
+.explain-text-wrapper p {
+    font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 1.5rem;
+    color: rgb(31, 30, 30);
+}
+
+.explain-img-wrapper img {
+    border-radius: 20px;
+    width: 70%;
+    height: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .explain-box {
+        flex-direction: column-reverse;
+        margin: 10px;
+    }
+    
+    .explain-box.reverse {
+        flex-direction: column-reverse;
+    }
+
+    .explain-text-wrapper {
+        width: 90%;
+    }
+
+    .explain-img-wrapper img {
+        width: 100%
+    }
+}

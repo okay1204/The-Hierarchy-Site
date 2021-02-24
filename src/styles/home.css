@@ -1,5 +1,6 @@
-.home-body {
+#home-body {
     background-color: #7fcbab;
+    overflow: hidden;
 }
 
 .home-title {
@@ -34,7 +35,7 @@
     right: 0;
 }
 
-.banner-divider {
+.home-divider {
     border: 1px solid #5ba686;
 }
 
