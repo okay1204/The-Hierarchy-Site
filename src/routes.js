@@ -50,5 +50,5 @@ const routes = [
 		component: Help,
 	},
 ]
-console.log(parseRoutes(routes))
+
 export default parseRoutes(routes)
