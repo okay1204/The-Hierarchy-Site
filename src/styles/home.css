@@ -1,0 +1,44 @@
+#home-body {
+    background-color: #7fcbab;
+    overflow: hidden;
+}
+
+.home-title {
+    margin: 0 auto;
+    padding: 10px 10px;
+}
+
+.banner {
+    position: relative;
+    background-color: #7fcbab;
+    height: 200px;
+}
+
+.banner img {
+    height: 100%;
+}
+
+.banner-left {
+    position: absolute;
+    left: 0;
+}
+
+.banner-middle {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+}
+
+.banner-right {
+    position: absolute;
+    right: 0;
+}
+
+.home-divider {
+    border: 1px solid #5ba686;
+}
+
+.banner-middle {
+    margin: 0 auto;
+}

@@ -1,0 +1,24 @@
+.footer {
+    display: block;
+    background-color: #ffc130;
+    height: 120px;
+}
+
+.join-page-button {
+    display: block;
+    text-decoration: none;
+    color: #23272a;
+    font-size: 2rem;
+    border: 1px #23272a solid;
+    padding: 10px;
+    margin: 5px auto;
+    width: 200px;
+    border-radius: 10px;
+
+    transition: color 500ms, border 500ms;
+}
+
+.join-page-button:hover {
+    border: 1px #3a6d58 solid;
+    color: #3a6d58;
+}
