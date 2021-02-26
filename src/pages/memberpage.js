@@ -14,7 +14,7 @@ class MemberPage extends React.Component {
     
     componentDidMount() {
 
-        const userId = parseInt(this.props.match.params.userId);
+        const userId = Number(this.props.match.params.userId);
 
         axios.get(`https://api.thehierarchy.me/members/${userId}`)
 
@@ -35,7 +35,11 @@ class MemberPage extends React.Component {
 
                     <div id='user-info'>
                         <div className='header'>
-                            <span>{this.state.data.name}</span>
+                            <div className='img-wrapper'>
+                                <img src={this.state.data.avatar_url} alt='Profile pic' />
+                            </div>
+                            {this.state.data.nick && <span className='nick'>{this.state.data.nick}</span>}
+                            <span className='name'>{this.state.data.name}</span>
                         </div>
 
                         <div className='main'>
@@ -50,7 +54,7 @@ class MemberPage extends React.Component {
                 <div id='member-page-error-body' className='body'>
                     <div className='error-box'>
                         <div className='error-box-img-wrapper'>
-                            <img src={NotFound} />
+                            <img src={NotFound} alt=''/>
                         </div>
                         <div className='error-text'>
                             <h3>Whoops!</h3>
