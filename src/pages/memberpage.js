@@ -14,7 +14,7 @@ class MemberPage extends React.Component {
     
     componentDidMount() {
 
-        const userId = Number(this.props.match.params.userId);
+        const userId = this.props.match.params.userId.includes('/') ? '' : this.props.match.params.userId
 
         axios.get(`https://api.thehierarchy.me/members/${userId}`)
 
@@ -38,8 +38,10 @@ class MemberPage extends React.Component {
                             <div className='img-wrapper'>
                                 <img src={this.state.data.avatar_url} alt='Profile pic' />
                             </div>
-                            {this.state.data.nick && <span className='nick'>{this.state.data.nick}</span>}
-                            <span className='name'>{this.state.data.name}</span>
+                            <div className='name-wrapper'>
+                                {this.state.data.nick && <span className='nick'>{this.state.data.nick}</span>}
+                                <span className='name'>{this.state.data.name}</span>
+                            </div>
                         </div>
 
                         <div className='main'>

@@ -20,6 +20,8 @@
 
 #user-info .header {
     text-align: left;
+    display: flex;
+    align-items: center;
 }
 
 #user-info .header .img-wrapper {
@@ -29,6 +31,10 @@
 #user-info .header .img-wrapper img {
     max-width: 100%;
     border-radius: 50%;
+}
+
+#user-info .header .name-wrapper {
+    margin: 20px;
 }
 
 /* Error page */
