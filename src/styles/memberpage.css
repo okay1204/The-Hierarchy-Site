@@ -1,3 +1,56 @@
-#member-page-body {
+#member-page-body,
+#member-page-error-body {
     background-color: #7fcbab;
+}
+
+/* Normal page */
+
+#user-info {
+    background-color: #2C2F33;
+    display: block;
+    color: white;
+
+    width: 75%;
+    margin: 20px auto;
+    border-radius: 5px;
+}
+
+/* Error page */
+
+#member-page-error-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-box {
+    display: flex;
+    align-items: center;
+    margin: 50px;
+}
+
+.error-box-img-wrapper {
+    max-width: 200px;
+}
+
+.error-box-img-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+.error-text h3 {
+    font-size: 50px;
+    font-family: 'Lato', sans-serif;
+}
+
+.error-text span {
+    font-size: 20px;
+    color: rgb(66, 60, 60);
+}
+
+@media only screen and (max-width:800px) {
+
+    .error-box {
+        flex-direction: column;
+    }
 }

@@ -2,6 +2,7 @@ import '../styles/memberpage.css'
 import axios from 'axios'
 
 import React from 'react'
+import NotFound from '../images/notfound.png'
 
 
 class MemberPage extends React.Component {
@@ -46,8 +47,16 @@ class MemberPage extends React.Component {
             )
         } else {
             return (
-                <div id='member-page-body' className='body'>
-                    Member Not Found
+                <div id='member-page-error-body' className='body'>
+                    <div className='error-box'>
+                        <div className='error-box-img-wrapper'>
+                            <img src={NotFound} />
+                        </div>
+                        <div className='error-text'>
+                            <h3>Whoops!</h3>
+                            <span>We couldn't find the member you are looking for</span>
+                        </div>
+                    </div>
                 </div>
             )
         }
