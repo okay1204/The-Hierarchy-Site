@@ -13,28 +13,66 @@
     width: 50%;
     margin: 50px auto;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
 
-    font-family: 'Uni Sans';
 }
 
 #user-info .header {
     text-align: left;
     display: flex;
+    justify-content: space-between;
+    font-family: 'Uni Sans';
+}
+
+#user-info .header .left {
+    display: flex;
     align-items: center;
 }
 
-#user-info .header .img-wrapper {
+#user-info .header .img-wrapper .avatar-wrapper {
     max-width: 110px;
 }
 
-#user-info .header .img-wrapper img {
+#user-info .header .img-wrapper .avatar {
     max-width: 100%;
     border-radius: 50%;
 }
 
+#user-info .header .img-wrapper .status-wrapper {
+    max-width: 30px;
+    height: 30px;
+}
+
+
+#user-info .header .img-wrapper .status {
+    display: block;
+    background-color: red;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    bottom: 100%;
+    left: 260%;
+}
+
 #user-info .header .name-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#user-info .header .name-wrapper .name {
     margin: 20px;
+    font-size: 40px;
+}
+
+#user-info .header .name-wrapper .nick {
+    color: rgb(194, 181, 181);
+    margin-left: 20px;
+}
+
+#user-info hr {
+    border: 1px rgb(90, 89, 89) solid;
 }
 
 /* Error page */

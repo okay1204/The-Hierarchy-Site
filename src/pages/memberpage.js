@@ -35,15 +35,31 @@ class MemberPage extends React.Component {
 
                     <div id='user-info'>
                         <div className='header'>
-                            <div className='img-wrapper'>
-                                <img src={this.state.data.avatar_url} alt='Profile pic' />
-                            </div>
-                            <div className='name-wrapper'>
-                                {this.state.data.nick && <span className='nick'>{this.state.data.nick}</span>}
-                                <span className='name'>{this.state.data.name}</span>
-                            </div>
-                        </div>
+                            <div className='left'>
+                                <div className='img-wrapper'>
 
+                                    <div className='avatar-wrapper'>
+                                        <img src={this.state.data.avatar_url} className='avatar' alt='Profile pic' />
+                                    </div>
+                                    <div className='status-wrapper'>
+                                        <div className='status'> <wbr /> </div>
+                                    </div>
+                                    
+                                </div>
+                                <div className='name-wrapper'>
+                                    <div className='main-name'>
+                                        <span className='name'>{this.state.data.name}</span>
+                                        <span className='discriminator'>#{this.state.data.discriminator}</span>
+                                    </div>
+                                    {this.state.data.nick && <span className='nick'>{this.state.data.nick}</span>}
+                                </div>
+                            </div>
+                            <div className='right'>
+                                <span>ID: {this.state.data.id}</span>
+                            </div>
+
+                        </div>
+                        <hr />
                         <div className='main'>
 
                         </div>
