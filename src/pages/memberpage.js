@@ -4,6 +4,18 @@ import axios from 'axios'
 import React from 'react'
 import NotFound from '../images/notfound.png'
 
+import Online from '../images/online.png'
+import Offline from '../images/offline.png'
+import Idle from '../images/idle.png'
+import Dnd from '../images/do not disturb.png'
+
+const status_key = {
+    'online': Online,
+    'offline': Offline,
+    'idle': Idle,
+    'dnd': Dnd
+}
+
 
 class MemberPage extends React.Component {
     
@@ -35,27 +47,25 @@ class MemberPage extends React.Component {
 
                     <div id='user-info'>
                         <div className='header'>
-                            <div className='left'>
-                                <div className='img-wrapper'>
 
-                                    <div className='avatar-wrapper'>
-                                        <img src={this.state.data.avatar_url} className='avatar' alt='Profile pic' />
-                                    </div>
-                                    <div className='status-wrapper'>
-                                        <div className='status'> <wbr /> </div>
-                                    </div>
-                                    
-                                </div>
-                                <div className='name-wrapper'>
-                                    <div className='main-name'>
-                                        <span className='name'>{this.state.data.name}</span>
-                                        <span className='discriminator'>#{this.state.data.discriminator}</span>
-                                    </div>
-                                    {this.state.data.nick && <span className='nick'>{this.state.data.nick}</span>}
-                                </div>
+                            <div className='img-wrapper'>
+
+                                <img src={this.state.data.avatar_url} className='avatar' alt='Profile pic' />
+                                <img className='status' src={status_key[this.state.data.status]} alt={this.state.data.status}/>
+                                
                             </div>
-                            <div className='right'>
-                                <span>ID: {this.state.data.id}</span>
+                            <div className='name-wrapper'>
+                                <div className='main-name'>
+                                    <span className='name'>{this.state.data.name}</span>
+                                    <span className='discriminator'>#{this.state.data.discriminator}</span>
+                                </div>
+                                {this.state.data.nick && <span className='nick'>{this.state.data.nick}</span>}
+                            </div>
+                            
+                            {this.state.data.boosting && <span className='boosting'>Premium</span>}
+
+                            <div className='userid-wrapper'>
+                                <span className='userid'>ID: {this.state.data.id}</span>
                             </div>
 
                         </div>
