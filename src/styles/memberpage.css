@@ -9,13 +9,17 @@
     background-color: #2C2F33;
     display: block;
     color: white;
-
+    
     width: 75%;
     margin: 50px auto;
     padding: 20px;
     border-radius: 10px;
-
+    
     white-space: nowrap;
+}
+
+.premium-border {
+    border: 3px #f47fff solid;
 }
 
 #user-info .header {
@@ -80,8 +84,24 @@
     right: 0px;
 }
 
-#user-info hr {
+#user-info .header-main-divider {
     border: 1px rgb(90, 89, 89) solid;
+}
+
+#user-info .main .section-divider {
+    border: 1px rgb(51, 50, 50) solid;
+    margin-top: 50px;
+}
+
+#user-info .main .section h2 {
+    font-family: 'Uni Sans', sans-serif;
+    font-size: 30px;
+}
+
+.balance-values {
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
 }
 
 /* Error page */

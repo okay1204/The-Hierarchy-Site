@@ -32,11 +32,18 @@ class MemberPage extends React.Component {
 
         .then(res => {
             const data = res.data;
+
+            data.roles = data.roles.map(role => (
+                <span className='role' style={`color: ${role.color}`}>{role.name}</span>
+            ))
+
             this.setState({data: data});
+
         })
         .catch(err => {
             this.setState({error: true, data: err})
         })
+
     }
     
     render() {
@@ -45,7 +52,7 @@ class MemberPage extends React.Component {
             return (
                 <div id='member-page-body' className='body'>
 
-                    <div id='user-info'>
+                    <div id='user-info' className={`${this.state.data.boosting ? 'premium-border' : ''}`} >
                         <div className='header'>
 
                             <div className='img-wrapper'>
@@ -69,10 +76,32 @@ class MemberPage extends React.Component {
                             </div>
 
                         </div>
-                        <hr />
+                        <hr className='header-main-divider' />
                         <div className='main'>
-
+                            <div className='roles section'>
+                                <h2>Roles</h2>
+                                {/* {this.state.data.roles} */}
+                            </div>
+                            <div className='balance section'>
+                                <h2>Balance</h2>
+                                <div className='balance-values'>
+                                    <div>
+                                        <h3>Cash</h3>
+                                        <span>${this.state.data.money}</span>
+                                    </div>
+                                    <div>
+                                        <h3>Bank</h3>
+                                        <span>${this.state.data.bank}</span>
+                                    </div>
+                                    <div>
+                                        <h3>Total</h3>
+                                        <span>${this.state.data.money + this.state.data.bank}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr className='section-divider' />
                         </div>
+                        
                     </div>
 
                 </div>
