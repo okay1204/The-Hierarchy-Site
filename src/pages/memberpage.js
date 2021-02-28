@@ -33,8 +33,13 @@ class MemberPage extends React.Component {
         .then(res => {
             const data = res.data;
 
+            data.roles.reverse()
+
             data.roles = data.roles.map(role => (
-                <span className='role' style={`color: ${role.color}`}>{role.name}</span>
+                <div className='role' style={{color:`#${role.color ? role.color.toString(16) : '#white'}`}}>
+                    <div className='role-circle' style={{backgroundColor: `#${role.color ? role.color.toString(16) : 'fffffe'}`}}><wbr /></div>
+                    <span className='role-text' style={{color:`#${role.color ? role.color.toString(16) : '#white'}`}}>{role.name}</span>
+                </div>
             ))
 
             this.setState({data: data});
@@ -76,12 +81,20 @@ class MemberPage extends React.Component {
                             </div>
 
                         </div>
+
                         <hr className='header-main-divider' />
+
                         <div className='main'>
+
                             <div className='roles section'>
                                 <h2>Roles</h2>
-                                {/* {this.state.data.roles} */}
+                                <div className='roles-container'>
+                                    {this.state.data.roles}
+                                </div>
                             </div>
+
+                            <hr className='section-divider' />
+
                             <div className='balance section'>
                                 <h2>Balance</h2>
                                 <div className='balance-values'>
@@ -99,7 +112,17 @@ class MemberPage extends React.Component {
                                     </div>
                                 </div>
                             </div>
+
                             <hr className='section-divider' />
+
+                            <div className='level section'>
+                                <h2>Level</h2>
+
+                                <span>{this.state.data.level}</span>
+                                <br />
+
+                                <meter className='level-meter' min='0' max='100' value={String(this.state.data.progress)} />
+                            </div>
                         </div>
                         
                     </div>
