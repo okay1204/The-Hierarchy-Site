@@ -116,12 +116,16 @@ class MemberPage extends React.Component {
                             <hr className='section-divider' />
 
                             <div className='level section'>
-                                <h2>Level</h2>
+                                <h2>Rank</h2>
 
                                 <span>{this.state.data.level}</span>
                                 <br />
 
-                                <meter className='level-meter' min='0' max='100' value={String(this.state.data.progress)} />
+                                <h3>{this.state.data.progress}% of the way to the next level</h3>
+
+                                <div className='level-meter'>
+                                    <div className='level-progress' style={{width: `${this.state.data.progress}%`}} />
+                                </div>
                             </div>
                         </div>
                         

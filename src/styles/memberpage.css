@@ -49,7 +49,7 @@
     text-align: left;
 }
 
-#user-info .header .name-wrapper .name {
+#user-info .header .name-wrapper .main-name .name {
     font-family: 'Uni Sans', sans-serif;
     margin: 20px;
     font-size: min(3.8vw, 40px);
@@ -111,6 +111,7 @@
     padding: 5px;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 .role-text {
@@ -139,8 +140,19 @@
 
 .level-meter {
     margin-top: 30px;
-    width: 70%;
+    width: 80%;
     height: 20px;
+    margin: 20px auto;
+    background-color: rgb(164, 164, 185);
+    border-radius: 10px;
+}
+
+.level-progress {
+    margin-top: 30px;
+    width: 80%;
+    height: 20px;
+    background-color: #2b2ee0;
+    border-radius: 10px 0px 0px 10px;
 }
 
 
@@ -191,9 +203,14 @@
         width: 30%;
     }
 
-    #user-info .header .name-wrapper .name {
+    #user-info .header .name-wrapper .main-name .name {
         font-size: min(10vw, 60px);
         margin: 2%;
+    }
+
+    #user-info .header .name-wrapper .main-name .discriminator {
+        font-size: min(3vw, 16px);
+        margin-right: 5%;
     }
 
     #user-info .header .name-wrapper .nick {
