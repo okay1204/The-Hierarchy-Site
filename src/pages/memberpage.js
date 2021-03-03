@@ -41,9 +41,33 @@ class MemberPage extends React.Component {
                     <span className='role-text' style={{color:`#${role.color ? role.color.toString(16) : '#white'}`}}>{role.name}</span>
                 </div>
             ))
+            
+            let items = []
+            
+            for (const [item, value] of Object.entries(data.items)) {
 
+                // if emoji is unicode
+                if (value.emoji.text) {
+                    items.push(
+                        <span className='shop-item'>{value.emoji.text} {item.charAt(0).toUpperCase() + item.slice(1)} x{value.count}</span>
+                    )
+                }
+
+                // if emoji is custom
+                else {
+                    items.push(
+                        <span className='shop-item'><img src={value.emoji.image} alt='shop item' className='shop-emoji' /> {item.charAt(0).toUpperCase() + item.slice(1)} x{value.count}</span>
+                    )
+                }
+            }
+
+            if (items.length === 0) {
+                items = <span className='shop-item'>None</span>
+            }
+            
+            data.items = items
+            
             this.setState({data: data});
-
         })
         .catch(err => {
             this.setState({error: true, data: err})
@@ -119,12 +143,21 @@ class MemberPage extends React.Component {
                                 <h2>Rank</h2>
 
                                 <span>{this.state.data.level}</span>
-                                <br />
 
-                                <h3>{this.state.data.progress}% of the way to the next level</h3>
+                                <h3 className='level-indicator-text'>{this.state.data.progress}% of the way to the next level</h3>
 
                                 <div className='level-meter'>
                                     <div className='level-progress' style={{width: `${this.state.data.progress}%`}} />
+                                </div>
+                            </div>
+
+                            <hr className='section-divider' />
+
+                            <div className='items section'>
+                                <h2>Items</h2>
+
+                                <div className='items-container'>
+                                    {this.state.data.items}
                                 </div>
                             </div>
                         </div>

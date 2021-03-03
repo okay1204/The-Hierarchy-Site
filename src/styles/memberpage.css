@@ -133,7 +133,10 @@
 .balance-values {
     display: flex;
     justify-content: space-around;
-    font-size: 25px;
+}
+
+.balance-values * {
+    font-size: min(5vw, 25px);
 }
 
 .level span {
@@ -155,6 +158,24 @@
     height: 20px;
     background-color: #2b2ee0;
     border-radius: 10px 0px 0px 10px;
+}
+
+.level-indicator-text {
+    font-size: min(5vw, 18px);
+}
+
+.items-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.shop-item {
+    font-size: min(5vw, 25px);
+}
+
+.shop-emoji {
+    width: min(5vw, 18px);
 }
 
 
