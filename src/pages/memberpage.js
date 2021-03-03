@@ -89,7 +89,7 @@ class MemberPage extends React.Component {
             }
 
             if (items.length === 0) {
-                items = <span className='shop-item'>None</span>
+                in_use = <span className='shop-item'>None</span>
             }
             
             data.in_use = in_use
