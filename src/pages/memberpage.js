@@ -66,6 +66,33 @@ class MemberPage extends React.Component {
             }
             
             data.items = items
+
+
+
+            let in_use = []
+            
+            for (const [item, value] of Object.entries(data.in_use)) {
+
+                // if emoji is unicode
+                if (value.emoji.text) {
+                    in_use.push(
+                        <span className='shop-item'>{value.emoji.text} {item.charAt(0).toUpperCase() + item.slice(1)} {value.timer}</span>
+                    )
+                }
+
+                // if emoji is custom
+                else {
+                    in_use.push(
+                        <span className='shop-item'><img src={value.emoji.image} alt='in use item' className='shop-emoji' /> {item.charAt(0).toUpperCase() + item.slice(1)} {value.timer}</span>
+                    )
+                }
+            }
+
+            if (items.length === 0) {
+                items = <span className='shop-item'>None</span>
+            }
+            
+            data.in_use = in_use
             
             this.setState({data: data});
         })
@@ -153,13 +180,24 @@ class MemberPage extends React.Component {
 
                             <hr className='section-divider' />
 
-                            <div className='items section'>
+                            <div className='shop-items section'>
                                 <h2>Items</h2>
 
                                 <div className='items-container'>
                                     {this.state.data.items}
                                 </div>
                             </div>
+
+                            <hr className='section-divider' />
+
+                            <div className='shop-items section'>
+                                <h2>In Use</h2>
+
+                                <div className='items-container'>
+                                    {this.state.data.in_use}
+                                </div>
+                            </div>
+
                         </div>
                         
                     </div>
