@@ -88,7 +88,7 @@ class MemberPage extends React.Component {
                 }
             }
 
-            if (items.length === 0) {
+            if (in_use.length === 0) {
                 in_use = <span className='shop-item'>None</span>
             }
             
