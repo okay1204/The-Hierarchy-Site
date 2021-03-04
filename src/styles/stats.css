@@ -29,6 +29,10 @@
     color: white;
     background-color: #7289da;
     padding: 10px 20px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c84eeae66720403a0f3962681b1041dc0b58372
     font-size: 60px;
     border-radius: 15px;
 
@@ -41,7 +45,11 @@
 }
 
 #stats-sections div a:hover {
+<<<<<<< HEAD
     background-color: #505f97;
+=======
+    background-color: #7289DA;
+>>>>>>> 6c84eeae66720403a0f3962681b1041dc0b58372
     transform: scale(0.9, 0.9)
 }
 

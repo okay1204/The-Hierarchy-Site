@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+.body {
+  flex-grow: 1;
+}
+
 .disable-select {
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */

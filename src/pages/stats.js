@@ -1,10 +1,16 @@
 import '../styles/stats.css'
 
+import { Helmet } from 'react-helmet'
+
 function Stats() {
 
 
     return(
-        <div id='stats-body'>
+        <div id='stats-body' className='body'>
+
+            <Helmet>
+                <title>The Hierarchy | Stats</title>
+            </Helmet>
             
             <div id='stats-sections'>
 

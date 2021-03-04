@@ -1,0 +1,268 @@
+#member-page-body,
+#member-page-error-body {
+    background-color: #7fcbab;
+}
+
+/* Normal page */
+
+#user-info {
+    background-color: #2C2F33;
+    display: block;
+    color: white;
+    
+    width: 75%;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    
+    white-space: nowrap;
+}
+
+.premium-border {
+    border: 3px #f47fff solid;
+}
+
+#user-info .header {
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+#user-info .header .img-wrapper {
+    max-width: 150px;
+}
+
+#user-info .header .img-wrapper .avatar {
+    border-radius: 50%;
+    width: 100%;
+}
+
+#user-info .header .img-wrapper .status {
+    width: 33%;
+    position: relative;
+    right: 30%;
+}
+
+#user-info .header .name-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#user-info .header .name-wrapper .main-name .name {
+    font-family: 'Uni Sans', sans-serif;
+    margin: 20px;
+    font-size: min(3.8vw, 40px);
+}
+
+#user-info .header .name-wrapper .nick {
+    font-family: 'Uni Sans', sans-serif;
+    color: rgb(194, 181, 181);
+    margin-left: 20px;
+    font-size: min(1vw, 16px);
+}
+
+#user-info .header .boosting {
+    display: block;
+    margin: 50px;
+    background-image: linear-gradient(rgb(218, 156, 156), #f47fff);
+    padding: 15px;
+    font-size: min(1.5vw, 20px);
+    border-radius: 20px;
+}
+
+#user-info .header .userid-wrapper {
+    margin-left: auto;
+    position: relative;
+    width: 0;
+    height: 0;
+}
+
+#user-info .header .userid-wrapper .userid {
+    position: absolute;
+    bottom: 60px;
+    right: 0px;
+}
+
+#user-info .header-main-divider {
+    border: 1px rgb(90, 89, 89) solid;
+}
+
+#user-info .main .section-divider {
+    border: 1px rgb(51, 50, 50) solid;
+    margin-top: 50px;
+}
+
+#user-info .main .section h2 {
+    font-family: 'Uni Sans', sans-serif;
+    font-size: 30px;
+}
+
+.roles-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.role {
+    border: 1px solid;
+    border-radius: 11px;
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.role-text {
+    padding: 5px;
+    font-size: 20px;
+    line-height: 0;
+    font-family: 'Uni Sans', sans-serif;
+    flex-shrink: 1;
+}
+
+.role-circle {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.balance-values {
+    display: flex;
+    justify-content: space-around;
+}
+
+.balance-values * {
+    font-size: min(5vw, 25px);
+}
+
+.level span {
+    font-size: 25px;
+}
+
+.level-meter {
+    margin-top: 30px;
+    width: 80%;
+    height: 20px;
+    margin: 20px auto;
+    background-color: rgb(164, 164, 185);
+    border-radius: 10px;
+}
+
+.level-progress {
+    margin-top: 30px;
+    width: 80%;
+    height: 20px;
+    background-color: #2b2ee0;
+    border-radius: 10px 0px 0px 10px;
+    position: relative;
+    right: 1px;
+}
+
+.level-indicator-text {
+    font-size: min(5vw, 18px);
+}
+
+.items-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.shop-item {
+    font-size: min(5vw, 25px);
+}
+
+.shop-emoji {
+    width: min(5vw, 18px);
+}
+
+
+/* Error page */
+
+#member-page-error-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-box {
+    display: flex;
+    align-items: center;
+    margin: 50px;
+}
+
+.error-box-img-wrapper {
+    max-width: 200px;
+}
+
+.error-box-img-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+.error-text h3 {
+    font-size: 50px;
+    font-family: 'Lato', sans-serif;
+}
+
+.error-text span {
+    font-size: 20px;
+    color: rgb(66, 60, 60);
+}
+
+@media only screen and (max-width:900px) {
+
+    #user-info {
+        width: 95%;
+    }
+
+    #user-info .header {
+        flex-direction: column;
+    }
+
+    #user-info .header .img-wrapper {
+        width: 30%;
+    }
+
+    #user-info .header .name-wrapper .main-name .name {
+        font-size: min(10vw, 60px);
+        margin: 2%;
+    }
+
+    #user-info .header .name-wrapper .main-name .discriminator {
+        font-size: min(3vw, 16px);
+        margin-right: 5%;
+    }
+
+    #user-info .header .name-wrapper .nick {
+        font-size: min(4vw, 20px);
+    }
+
+    #user-info .header .boosting {
+        font-size: min(3vw, 20px);
+        margin: 10px;
+        padding: 1.5vw;
+    }
+
+    #user-info .header .userid-wrapper {
+        visibility: hidden;
+    }
+
+}
+
+@media only screen and (max-width:800px) {
+    
+    .error-box {
+        flex-direction: column;
+    }
+}
+
+@font-face {
+    font-family: "Uni Sans";
+    src: local("Uni Sans"),
+      url("../fonts/Uni\ Sans\ Heavy.otf") format("otf");
+  }

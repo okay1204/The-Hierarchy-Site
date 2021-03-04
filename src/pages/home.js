@@ -44,7 +44,7 @@ function Home() {
 	}
 
 	return (
-		<div id='home-body'>
+		<div id='home-body' className='body'>
 			<h1 className='home-title'>Welcome to The Hierarchy!</h1>
 
 			<hr className='home-divider' />

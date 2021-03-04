@@ -37,7 +37,7 @@ function NavBar() {
                 <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO'></a>
             </div>
 
-            <a class='help-button' href='/help'><img src={Help} alt='help'/></a>
+            <a className='help-button' href='/help'><img src={Help} alt='help'/></a>
         </div>
     )
 }
