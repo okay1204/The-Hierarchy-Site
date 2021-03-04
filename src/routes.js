@@ -50,5 +50,4 @@ const routes = [
 		component: Help,
 	},
 ]
-
 export default parseRoutes(routes)
