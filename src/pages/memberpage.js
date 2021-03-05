@@ -9,8 +9,6 @@ import Offline from '../images/offline.png'
 import Idle from '../images/idle.png'
 import Dnd from '../images/do not disturb.png'
 
-import Loading from '../images/loading 3 dots.gif'
-
 const status_key = {
     'online': Online,
     'offline': Offline,
@@ -78,9 +76,6 @@ class MemberPage extends React.Component {
         }
         
         this.setState({in_use})
-
-        if (this.state.inUseLoading)
-            this.setState({inUseLoading: false})
     }
     
     componentDidMount() {
@@ -131,6 +126,7 @@ class MemberPage extends React.Component {
 
             this.setState({data});
             
+            this.inUseTimer()
             this.in_use_interval = setInterval(this.inUseTimer, 1000)
         })
         .catch(err => {
@@ -236,7 +232,7 @@ class MemberPage extends React.Component {
                             <h2>In Use</h2>
 
                             <div className='items-container'>
-                                {this.state.inUseLoading ? <img src={Loading} alt='loading' /> : this.state.in_use}
+                                {this.state.in_use}
                             </div>
                         </div>
 
