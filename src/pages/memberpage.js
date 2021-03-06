@@ -17,6 +17,18 @@ const status_key = {
 }
 
 
+const parseTime = (future, now) => {
+    const seconds = future-now
+    const remaining_seconds = seconds % 60
+    
+    const minutes = Math.floor(seconds / 60)
+    const remaining_minutes = minutes % 60
+    
+    const hours = Math.floor(minutes / 60)
+    
+    return `${hours}:${remaining_minutes < 10 ? '0': ''}${remaining_minutes}:${remaining_seconds < 10 ? '0': ''}${remaining_seconds}`
+}
+
 class MemberPage extends React.Component {
 
     constructor(props) {
@@ -26,13 +38,22 @@ class MemberPage extends React.Component {
             error: false,
             data: {},
             in_use: [],
-            inUseLoading: true
+            jail: null
         }
         
         this.inUseTimer = this.inUseTimer.bind(this)
+        this.jailTimer = this.jailTimer.bind(this)
     }
     
-    
+    jailTimer() {
+
+        const epoch_now = Math.floor(Date.now() / 1000)
+
+        const time_text = parseTime(this.state.data.jailtime, epoch_now)
+        const jail_element = <span className='jail-timer'>{time_text}</span>
+
+        this.setState({jail: jail_element})
+    }
 
     inUseTimer() {
 
@@ -42,18 +63,11 @@ class MemberPage extends React.Component {
         
         for (const [item, value] of Object.entries(this.state.data.in_use)) {
             
-            const seconds = value.timer-epoch_now
-            const remaining_seconds = seconds % 60
-            
-            const minutes = Math.floor(seconds / 60)
-            const remaining_minutes = minutes % 60
-            
-            const hours = Math.floor(minutes / 60)
-            
-            const time_text = `${hours}:${remaining_minutes < 10 ? '0': ''}${remaining_minutes}:${remaining_seconds < 10 ? '0': ''}${remaining_seconds}`
-
-            if (seconds < 0) 
+            if (value.timer-epoch_now < 0) 
                 continue
+
+
+            const time_text = parseTime(value.timer, epoch_now)
             
             
             // if emoji is unicode
@@ -93,9 +107,9 @@ class MemberPage extends React.Component {
             data.roles.reverse()
             
             data.roles = data.roles.map(role => (
-                <div className='role' style={{color:`#${role.color ? role.color.toString(16) : '#white'}`}}>
+                <div className='role' style={{color:`#${role.color ? role.color.toString(16) : '#fffffe'}`}}>
                     <div className='role-circle' style={{backgroundColor: `#${role.color ? role.color.toString(16) : 'fffffe'}`}}><wbr /></div>
-                    <span className='role-text' style={{color:`#${role.color ? role.color.toString(16) : '#white'}`}}>{role.name}</span>
+                    <span className='role-text' style={{color:`#${role.color ? role.color.toString(16) : '#fffffe'}`}}>{role.name}</span>
                 </div>
             ))
             
@@ -124,10 +138,21 @@ class MemberPage extends React.Component {
                 
             data.items = items
 
+            const epoch_now = Math.floor(Date.now() / 1000)
+
+            let inJail = false;
+            if (data.jailtime - epoch_now > 0)
+                inJail = true;
+
             this.setState({data});
             
             this.inUseTimer()
             this.in_use_interval = setInterval(this.inUseTimer, 1000)
+
+            if (inJail) {
+                this.jailTimer()
+                this.jail_interval = setInterval(this.jailTimer, 1000)
+            }
         })
         .catch(err => {
             this.setState({error: true, data: err})
@@ -136,7 +161,11 @@ class MemberPage extends React.Component {
     
     componentWillUnmount() {
         if (this.in_use_interval) {
-            return clearInterval(this.in_use_interval)
+            clearInterval(this.in_use_interval)
+        }
+
+        if (this.jail_timer) {
+            clearInterval(this.jail_interval)
         }
     }
                     
@@ -174,6 +203,15 @@ class MemberPage extends React.Component {
                     <hr className='header-main-divider' />
 
                     <div className='main'>
+
+                        {this.state.jail &&
+                        <div className='jail section'>
+                            <h2>Jail</h2>
+                            {this.state.jail}
+                        </div>
+                        }
+
+                        {this.state.jail && <hr className='section-divider' />}
 
                         <div className='roles section'>
                             <h2>Roles</h2>
