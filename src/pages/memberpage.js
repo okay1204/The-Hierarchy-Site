@@ -112,15 +112,33 @@ class MemberPage extends React.Component {
         .then(res => {
             
             const data = res.data;
-            
+
             data.roles.reverse()
             
-            data.roles = data.roles.map(role => (
-                <div className='role' style={{color:`#${role.color ? role.color.toString(16) : '#fffffe'}`}}>
-                    <div className='role-circle' style={{backgroundColor: `#${role.color ? role.color.toString(16) : 'fffffe'}`}}><wbr /></div>
-                    <span className='role-text' style={{color:`#${role.color ? role.color.toString(16) : '#fffffe'}`}}>{role.name}</span>
-                </div>
-            ))
+            data.roles = data.roles.map(role => {
+
+                let color = role.color
+
+                if (color) {
+                    color = color.toString(16)
+
+                    while (color.length < 6) {
+                        color = '0' + color
+                    }
+
+                    color = '#' + color
+                    
+                } else {
+                    color = 'white'
+                }
+
+                return (
+                    <div className='role' style={{color: color}}>
+                        <div className='role-circle' style={{backgroundColor: color}}><wbr /></div>
+                        <span className='role-text' style={{color: color}}>{role.name}</span>
+                    </div>
+                )
+            })
             
             let items = []
             
@@ -162,6 +180,7 @@ class MemberPage extends React.Component {
                 this.jailTimer()
                 this.jail_interval = setInterval(this.jailTimer, 1000)
             }
+
         })
         .catch(err => {
             this.setState({error: true, data: err})
@@ -321,7 +340,7 @@ class MemberPage extends React.Component {
             } else {
                 return (
                     <div id='member-page-error-body' className='body'>
-                        <img src={LoadingWheel} className='loading-wheel'/>
+                        <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
                     </div>
                 )
             }
