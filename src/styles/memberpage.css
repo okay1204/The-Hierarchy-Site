@@ -95,7 +95,7 @@
 
 #user-info .main .section h2 {
     font-family: 'Uni Sans', sans-serif;
-    font-size: 30px;
+    font-size: min(30px, 13vw);
 }
 
 .jail {
@@ -183,6 +183,23 @@
 
 .shop-emoji {
     width: min(5vw, 18px);
+}
+
+.occupations-container {
+    display: flex;
+    justify-content: space-around;
+    font-size: min(5vw, 20px);
+}
+
+.majors div {
+    display: flex;
+    justify-content: space-around;
+    font-size: min(5vw, 25px);
+    flex-wrap: wrap;
+}
+
+.majors div span {
+    margin: 10px;
 }
 
 
