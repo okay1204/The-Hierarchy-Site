@@ -171,7 +171,6 @@ class MemberPage extends React.Component {
             if (data.jailtime - epoch_now > 0)
                 inJail = true;
 
-
             if (data.gang) {
 
                 let color = data.gang.color.toString(16)
@@ -184,7 +183,7 @@ class MemberPage extends React.Component {
 
 
                 data.gang = (
-                    <a className='mini-gang-embed-wrapper' href={`/stats/gangs/${data.gang.name}`}>
+                    <a className='mini-gang-embed-wrapper' href={`/stats/gangs/${data.gang.name}`} >
                         <div className='mini-gang-embed' style={{border: `2px ${color} solid`}}>
                             <span>{data.gang.name}</span>
                             <div className='mini-gang-img-wrapper'>
@@ -194,8 +193,42 @@ class MemberPage extends React.Component {
                     </a>
                 )
             } else {
-                data.gang = 'None'
+                data.gang = <span className='member-gang-none'>None</span>
             }
+
+
+            if (data.awards.length > 0) {
+                data.awards = (
+                    <div className='member-awards-container'>
+                        {data.awards.map((award) => {
+
+                            let color = award.color.toString(16)
+
+                            while (color.length < 6) {
+                                color = '0' + color
+                            }
+
+                            color = '#' + color
+
+                            return (
+                                <a className='mini-award-embed-wrapper' href={`/stats/awards/${award.id}`} >
+                                <div className='mini-award-embed' style={{border: `2px ${color} solid`}}>
+                                    <span>{award.name}</span>
+                                    <div className='mini-award-img-wrapper'>
+                                        <img src={award.image_link} alt='award icon'/>
+                                    </div>
+                                </div>
+                                </a>
+                            )
+                        })}
+                    </div>
+                )
+
+            } else {
+                data.awards = <span className='member-awards-none'>None</span>
+            }
+
+
 
             this.setState({data});
             
@@ -367,6 +400,14 @@ class MemberPage extends React.Component {
                                 <h2>Gang</h2>
 
                                 {this.state.data.gang}
+                            </div>
+
+                            <hr className='section-divider' />
+
+                            <div className='member-page-awards section'>
+                                <h2>Awards</h2>
+
+                                {this.state.data.awards}
                             </div>
 
                         </div>
