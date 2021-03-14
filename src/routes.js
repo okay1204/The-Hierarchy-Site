@@ -3,6 +3,8 @@ import Help from './pages/help'
 import Stats from './pages/stats'
 
 import MemberPage from './pages/memberpage'
+import MemberCatalog from './pages/membercatalog'
+
 import parseRoutes from './utils/parser'
 
 const dflt = (props) => <div style = {{height: '50vh', fontSize: '50px'}}> Hello Zghan, recieved props of {JSON.stringify(props)} </div>
@@ -21,18 +23,13 @@ const routes = [
 				component: dflt,
 				subRoutes: [
 					{
-						path: '/:userId',
-						component: MemberPage,
+						path: '/catalog',
+						component: MemberCatalog
 					},
 					{
-						path: '/top',
-						component: dflt,
-						subRoutes: [
-							{ path: '/money', component: dflt },
-							{ path: '/level', component: dflt },
-							{ path: '/random', component: dflt },
-						],
-					},
+						path: '/:userId',
+						component: MemberPage,
+					}
 				],
 			},
 			{

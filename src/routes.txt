@@ -1,7 +1,6 @@
 /stats/members/:id
-/stats/members/top/money
-/stats/members/top/level
-/stats/members/top/random
+
+/stats/members/catalog
 
 /stats/gangs
 /stats/gangs/:name
