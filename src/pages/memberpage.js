@@ -171,8 +171,38 @@ class MemberPage extends React.Component {
             if (data.jailtime - epoch_now > 0)
                 inJail = true;
 
+
+            if (data.gang) {
+
+                let color = data.gang.color.toString(16)
+
+                while (color.length < 6) {
+                    color = '0' + color
+                }
+
+                color = '#' + color
+
+
+                data.gang = (
+                    <a className='mini-gang-embed-wrapper' href={`/stats/gangs/${data.gang.name}`}>
+                        <div className='mini-gang-embed' style={{border: `2px ${color} solid`}}>
+                            <span>{data.gang.name}</span>
+                            <div className='mini-gang-img-wrapper'>
+                                <img src={data.gang.img_link} alt='gang icon'/>
+                            </div>
+                        </div>
+                    </a>
+                )
+            } else {
+                data.gang = 'None'
+            }
+
             this.setState({data});
             
+
+
+
+
             this.inUseTimer()
             this.in_use_interval = setInterval(this.inUseTimer, 1000)
 
@@ -329,6 +359,14 @@ class MemberPage extends React.Component {
                                 <div>
                                     {this.state.data.majors.length > 0 ? this.state.data.majors.map((major) => (<span>{major}</span>)) : 'None'}
                                 </div>
+                            </div>
+
+                            <hr className='section-divider' />
+
+                            <div className='member-page-gang section'>
+                                <h2>Gang</h2>
+
+                                {this.state.data.gang}
                             </div>
 
                         </div>
