@@ -1,0 +1,94 @@
+
+.member-preview {
+    background-color: #2C2F33;
+    display: block;
+    color: white;
+    
+    width: 75%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    
+    white-space: nowrap;
+
+    text-decoration: none;
+
+    transition: background-color ease-in 100ms;
+    -webkit-transition: background-color ease-in 100ms;
+    -moz-transition: background-color ease-in 100ms;
+    -o-transition: background-color ease-in 100ms;
+}
+
+.member-preview:hover {
+    background-color: #3d3838;
+}
+
+.premium-border {
+    border: 3px #f47fff solid;
+}
+
+.member-preview {
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.member-preview .img-wrapper {
+    max-width: 150px;
+}
+
+.member-preview .img-wrapper .avatar {
+    border-radius: 50%;
+    width: 100%;
+}
+
+.member-preview .img-wrapper .status {
+    width: 33%;
+    position: relative;
+    right: 30%;
+}
+
+.member-preview .name-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.member-preview .name-wrapper .main-name .name {
+    font-family: 'Uni Sans', sans-serif;
+    margin: 20px;
+    font-size: min(3.8vw, 40px);
+}
+
+.member-preview .name-wrapper .nick {
+    font-family: 'Uni Sans', sans-serif;
+    color: rgb(194, 181, 181);
+    margin-left: 20px;
+    font-size: min(1vw, 16px);
+}
+
+.member-preview .boosting {
+    display: block;
+    margin: 50px;
+    background-image: linear-gradient(rgb(218, 156, 156), #f47fff);
+    padding: 15px;
+    font-size: min(1.5vw, 20px);
+    border-radius: 20px;
+}
+
+.member-preview .userid-wrapper {
+    margin-left: auto;
+    position: relative;
+    width: 0;
+    height: 0;
+}
+
+.member-preview .userid-wrapper .userid {
+    position: absolute;
+    bottom: 60px;
+    right: 0px;
+}
+
+.member-preview-main-divider {
+    border: 1px rgb(90, 89, 89) solid;
+}

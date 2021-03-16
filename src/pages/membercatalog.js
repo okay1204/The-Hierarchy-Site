@@ -7,6 +7,8 @@ import { Redirect } from "react-router-dom";
 import LoadingWheel from '../images/loading wheel.gif'
 import NotFound from '../images/notfound.png'
 
+import MemberPreview from '../components/memberpreview'
+
 class MemberCatalog extends React.Component {
 
     constructor(props) {
@@ -32,6 +34,7 @@ class MemberCatalog extends React.Component {
         axios.get(`https://api.thehierarchy.me/members/top/${sortBy}`)
         
         .then(res => {
+
             this.setState({data: res.data});
         })
         .catch(err => {
@@ -50,8 +53,15 @@ class MemberCatalog extends React.Component {
             if (this.state.data.length > 0) {
                 return (
                     <div id='member-catalog' className='body'>
-                        <div className=''>
-
+                        <div className='catalog-member-listing'>
+                            {
+                                this.state.data.map((member) => (
+                                    <MemberPreview id={member.id} avatar_url={member.avatar_url} status={member.status}
+                                    name={member.name} discriminator={member.discriminator} nick={member.nick}
+                                    boosting={member.boosting} 
+                                    />
+                                ))
+                            }
                         </div>
                     </div>
                 )

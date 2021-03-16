@@ -4,20 +4,9 @@ import axios from 'axios'
 import React from 'react'
 import NotFound from '../images/notfound.png'
 
-import Online from '../images/online.png'
-import Offline from '../images/offline.png'
-import Idle from '../images/idle.png'
-import Dnd from '../images/do not disturb.png'
+import status_key from '../constants.js'
 
 import LoadingWheel from '../images/loading wheel.gif'
-
-const status_key = {
-    'online': Online,
-    'offline': Offline,
-    'idle': Idle,
-    'dnd': Dnd
-}
-
 
 const parseTime = (future, now) => {
     const seconds = future-now
