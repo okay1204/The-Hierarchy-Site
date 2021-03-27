@@ -17,6 +17,10 @@
     -webkit-transition: background-color ease-in 100ms;
     -moz-transition: background-color ease-in 100ms;
     -o-transition: background-color ease-in 100ms;
+
+    text-align: left;
+    display: flex;
+    align-items: center;
 }
 
 .member-preview:hover {
@@ -27,14 +31,9 @@
     border: 3px #f47fff solid;
 }
 
-.member-preview {
-    text-align: left;
-    display: flex;
-    align-items: center;
-}
-
 .member-preview .img-wrapper {
-    max-width: 150px;
+    max-width: 100px;
+    flex-shrink: 0;
 }
 
 .member-preview .img-wrapper .avatar {
@@ -43,7 +42,7 @@
 }
 
 .member-preview .img-wrapper .status {
-    width: 33%;
+    width: 36%;
     position: relative;
     right: 30%;
 }
@@ -52,24 +51,31 @@
     display: flex;
     flex-direction: column;
     text-align: left;
+    flex-shrink: 3;
+
+    overflow: hidden;
 }
 
 .member-preview .name-wrapper .main-name .name {
     font-family: 'Uni Sans', sans-serif;
-    margin: 20px;
-    font-size: min(3.8vw, 40px);
+    margin: 4vw;
+    font-size: min(10vw, 45px);
+}
+
+.member-preview .name-wrapper .main-name .discriminator {
+    font-size: min(4vw, 20px);
 }
 
 .member-preview .name-wrapper .nick {
     font-family: 'Uni Sans', sans-serif;
     color: rgb(194, 181, 181);
-    margin-left: 20px;
-    font-size: min(1vw, 16px);
+    margin-left: 4vw;
+    font-size: min(4vw, 20px);
 }
 
 .member-preview .boosting {
     display: block;
-    margin: 50px;
+    margin-left: 2vw;
     background-image: linear-gradient(rgb(218, 156, 156), #f47fff);
     padding: 15px;
     font-size: min(1.5vw, 20px);
@@ -91,4 +97,20 @@
 
 .member-preview-main-divider {
     border: 1px rgb(90, 89, 89) solid;
+}
+
+.preview-stat {
+    margin-left: auto;
+    font-size: min(6vw, 30px);
+}
+
+@media only screen and (max-width:800px) {
+    .member-preview {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .member-preview .img-wrapper {
+        max-width: 75px;
+    }
 }

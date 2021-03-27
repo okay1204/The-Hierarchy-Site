@@ -34,7 +34,6 @@ class MemberCatalog extends React.Component {
         axios.get(`https://api.thehierarchy.me/members/top/${sortBy}`)
         
         .then(res => {
-
             this.setState({data: res.data});
         })
         .catch(err => {
@@ -58,7 +57,7 @@ class MemberCatalog extends React.Component {
                                 this.state.data.map((member) => (
                                     <MemberPreview id={member.id} avatar_url={member.avatar_url} status={member.status}
                                     name={member.name} discriminator={member.discriminator} nick={member.nick}
-                                    boosting={member.boosting} 
+                                    boosting={member.boosting} preview_stat={{money: member.money + member.bank}}
                                     />
                                 ))
                             }
