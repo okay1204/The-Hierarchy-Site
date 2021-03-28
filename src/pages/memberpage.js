@@ -175,9 +175,12 @@ class MemberPage extends React.Component {
                     <a className='mini-gang-embed-wrapper' href={`/stats/gangs/${data.gang.name}`} >
                         <div className='mini-gang-embed' style={{border: `2px ${color} solid`}}>
                             <span>{data.gang.name}</span>
+                            {data.gang.img_link && (
                             <div className='mini-gang-img-wrapper'>
                                 <img src={data.gang.img_link} alt='gang icon'/>
                             </div>
+                            )
+                            }                   
                         </div>
                     </a>
                 )
