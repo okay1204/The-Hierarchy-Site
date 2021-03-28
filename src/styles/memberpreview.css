@@ -10,7 +10,6 @@
     border-radius: 10px;
     
     white-space: nowrap;
-
     text-decoration: none;
 
     transition: background-color ease-in 100ms;
@@ -21,6 +20,7 @@
     text-align: left;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .member-preview:hover {
@@ -31,24 +31,30 @@
     border: 3px #f47fff solid;
 }
 
-.member-preview .img-wrapper {
-    max-width: 100px;
-    flex-shrink: 0;
+.member-preview .left {
+    display: flex;
+    align-items: center;
 }
 
-.member-preview .img-wrapper .avatar {
+.member-preview .left .img-wrapper {
+    max-width: 100px;
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.member-preview .left .img-wrapper .avatar {
     border-radius: 50%;
     width: 100%;
 }
 
-.member-preview .img-wrapper .status {
+.member-preview .left .img-wrapper .status {
     width: 36%;
     position: relative;
     right: 30%;
 }
 
-.member-preview .name-wrapper {
-    display: flex;
+.member-preview .left .name-wrapper {
+    display: inline-flex;
     flex-direction: column;
     text-align: left;
     flex-shrink: 3;
@@ -56,24 +62,24 @@
     overflow: hidden;
 }
 
-.member-preview .name-wrapper .main-name .name {
+.member-preview .left .name-wrapper .main-name .name {
     font-family: 'Uni Sans', sans-serif;
     margin: 4vw;
     font-size: min(10vw, 45px);
 }
 
-.member-preview .name-wrapper .main-name .discriminator {
+.member-preview .left .name-wrapper .main-name .discriminator {
     font-size: min(4vw, 20px);
 }
 
-.member-preview .name-wrapper .nick {
+.member-preview .left .name-wrapper .nick {
     font-family: 'Uni Sans', sans-serif;
     color: rgb(194, 181, 181);
     margin-left: 4vw;
     font-size: min(4vw, 20px);
 }
 
-.member-preview .boosting {
+.member-preview .left .boosting {
     display: block;
     margin-left: 2vw;
     background-image: linear-gradient(rgb(218, 156, 156), #f47fff);
@@ -82,26 +88,17 @@
     border-radius: 20px;
 }
 
-.member-preview .userid-wrapper {
-    margin-left: auto;
-    position: relative;
-    width: 0;
-    height: 0;
-}
-
-.member-preview .userid-wrapper .userid {
-    position: absolute;
-    bottom: 60px;
-    right: 0px;
-}
-
 .member-preview-main-divider {
     border: 1px rgb(90, 89, 89) solid;
 }
 
+.member-preview .right {
+    flex-shrink: 0;
+}
+
 .preview-stat {
     margin-left: auto;
-    font-size: min(6vw, 30px);
+    font-size: min(4vw, 30px);
 }
 
 @media only screen and (max-width:800px) {
@@ -110,7 +107,7 @@
         padding: 10px;
     }
 
-    .member-preview .img-wrapper {
+    .member-preview .left .img-wrapper {
         max-width: 75px;
     }
 }
