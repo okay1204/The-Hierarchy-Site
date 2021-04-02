@@ -2,7 +2,6 @@ import '../styles/membercatalog.css'
 import axios from 'axios'
 
 import React from 'react'
-import { Redirect } from "react-router-dom";
 
 import LoadingWheel from '../images/loading wheel.gif'
 import NotFound from '../images/notfound.png'
@@ -18,35 +17,52 @@ class MemberCatalog extends React.Component {
             error: false,
             data: [],
             sortBy: null,
-            redirect: false
+            redirect: false,
+            loading: true,
         }
     }
 
-    componentDidMount() {
+    setSortBy(sortBySelection) {
+        const searchParams = new URLSearchParams(this.props.location.search)
+        searchParams.set('sortBy', sortBySelection)
+        this.props.history.push(window.location.pathname + "?" + searchParams.toString())
+        this.setState({ sortBy: sortBySelection })
+        return sortBySelection
+    }
 
-        const search = this.props.location.search;
-        const searchParams = new URLSearchParams(search)
-        const sortBy = searchParams.get("sortBy")
-        this.setState( {sortBy} )
+    getSortBy() {
+        return new URLSearchParams(this.props.location.search).get('sortBy')
+    }
 
-        if (!(['money', 'level', 'random'].indexOf(sortBy) > -1)) {
-            searchParams.set('sortBy', 'money')
-            this.props.history.push(window.location.pathname + "?" + searchParams.toString())
-        }
+    setOption(sortOption) {
+        this.setState({loading: true})
 
-        axios.get(`https://api.thehierarchy.me/members/top/${searchParams.get('sortBy')}`)
+        this.setSortBy(sortOption)
+
+        axios.get(`https://api.thehierarchy.me/members/top/${sortOption}`)
+            
         
         .then(res => {
-            this.setState({data: res.data});
+            this.setState({ data: res.data })
+            this.setState({loading: false})
         })
         .catch(err => {
-            this.setState({error: true, data: err})
+            this.setState({ error: true, data: err })
+            this.setState({loading: false})
         })
+    }
+
+    componentDidMount() {
+        const initialSort = this.getSortBy()
+        
+        //if invalid sort param, set it to default which is money
+        const updatedSort = this.setSortBy(['money', 'level', 'random'].includes(initialSort) ? initialSort : 'money')
+        
+        this.setOption(updatedSort)
 
     }
 
     render() {
-
 
         if (!this.state.error) {
 
@@ -62,17 +78,23 @@ class MemberCatalog extends React.Component {
                 <div id='member-catalog' className='body'>
 
                     <div className='sort-by-box'>
-                        <span>Sort By:</span>
+                        <label><span>Sort By:</span></label>
                         <br />
-                        <select>
-                            <option>Money</option>
-                            <option>Level</option>
-                            <option>Random</option>
+                        <select name = 'options' onChange = {(e) => this.setOption(e.target.value)}>
+                            <option selected value = 'money'>Money</option>
+                            <option value = 'level'>Level</option>
+                            <option value = 'random'>Random</option>
                         </select>
                     </div>
 
-                    { this.state.data.length > 0 ?
+                    {this.state.loading ?
 
+                    <div id='member-page-error-body' className='body'>
+                        <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
+                        </div>
+                        
+                        :
+                        
                     <div className='catalog-member-listing'>
                         {
                             this.state.data.map((member) => (
@@ -82,11 +104,6 @@ class MemberCatalog extends React.Component {
                                 />
                             ))
                         }
-                    </div>
-                    : 
-                    
-                    <div id='member-page-error-body' className='body'>
-                        <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
                     </div>
                     }
                 </div>
