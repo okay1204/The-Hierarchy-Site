@@ -62,10 +62,18 @@
     overflow: hidden;
 }
 
+.member-preview .left .name-wrapper .main-name {
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 30px;
+}
+
 .member-preview .left .name-wrapper .main-name .name {
     font-family: 'Uni Sans', sans-serif;
     margin: 4vw;
-    font-size: min(10vw, 45px);
+    font-size: min(7vw, 45px);
 }
 
 .member-preview .left .name-wrapper .main-name .discriminator {
@@ -84,7 +92,7 @@
     margin-left: 2vw;
     background-image: linear-gradient(rgb(218, 156, 156), #f47fff);
     padding: 15px;
-    font-size: min(1.5vw, 20px);
+    font-size: 20px;
     border-radius: 20px;
 }
 
@@ -97,8 +105,8 @@
 }
 
 .preview-stat {
-    margin-left: auto;
-    font-size: min(4vw, 30px);
+    font-size: min(6vw, 30px);
+    margin-left: 10px;
 }
 
 @media only screen and (max-width:800px) {
@@ -109,5 +117,10 @@
 
     .member-preview .left .img-wrapper {
         max-width: 75px;
+    }
+
+    .member-preview .left .boosting {
+        font-size: 15px;
+        padding: 10px;
     }
 }

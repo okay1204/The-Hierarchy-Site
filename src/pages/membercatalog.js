@@ -17,6 +17,7 @@ class MemberCatalog extends React.Component {
         this.state = {
             error: false,
             data: [],
+            sortBy: null,
             redirect: false
         }
     }
@@ -24,7 +25,8 @@ class MemberCatalog extends React.Component {
     componentDidMount() {
 
         const search = this.props.location.search;
-        const sortBy = new URLSearchParams(search).get("sortBy");
+        const sortBy = new URLSearchParams(search).get("sortBy")
+        this.setState( {sortBy} )
 
         if (!(['money', 'level', 'random'].indexOf(sortBy) > -1)) {
             this.setState({redirect: true})
@@ -49,28 +51,47 @@ class MemberCatalog extends React.Component {
 
         if (!this.state.error) {
 
-            if (this.state.data.length > 0) {
-                return (
-                    <div id='member-catalog' className='body'>
-                        <div className='catalog-member-listing'>
-                            {
-                                this.state.data.map((member) => (
-                                    <MemberPreview id={member.id} avatar_url={member.avatar_url} status={member.status}
-                                    name={member.name} discriminator={member.discriminator} nick={member.nick}
-                                    boosting={member.boosting} preview_stat={{money: member.money + member.bank}}
-                                    />
-                                ))
-                            }
-                        </div>
+            let preview_stat = (member) => null
+
+            if (this.state.sortBy === 'money') {
+                preview_stat = (member) => `$${member.money + member.bank}`
+            } else if (this.state.sortBy === 'level') {
+                preview_stat = (member) => `Level ${member.level}`
+            }
+
+            return (
+                <div id='member-catalog' className='body'>
+
+                    <div className='sort-by-box'>
+                        <span>Sort By:</span>
+                        <br />
+                        <select>
+                            <option>Money</option>
+                            <option>Level</option>
+                            <option>Random</option>
+                        </select>
                     </div>
-                )
-            } else {
-                return (
+
+                    { this.state.data.length > 0 ?
+
+                    <div className='catalog-member-listing'>
+                        {
+                            this.state.data.map((member) => (
+                                <MemberPreview id={member.id} avatar_url={member.avatar_url} status={member.status}
+                                name={member.name} discriminator={member.discriminator} nick={member.nick}
+                                boosting={member.boosting} preview_stat={preview_stat(member)}
+                                />
+                            ))
+                        }
+                    </div>
+                    : 
+                    
                     <div id='member-page-error-body' className='body'>
                         <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
                     </div>
-                )
-            }
+                    }
+                </div>
+            )
         }
     
         else {
