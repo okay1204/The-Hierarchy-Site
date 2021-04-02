@@ -25,15 +25,16 @@ class MemberCatalog extends React.Component {
     componentDidMount() {
 
         const search = this.props.location.search;
-        const sortBy = new URLSearchParams(search).get("sortBy")
+        const searchParams = new URLSearchParams(search)
+        const sortBy = searchParams.get("sortBy")
         this.setState( {sortBy} )
 
         if (!(['money', 'level', 'random'].indexOf(sortBy) > -1)) {
-            this.setState({redirect: true})
-            return
+            searchParams.set('sortBy', 'money')
+            this.props.history.push(window.location.pathname + "?" + searchParams.toString())
         }
 
-        axios.get(`https://api.thehierarchy.me/members/top/${sortBy}`)
+        axios.get(`https://api.thehierarchy.me/members/top/${searchParams.get('sortBy')}`)
         
         .then(res => {
             this.setState({data: res.data});
@@ -41,13 +42,11 @@ class MemberCatalog extends React.Component {
         .catch(err => {
             this.setState({error: true, data: err})
         })
+
     }
 
     render() {
 
-        if (this.state.redirect) {
-            return <Redirect from='catalog?sortBy=:error' to='catalog?sortBy=money' />
-        }
 
         if (!this.state.error) {
 
