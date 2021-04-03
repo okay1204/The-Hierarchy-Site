@@ -3,7 +3,7 @@
 /stats/members/catalog
 
 /stats/gangs
-/stats/gangs/:name
+/stats/gangs/:id
 
 /stats/awards
 /stats/awards/:id

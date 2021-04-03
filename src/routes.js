@@ -6,6 +6,7 @@ import MemberPage from './pages/memberpage'
 import MemberCatalog from './pages/membercatalog'
 
 import parseRoutes from './utils/parser'
+import GangPage from './pages/gangpage'
 
 const dflt = (props) => <div style = {{height: '50vh', fontSize: '50px'}}> Hello Zghan, recieved props of {JSON.stringify(props)} </div>
 
@@ -35,7 +36,7 @@ const routes = [
 			{
 				path: '/gangs',
 				component: dflt,
-				subRoutes: [{ path: '/:name', component: dflt }],
+				subRoutes: [{ path: '/:gangId', component: GangPage }],
 			},
 			{
 				path: '/awards',
