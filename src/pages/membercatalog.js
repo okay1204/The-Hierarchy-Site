@@ -81,9 +81,9 @@ class MemberCatalog extends React.Component {
                         <label><span>Sort By:</span></label>
                         <br />
                         <select name = 'options' onChange = {(e) => this.setOption(e.target.value)}>
-                            <option selected value = 'money'>Money</option>
-                            <option value = 'level'>Level</option>
-                            <option value = 'random'>Random</option>
+                            <option selected={this.state.sortBy === 'money'} value = 'money'>Money</option>
+                            <option selected={this.state.sortBy === 'level'} value = 'level'>Level</option>
+                            <option selected={this.state.sortBy === 'random'} value = 'random'>Random</option>
                         </select>
                     </div>
 

@@ -3,7 +3,6 @@ import routes from './routes';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/navbar'
 import Footer from './components/footer'
-import { Redirect } from "react-router-dom";
 
 function App() {
   return (
