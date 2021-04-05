@@ -389,6 +389,5 @@
 
 @font-face {
     font-family: "Uni Sans";
-    src: local("Uni Sans"),
-      url("../fonts/Uni\ Sans\ Heavy.otf") format("otf");
-  }
+    src: local("Uni Sans"), url("../fonts/Uni\ Sans\ Heavy.otf") format("otf");
+}

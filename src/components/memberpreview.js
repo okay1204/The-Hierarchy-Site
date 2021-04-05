@@ -5,30 +5,30 @@ import status_key from '../constants.js'
 function MemberPreview(props) {
 
     return (
-        <a className={`member-preview ${props.boosting ? 'premium-border' : ''}`} href={`/stats/members/${props.id}`}>
+        <a className={`member-preview ${props.member.boosting ? 'premium-border' : ''}`} href={`/stats/members/${props.member.id}`}>
 
             <div className='left'>
                 <div className='img-wrapper'>
 
-                    <img src={props.avatar_url} className='avatar' alt='Profile pic' />
-                    <img className='status' src={status_key[props.status]} alt={props.status}/>
+                    <img src={props.member.avatar_url} className='avatar' alt='Profile pic' />
+                    <img className='status' src={status_key[props.member.status]} alt={props.member.status}/>
                     
                 </div>
                 <div className='name-wrapper'>
                     <div className='main-name'>
-                        <span className='name'>{props.name}</span>
-                        <span className='discriminator'>#{props.discriminator}</span>
+                        <span className='name'>{props.member.name}</span>
+                        <span className='discriminator'>#{props.member.discriminator}</span>
                     </div>
-                    {props.nick && <span className='nick'>{props.nick}</span>}
+                    {props.member.nick && <span className='nick'>{props.member.nick}</span>}
                 </div>
                 
-                {props.boosting && <span className='boosting'>Premium</span>}
+                {props.member.boosting && <span className='boosting'>Premium</span>}
             </div>
             
             <div className='right'>
-                {props.preview_stat && (
+                {props.member.preview_stat && (
                     <span className='preview-stat'>
-                        {props.preview_stat}
+                        {props.member.preview_stat}
                     </span>
                 )}
             </div>

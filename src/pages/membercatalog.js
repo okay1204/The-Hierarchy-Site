@@ -98,9 +98,7 @@ class MemberCatalog extends React.Component {
                     <div className='catalog-member-listing'>
                         {
                             this.state.data.map((member) => (
-                                <MemberPreview id={member.id} avatar_url={member.avatar_url} status={member.status}
-                                name={member.name} discriminator={member.discriminator} nick={member.nick}
-                                boosting={member.boosting} preview_stat={preview_stat(member)}
+                                <MemberPreview member={member} preview_stat={preview_stat(member)}
                                 />
                             ))
                         }
