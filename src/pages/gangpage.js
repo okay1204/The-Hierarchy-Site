@@ -15,7 +15,7 @@ class GangPage extends React.Component {
         this.state = {
             error: false,
             data: {},
-            owner: null,
+            owner: {data: null, error: false},
             members: []
         }
     }
@@ -34,12 +34,12 @@ class GangPage extends React.Component {
             
             // getting owner
             axios.get(`https://api.thehierarchy.me/members/${data.owner.id}`)
-            .then(owner_res => {
-                const owner = owner_res.data
-                this.setState({owner})
+            .then(res => {
+                const data = res.data
+                this.setState({owner: {data, error: false}})
             })
             .catch(err => {
-                
+                this.setState({owner: {data: err, error: true}})
             })
         })
         .catch(err => {
@@ -63,14 +63,30 @@ class GangPage extends React.Component {
 
             if (this.state.data && Object.keys(this.state.data).length !== 0) {
 
-
+                
+                
                 // parsing date
                 let created_at = this.state.data.created_at.split(' ')[0]
                 let [year, month, day] = created_at.split('-')
-
+                
                 created_at = `${month}/${day}/${year}`
+                
+                // parsing owner
+                let owner = null;
 
-
+                if (!this.state.owner.data) { // loading
+                    owner = <img className='loading-owner' src={LoadingWheel} alt='loading owner'/>
+                } else if (!this.state.owner.error) { // success
+                    owner = <MemberPreview member={this.state.owner.data} white_border={true} />
+                } else { //error
+                    owner = (
+                        <div className='gang-member-error'>
+                            <h3>Whoops, something goofed</h3>
+                            <span>We couldn't find this member for some reason...</span>
+                        </div>
+                    )
+                }
+                
                 return (
                     <div id='gang-page-body' className='body'>
 
@@ -114,7 +130,7 @@ class GangPage extends React.Component {
                             <div className='gang-member-list'>
                                 <div className='gang-owner-div'>
                                     <span className='gang-owner'>Owner</span>
-                                    {this.state.owner ? <MemberPreview member={this.state.owner} white_border={true} /> : <img className='loading-owner' src={LoadingWheel} alt='loading owner'/>}
+                                    {owner}
                                 </div>
                             </div>
 
