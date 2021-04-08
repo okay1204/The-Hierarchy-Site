@@ -81,7 +81,7 @@ class GangPage extends React.Component {
                                 {this.state.data.img_link &&
 
                                 <div className='img-wrapper'>
-                                    <img src={this.state.data.img_link} className='icon' alt='Gang icon' />
+                                    <img src={this.state.data.img_link} style={{border: `1px #${this.state.data.color} solid`}} className='icon' alt='Gang icon' />
                                 </div>
 
                                 }
