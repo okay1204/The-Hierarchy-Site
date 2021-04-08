@@ -114,7 +114,7 @@ class GangPage extends React.Component {
                             <div className='gang-member-list'>
                                 <div className='gang-owner-div'>
                                     <span className='gang-owner'>Owner</span>
-                                    {this.state.owner ? <MemberPreview member={this.state.owner} white_border={true} /> : <img classname='loading-owner' src={LoadingWheel} alt='loading owner'/>}
+                                    {this.state.owner ? <MemberPreview member={this.state.owner} white_border={true} /> : <img className='loading-owner' src={LoadingWheel} alt='loading owner'/>}
                                 </div>
                             </div>
 

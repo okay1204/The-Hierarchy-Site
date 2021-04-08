@@ -37,6 +37,7 @@
 .member-preview .left {
     display: flex;
     align-items: center;
+    min-width: 0;
 }
 
 .member-preview .left .img-wrapper {
@@ -63,7 +64,6 @@
     flex-shrink: 3;
 
     overflow: hidden;
-    background-color: red;
 }
 
 .member-preview .left .name-wrapper .main-name {
@@ -116,7 +116,11 @@
     }
 
     .member-preview .left .boosting {
-        font-size: 15px;
+        font-size: min(3vw, 15px);
+        padding: 10px;
+    }
+
+    .member-preview {
         padding: 10px;
     }
 }
