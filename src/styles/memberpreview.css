@@ -4,7 +4,6 @@
     display: block;
     color: white;
     
-    width: 75%;
     margin: 20px auto;
     padding: 20px;
     border-radius: 10px;
@@ -29,6 +28,10 @@
 
 .premium-border {
     border: 3px #f47fff solid;
+}
+
+.white-border {
+    border: 3px #ddd5d5 solid;
 }
 
 .member-preview .left {
@@ -60,6 +63,7 @@
     flex-shrink: 3;
 
     overflow: hidden;
+    background-color: red;
 }
 
 .member-preview .left .name-wrapper .main-name {
@@ -96,10 +100,6 @@
     border-radius: 20px;
 }
 
-.member-preview-main-divider {
-    border: 1px rgb(90, 89, 89) solid;
-}
-
 .member-preview .right {
     flex-shrink: 0;
 }
@@ -110,10 +110,6 @@
 }
 
 @media only screen and (max-width:800px) {
-    .member-preview {
-        width: 95%;
-        padding: 10px;
-    }
 
     .member-preview .left .img-wrapper {
         max-width: 75px;

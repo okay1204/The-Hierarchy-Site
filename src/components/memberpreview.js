@@ -4,8 +4,13 @@ import status_key from '../constants.js'
 
 function MemberPreview(props) {
 
+    let default_border = ''
+    if (props.white_border) {
+        default_border = 'white-border'
+    } 
+
     return (
-        <a className={`member-preview ${props.member.boosting ? 'premium-border' : ''}`} href={`/stats/members/${props.member.id}`}>
+        <a className={`member-preview ${props.member.boosting ? 'premium-border' : default_border}`} href={`/stats/members/${props.member.id}`}>
 
             <div className='left'>
                 <div className='img-wrapper'>

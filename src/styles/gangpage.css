@@ -58,6 +58,14 @@
     margin: 20px;
 }
 
+.gang-owner-div a {
+    width: 80%;
+}
+
+.loading-owner {
+    width: 50px;
+}
+
 @media only screen and (max-width:900px) {
     #gang-info {
         width: 95%;

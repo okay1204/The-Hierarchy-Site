@@ -2,6 +2,10 @@
     background-color: #7fcbab;
 }
 
+.catalog-member-listing a {
+    width: 75%;
+}
+
 .sort-by-box {
     display: block;
     background-color: #2C2F33;
@@ -25,6 +29,11 @@
 @media only screen and (max-width:800px) {
     .sort-by-box {
         width: 80%;
+    }
+
+    .catalog-member-listing a {
+        width: 95%;
+        padding: 10px;
     }
 }
 

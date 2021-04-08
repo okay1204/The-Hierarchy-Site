@@ -4,10 +4,9 @@ import axios from 'axios'
 import React from 'react'
 import NotFound from '../images/notfound.png'
 
-import LoadingWheel from '../images/loading wheel.gif'
-
 import MemberPreview from '../components/memberpreview.js'
 
+import LoadingWheel from '../images/loading wheel.gif'
 class GangPage extends React.Component {
 
     constructor(props) {
@@ -38,6 +37,9 @@ class GangPage extends React.Component {
             .then(owner_res => {
                 const owner = owner_res.data
                 this.setState({owner})
+            })
+            .catch(err => {
+                
             })
         })
         .catch(err => {
@@ -110,8 +112,10 @@ class GangPage extends React.Component {
                             <hr />
 
                             <div className='gang-member-list'>
-                                <span className='gang-owner'>Owner</span>
-                                {this.state.owner && <MemberPreview member={this.state.owner} />}
+                                <div className='gang-owner-div'>
+                                    <span className='gang-owner'>Owner</span>
+                                    {this.state.owner ? <MemberPreview member={this.state.owner} white_border={true} /> : <img classname='loading-owner' src={LoadingWheel} alt='loading owner'/>}
+                                </div>
                             </div>
 
                         </div>
