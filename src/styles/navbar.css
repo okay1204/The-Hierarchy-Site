@@ -24,7 +24,7 @@
     justify-content: space-around;
 }
 
-.navbar-pages a {
+.navbar-page {
     text-decoration: none;
     padding: 20px;
     
@@ -43,7 +43,7 @@
     -moz-transition: transform ease-in-out 150ms;
 }
 
-.navbar-pages a::before {
+.navbar-page::before {
     content: '';
     display: block;
     position: absolute;
@@ -60,11 +60,11 @@
     left: 0;
 }
 
-.navbar-pages a:hover::before {
+.navbar-page:hover::before {
     width: 100%;
 }
 
-.navbar-pages a:not(.active) {
+.navbar-page:not(.active) {
     color: white;
 
     transform: scale(1, 1);
@@ -74,7 +74,7 @@
     -o-transform: scale(1, 1);
 }
 
-.navbar-pages a:hover,
+.navbar-page:hover,
 .active {
     color: lightblue;
     
@@ -109,4 +109,82 @@
     -moz-transform: rotate(20deg);
     -ms-transform: rotate(20deg);
     -o-transform: rotate(20deg);
+}
+
+.mobile-navbar-arrow {
+    display: none;
+    max-width: 80px;
+    padding: 20px;
+
+    /* getting rid of all button styling */
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.mobile-navbar-arrow img {
+    width: 100%;
+
+    transition: transform ease 100ms;
+    -webkit-transition: transform ease 100ms;
+    -moz-transition: transform ease 100ms;
+    -o-transition: transform ease 100ms;
+}
+
+.mobile-nav-menu {
+    display: block;
+    border-radius: 10px;
+    position: absolute;
+
+    background-color: #2C2F33;
+
+    width: 95%;
+    max-height: 0;
+    overflow: hidden;
+
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    top: 100px;
+    z-index: 50;
+
+    transition: max-height ease-in-out 150ms;
+    -webkit-transition: max-height ease-in-out 150ms;
+    -o-transition: max-height ease-in-out 150ms;
+    -moz-transition: max-height ease-in-out 150ms;
+}
+
+.mobile-nav-menu a {
+    display: block;
+}
+
+.mobile-nav-menu .navbar-page:hover::before {
+    width: 0%;
+}
+
+@media only screen and (max-width: 700px) {
+    .navbar-pages {
+        display: none;
+    }
+
+    .logo {
+        max-width: 100px;
+        padding-right: 0;
+    }
+    
+    .help-button img {
+        display: block;
+        max-width: 80px;
+        height: auto;
+    }
+
+    .mobile-navbar-arrow {
+        display: block;
+    }
 }

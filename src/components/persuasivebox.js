@@ -31,7 +31,7 @@ function PersuasiveBox({ children, reverse }) {
 		>
 			<div className={`persuasive-box ${reverse && 'reverse'}`}>{children}</div>
 		</Animated>
-	) 
+	)
 }
 
 export default PersuasiveBox
