@@ -8,6 +8,8 @@ import status_key from '../constants.js'
 
 import LoadingWheel from '../images/loading wheel.gif'
 
+import { Helmet } from 'react-helmet'
+
 const parseTime = (future, now) => {
     const seconds = future-now
     const remaining_seconds = seconds % 60
@@ -260,157 +262,166 @@ class MemberPage extends React.Component {
                 return (
                     <div id='member-page-body' className='body'>
 
-                    <div id='user-info' className={`${this.state.data.boosting ? 'premium-border' : ''}`} >
-                        <div className='header'>
+                        <Helmet>
+                            <title>The Hierarchy • {this.state.data.name}</title>
+                        </Helmet>
 
-                            <div className='img-wrapper'>
+                        <div id='user-info' className={`${this.state.data.boosting ? 'premium-border' : ''}`} >
+                            <div className='header'>
 
-                                <img src={this.state.data.avatar_url} className='avatar' alt='Profile pic' />
-                                <img className='status' src={status_key[this.state.data.status]} alt={this.state.data.status}/>
+                                <div className='img-wrapper'>
+
+                                    <img src={this.state.data.avatar_url} className='avatar' alt='Profile pic' />
+                                    <img className='status' src={status_key[this.state.data.status]} alt={this.state.data.status}/>
+                                    
+                                </div>
+                                <div className='name-wrapper'>
+                                    <div className='main-name'>
+                                        <span className='name'>{this.state.data.name}</span>
+                                        <span className='discriminator'>#{this.state.data.discriminator}</span>
+                                    </div>
+                                    {this.state.data.nick && <span className='nick'>{this.state.data.nick}</span>}
+                                </div>
                                 
-                            </div>
-                            <div className='name-wrapper'>
-                                <div className='main-name'>
-                                    <span className='name'>{this.state.data.name}</span>
-                                    <span className='discriminator'>#{this.state.data.discriminator}</span>
+                                {this.state.data.boosting && <span className='boosting'>Premium</span>}
+
+                                <div className='userid-wrapper'>
+                                    <span className='userid'>ID: {this.state.data.id}</span>
                                 </div>
-                                {this.state.data.nick && <span className='nick'>{this.state.data.nick}</span>}
-                            </div>
-                            
-                            {this.state.data.boosting && <span className='boosting'>Premium</span>}
 
-                            <div className='userid-wrapper'>
-                                <span className='userid'>ID: {this.state.data.id}</span>
                             </div>
 
-                        </div>
+                            <hr className='header-main-divider' />
 
-                        <hr className='header-main-divider' />
+                            <div className='main'>
 
-                        <div className='main'>
+                                {this.state.jail &&
+                                <div className='jail section'>
+                                    <h2>Jail</h2>
+                                    {this.state.jail}
+                                    <hr className='section-divider' />
+                                </div>
+                                }
 
-                            {this.state.jail &&
-                            <div className='jail section'>
-                                <h2>Jail</h2>
-                                {this.state.jail}
+
+                                <div className='roles section'>
+                                    <h2>Roles</h2>
+                                    <div className='roles-container'>
+                                        {this.state.data.roles}
+                                    </div>
+                                </div>
+
                                 <hr className='section-divider' />
-                            </div>
-                            }
 
-
-                            <div className='roles section'>
-                                <h2>Roles</h2>
-                                <div className='roles-container'>
-                                    {this.state.data.roles}
-                                </div>
-                            </div>
-
-                            <hr className='section-divider' />
-
-                            <div className='balance section'>
-                                <h2>Balance</h2>
-                                <div className='balance-values'>
-                                    <div>
-                                        <h3>Cash</h3>
-                                        <span>${this.state.data.money}</span>
-                                    </div>
-                                    <div>
-                                        <h3>Bank</h3>
-                                        <span>${this.state.data.bank}</span>
-                                    </div>
-                                    <div>
-                                        <h3>Total</h3>
-                                        <span>${this.state.data.money + this.state.data.bank}</span>
+                                <div className='balance section'>
+                                    <h2>Balance</h2>
+                                    <div className='balance-values'>
+                                        <div>
+                                            <h3>Cash</h3>
+                                            <span>${this.state.data.money}</span>
+                                        </div>
+                                        <div>
+                                            <h3>Bank</h3>
+                                            <span>${this.state.data.bank}</span>
+                                        </div>
+                                        <div>
+                                            <h3>Total</h3>
+                                            <span>${this.state.data.money + this.state.data.bank}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <hr className='section-divider' />
+                                <hr className='section-divider' />
 
-                            <div className='level section'>
-                                <h2>Rank</h2>
+                                <div className='level section'>
+                                    <h2>Rank</h2>
 
-                                <span>{this.state.data.level}</span>
+                                    <span>{this.state.data.level}</span>
 
-                                <h3 className='level-indicator-text'>{this.state.data.progress}% of the way to the next level</h3>
+                                    <h3 className='level-indicator-text'>{this.state.data.progress}% of the way to the next level</h3>
 
-                                <div className='level-meter'>
-                                    <div className='level-progress' style={{width: `${this.state.data.progress}%`}} />
-                                </div>
-                            </div>
-
-                            <hr className='section-divider' />
-
-                            <div className='shop-items section'>
-                                <h2>Items</h2>
-
-                                <div className='items-container'>
-                                    {this.state.data.items}
-                                </div>
-                            </div>
-
-                            <hr className='section-divider' />
-
-                            <div className='shop-items section'>
-                                <h2>In Use</h2>
-
-                                <div className='items-container'>
-                                    {this.state.in_use}
-                                </div>
-                            </div>
-
-                            <hr className='section-divider' />
-
-                            <div className='occupations section'>
-                                <h2>Occupations</h2>
-
-                                <div className='occupations-container'>
-                                    <div>
-                                        <h3>Job</h3>
-                                        <span>{this.state.data.job ? this.state.data.job : 'None'}</span>
-                                    </div>
-                                    <div>
-                                        <h3>University</h3>
-                                        <span>{this.state.data.university ? this.state.data.university : 'None'}</span>
+                                    <div className='level-meter'>
+                                        <div className='level-progress' style={{width: `${this.state.data.progress}%`}} />
                                     </div>
                                 </div>
-                            </div>
 
-                            <hr className='section-divider' />
+                                <hr className='section-divider' />
 
-                            <div className='majors section'>
-                                <h2>Majors</h2>
+                                <div className='shop-items section'>
+                                    <h2>Items</h2>
 
-                                <div>
-                                    {this.state.data.majors.length > 0 ? this.state.data.majors.map((major) => (<span>{major}</span>)) : 'None'}
+                                    <div className='items-container'>
+                                        {this.state.data.items}
+                                    </div>
                                 </div>
+
+                                <hr className='section-divider' />
+
+                                <div className='shop-items section'>
+                                    <h2>In Use</h2>
+
+                                    <div className='items-container'>
+                                        {this.state.in_use}
+                                    </div>
+                                </div>
+
+                                <hr className='section-divider' />
+
+                                <div className='occupations section'>
+                                    <h2>Occupations</h2>
+
+                                    <div className='occupations-container'>
+                                        <div>
+                                            <h3>Job</h3>
+                                            <span>{this.state.data.job ? this.state.data.job : 'None'}</span>
+                                        </div>
+                                        <div>
+                                            <h3>University</h3>
+                                            <span>{this.state.data.university ? this.state.data.university : 'None'}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr className='section-divider' />
+
+                                <div className='majors section'>
+                                    <h2>Majors</h2>
+
+                                    <div>
+                                        {this.state.data.majors.length > 0 ? this.state.data.majors.map((major) => (<span>{major}</span>)) : 'None'}
+                                    </div>
+                                </div>
+
+                                <hr className='section-divider' />
+
+                                <div className='member-page-gang section'>
+                                    <h2>Gang</h2>
+
+                                    {this.state.data.gang}
+                                </div>
+
+                                <hr className='section-divider' />
+
+                                <div className='member-page-awards section'>
+                                    <h2>Awards</h2>
+
+                                    {this.state.data.awards}
+                                </div>
+
                             </div>
-
-                            <hr className='section-divider' />
-
-                            <div className='member-page-gang section'>
-                                <h2>Gang</h2>
-
-                                {this.state.data.gang}
-                            </div>
-
-                            <hr className='section-divider' />
-
-                            <div className='member-page-awards section'>
-                                <h2>Awards</h2>
-
-                                {this.state.data.awards}
-                            </div>
-
-                        </div>
                         
-                    </div>
+                        </div>
 
-                </div>
+                    </div>
                 )
             } else {
                 return (
                     <div id='member-page-error-body' className='body'>
+
+                        <Helmet>
+                            <title>The Hierarchy • Loading</title>
+                        </Helmet>
+
                         <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
                     </div>
                 )
@@ -420,6 +431,9 @@ class MemberPage extends React.Component {
     else {
         return (
             <div id='member-page-error-body' className='body'>
+                <Helmet>
+                    <title>The Hierarchy • Member Not Found</title>
+                </Helmet>
                 <div className='error-box'>
                     <div className='error-box-img-wrapper'>
                         <img src={NotFound} alt=''/>

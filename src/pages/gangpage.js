@@ -7,6 +7,8 @@ import NotFound from '../images/notfound.png'
 import MemberPreview from '../components/memberpreview.js'
 
 import LoadingWheel from '../images/loading wheel.gif'
+
+import { Helmet } from 'react-helmet'
 class GangPage extends React.Component {
 
     constructor(props) {
@@ -62,8 +64,6 @@ class GangPage extends React.Component {
         if (!this.state.error) {
 
             if (this.state.data && Object.keys(this.state.data).length !== 0) {
-
-                
                 
                 // parsing date
                 let created_at = this.state.data.created_at.split(' ')[0]
@@ -89,6 +89,10 @@ class GangPage extends React.Component {
                 
                 return (
                     <div id='gang-page-body' className='body'>
+   
+                        <Helmet>
+                            <title>The Hierarchy • {this.state.data.name}</title>
+                        </Helmet>
 
                         <div id='gang-info' style={{border: `3px #${this.state.data.color} solid`}}>
 
@@ -140,6 +144,10 @@ class GangPage extends React.Component {
             } else {
                 return (
                     <div id='gang-page-error-body' className='body'>
+                        <Helmet>
+                            <title>The Hierarchy • Loading</title>
+                        </Helmet>
+
                         <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
                     </div>
                 )
@@ -149,6 +157,10 @@ class GangPage extends React.Component {
     else {
         return (
             <div id='gang-page-error-body' className='body'>
+                <Helmet>
+                    <title>The Hierarchy • Gang Not Found</title>
+                </Helmet>
+                
                 <div className='error-box'>
                     <div className='error-box-img-wrapper'>
                         <img src={NotFound} alt=''/>

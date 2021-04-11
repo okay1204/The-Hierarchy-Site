@@ -8,6 +8,8 @@ import NotFound from '../images/notfound.png'
 
 import MemberPreview from '../components/memberpreview'
 
+import { Helmet } from 'react-helmet'
+
 class MemberCatalog extends React.Component {
 
     constructor(props) {
@@ -76,6 +78,10 @@ class MemberCatalog extends React.Component {
 
             return (
                 <div id='member-catalog' className='body'>
+
+                    <Helmet>
+                        <title>The Hierarchy • Member Catalog</title>
+                    </Helmet>
 
                     <div className='sort-by-box'>
                         <label><span>Sort By:</span></label>

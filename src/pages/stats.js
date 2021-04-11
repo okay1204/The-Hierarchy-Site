@@ -9,7 +9,7 @@ function Stats() {
         <div id='stats-body' className='body'>
 
             <Helmet>
-                <title>The Hierarchy | Stats</title>
+                <title>The Hierarchy • Stats</title>
             </Helmet>
             
             <div id='stats-sections'>
