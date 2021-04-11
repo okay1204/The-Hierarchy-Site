@@ -41,8 +41,8 @@
 }
 
 #stats-sections div a:hover {
-    background-color: #7289DA;
-    transform: scale(0.9, 0.9)
+    background-color: #5267b3;
+    transform: scale(1.1, 1.1)
 }
 
 #stats-sections .section-1 {
