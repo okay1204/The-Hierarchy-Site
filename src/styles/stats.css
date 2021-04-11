@@ -56,3 +56,15 @@
 #stats-sections .section-3 {
     background-image: url("../images/award.png");
 }
+
+#stats-sections .section-4 {
+    background-image: url("../images/stock graph.jpg");
+}
+
+
+@media only screen and (max-width: 315px) {
+    #stats-sections div a {
+        padding: 10px 20px;
+        font-size: 35px;
+    }
+}

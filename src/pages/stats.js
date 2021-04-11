@@ -26,6 +26,10 @@ function Stats() {
                     <a href='/stats'>Awards</a>
                 </div>
 
+                <div className='section-4'>
+                    <a href='/stats'>Shop</a>
+                </div>
+
             </div>
 
         </div>
