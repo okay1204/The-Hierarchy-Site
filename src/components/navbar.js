@@ -24,22 +24,21 @@ class NavBar extends React.Component {
         this.toggleMobileMenu = this.toggleMobileMenu.bind(this)
     }
 
-    updateDimensions = () => {
+    checkMobileMenu = () => {
         if (window.innerWidth > 700 && this.state.mobileMenu) {
             this.setState({mobileMenu: false})
         }
     };
 
     componentDidMount() {
-        window.addEventListener('resize', this.updateDimensions);
+        window.addEventListener('resize', this.checkMobileMenu);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.updateDimensions);
+        window.removeEventListener('resize', this.checkMobileMenu);
     }
 
     toggleMobileMenu() {
-
         this.setState({mobileMenu: !this.state.mobileMenu})
     }
 
@@ -77,7 +76,6 @@ class NavBar extends React.Component {
 
                     {/* Mobile nav */}
                     <button className='mobile-navbar-arrow' onClick={this.toggleMobileMenu}><img src={RightArrow} style={this.state.mobileMenu ? {transform: 'rotate(90deg)'} : {}}/></button>
-
                     <div className='mobile-nav-menu' style={this.state.mobileMenu ? {maxHeight: '300px'} : {}}>
                         {page_links}
                     </div>
