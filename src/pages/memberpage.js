@@ -419,7 +419,7 @@ class MemberPage extends React.Component {
                     <div id='member-page-error-body' className='body'>
 
                         <Helmet>
-                            <title>The Hierarchy • Loading</title>
+                            <title>The Hierarchy •</title>
                         </Helmet>
 
                         <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
