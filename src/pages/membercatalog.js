@@ -12,6 +12,8 @@ import { Helmet } from 'react-helmet'
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
+const sortByOptions = ['money', 'level']
+
 class MemberCatalog extends React.Component {
 
     constructor(props) {
@@ -65,13 +67,16 @@ class MemberCatalog extends React.Component {
                 this.setState({hasMore: false})
             }
         })
+        .catch((err) => {
+            this.setState({error: true, data: err})
+        })
     }
 
     componentDidMount() {
         const initialSort = new URLSearchParams(this.props.location.search).get('sortBy')
         
         //if invalid sort param, set it to default which is money
-        const updatedSort = this.setSortBy(['money', 'level', 'random'].includes(initialSort) ? initialSort : 'money')
+        const updatedSort = this.setSortBy(sortByOptions.includes(initialSort) ? initialSort : 'money')
         
         this.setOption(updatedSort)
 
@@ -88,8 +93,6 @@ class MemberCatalog extends React.Component {
             } else if (this.state.sortBy === 'level') {
                 preview_stat = (member) => `Level ${member.level}`
             }
-
-            const sortByOptions = ['money', 'level', 'random']
 
             return (
                 <div id='member-catalog' className='body'>
