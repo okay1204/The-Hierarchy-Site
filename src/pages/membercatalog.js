@@ -51,10 +51,10 @@ class MemberCatalog extends React.Component {
             
         
         .then(res => {
-            this.setState({ data: res.data, loading: false, page: 2 })
+            this.setState({ data: res.data, loading: false, page: 2, hasMore: true })
         })
         .catch(err => {
-            this.setState({ error: true, data: err, loading: false, page: 2 })
+            this.setState({ error: true, data: err, loading: false, page: 2, hasMore: true })
         })
     }
 
