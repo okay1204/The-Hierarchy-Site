@@ -20,11 +20,9 @@ class MemberCatalog extends React.Component {
         this.state = {
             error: false,
             data: [],
-            page: 2, // start on page 2 because fetchMoreMembers starts on page 2
+            page: 1,
             hasMore: true,
-            sortBy: null,
-            redirect: false,
-            loading: true,
+            sortBy: null
         }
 
         this.fetchMoreMembers = this.fetchMoreMembers.bind(this)
@@ -34,38 +32,35 @@ class MemberCatalog extends React.Component {
         const searchParams = new URLSearchParams(this.props.location.search)
         searchParams.set('sortBy', sortBySelection)
         this.props.history.push(window.location.pathname + "?" + searchParams.toString())
+        
         this.setState({ sortBy: sortBySelection })
         return sortBySelection
     }
 
-    getSortBy() {
-        return new URLSearchParams(this.props.location.search).get('sortBy')
-    }
-
     setOption(sortOption) {
-        this.setState({loading: true})
 
-        this.setSortBy(sortOption)
-
-        axios.get(`https://api.thehierarchy.me/members/top/${sortOption}`)
-            
+        const sortBy = this.setSortBy(sortOption)
+ 
+        this.setState({ error: false, data: [], page: 1, hasMore: true })   
         
-        .then(res => {
-            this.setState({ data: res.data, loading: false, page: 2, hasMore: true })
-        })
-        .catch(err => {
-            this.setState({ error: true, data: err, loading: false, page: 2, hasMore: true })
-        })
+        this.fetchMoreMembers(sortBy)
     }
 
-    fetchMoreMembers() {
-        axios.get(`https://api.thehierarchy.me/members/top/${this.state.sortBy}?page=${this.state.page}`)
+    fetchMoreMembers(sortByOverride=null) {
+
+        const page = sortByOverride ? 1 : this.state.page
+        const sortBy = sortByOverride ? sortByOverride : this.state.sortBy
+
+        axios.get(`https://api.thehierarchy.me/members/top/${sortBy}?page=${page}`)
         .then((nextPage) => {
 
             nextPage = nextPage.data
 
             if (nextPage.length > 0) {
-                this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
+
+                if (sortBy === this.state.sortBy) {
+                    this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
+                }
             } else {
                 this.setState({hasMore: false})
             }
@@ -73,7 +68,7 @@ class MemberCatalog extends React.Component {
     }
 
     componentDidMount() {
-        const initialSort = this.getSortBy()
+        const initialSort = new URLSearchParams(this.props.location.search).get('sortBy')
         
         //if invalid sort param, set it to default which is money
         const updatedSort = this.setSortBy(['money', 'level', 'random'].includes(initialSort) ? initialSort : 'money')
@@ -106,25 +101,18 @@ class MemberCatalog extends React.Component {
                     <div className='sort-by-box'>
                         <label><span>Sort By:</span></label>
                         <br />
-                        <select name = 'options' onChange = {(e) => this.setOption(e.target.value)}>
-                            {sortByOptions.map((name) => (<option selected={this.state.sortBy === name} value = {name}>{name.charAt(0).toUpperCase() + name.slice(1)}</option>))}
+                        <select name = 'options' value={this.state.sortBy ? this.state.sortBy : ''} onChange = {(e) => this.setOption(e.target.value)}>
+                            {sortByOptions.map((name) => (<option value = {name}>{name.charAt(0).toUpperCase() + name.slice(1)}</option>))}
                         </select>
                     </div>
-
-                    {this.state.loading ?
-
-                        <div id='member-page-error-body' className='body'>
-                            <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
-                        </div>
-                        
-                        :
-                        
+                                            
                     <div className='catalog-member-listing'>
                         <InfiniteScroll
                             dataLength={this.state.data.length}
                             next={this.fetchMoreMembers}
                             hasMore={this.state.hasMore}
                             loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                            scrollThreshold='50%'
                         >
                         {
                             this.state.data.map((member) => (
@@ -135,7 +123,6 @@ class MemberCatalog extends React.Component {
 
                         </InfiniteScroll>
                     </div>
-                    }
                 </div>
             )
         }
