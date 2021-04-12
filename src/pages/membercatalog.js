@@ -76,6 +76,13 @@ class MemberCatalog extends React.Component {
                 preview_stat = (member) => `Level ${member.level}`
             }
 
+            const sortByOptions = ['money', 'level', 'random']
+            const sortByElements = []
+
+            sortByOptions.forEach((name) => {
+                sortByElements.push(<option selected={this.state.sortBy === name} value = {name}>{name.charAt(0).toUpperCase() + name.slice(1)}</option>)
+            })
+
             return (
                 <div id='member-catalog' className='body'>
 
@@ -87,9 +94,7 @@ class MemberCatalog extends React.Component {
                         <label><span>Sort By:</span></label>
                         <br />
                         <select name = 'options' onChange = {(e) => this.setOption(e.target.value)}>
-                            <option selected={this.state.sortBy === 'money'} value = 'money'>Money</option>
-                            <option selected={this.state.sortBy === 'level'} value = 'level'>Level</option>
-                            <option selected={this.state.sortBy === 'random'} value = 'random'>Random</option>
+                            {sortByElements}
                         </select>
                     </div>
 
