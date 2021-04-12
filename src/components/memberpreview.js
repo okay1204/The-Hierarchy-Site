@@ -31,9 +31,9 @@ function MemberPreview(props) {
             </div>
             
             <div className='right'>
-                {props.member.preview_stat && (
+                {props.preview_stat && (
                     <span className='preview-stat'>
-                        {props.member.preview_stat}
+                        {props.preview_stat}
                     </span>
                 )}
             </div>

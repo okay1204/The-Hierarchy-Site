@@ -10,6 +10,8 @@ import MemberPreview from '../components/memberpreview'
 
 import { Helmet } from 'react-helmet'
 
+import InfiniteScroll from "react-infinite-scroll-component";
+
 class MemberCatalog extends React.Component {
 
     constructor(props) {
@@ -18,10 +20,14 @@ class MemberCatalog extends React.Component {
         this.state = {
             error: false,
             data: [],
+            page: 2, // start on page 2 because fetchMoreMembers starts on page 2
+            hasMore: true,
             sortBy: null,
             redirect: false,
             loading: true,
         }
+
+        this.fetchMoreMembers = this.fetchMoreMembers.bind(this)
     }
 
     setSortBy(sortBySelection) {
@@ -45,12 +51,24 @@ class MemberCatalog extends React.Component {
             
         
         .then(res => {
-            this.setState({ data: res.data })
-            this.setState({loading: false})
+            this.setState({ data: res.data, loading: false, page: 2 })
         })
         .catch(err => {
-            this.setState({ error: true, data: err })
-            this.setState({loading: false})
+            this.setState({ error: true, data: err, loading: false, page: 2 })
+        })
+    }
+
+    fetchMoreMembers() {
+        axios.get(`https://api.thehierarchy.me/members/top/${this.state.sortBy}?page=${this.state.page}`)
+        .then((nextPage) => {
+
+            nextPage = nextPage.data
+
+            if (nextPage.length > 0) {
+                this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
+            } else {
+                this.setState({hasMore: false})
+            }
         })
     }
 
@@ -77,11 +95,6 @@ class MemberCatalog extends React.Component {
             }
 
             const sortByOptions = ['money', 'level', 'random']
-            const sortByElements = []
-
-            sortByOptions.forEach((name) => {
-                sortByElements.push(<option selected={this.state.sortBy === name} value = {name}>{name.charAt(0).toUpperCase() + name.slice(1)}</option>)
-            })
 
             return (
                 <div id='member-catalog' className='body'>
@@ -94,25 +107,33 @@ class MemberCatalog extends React.Component {
                         <label><span>Sort By:</span></label>
                         <br />
                         <select name = 'options' onChange = {(e) => this.setOption(e.target.value)}>
-                            {sortByElements}
+                            {sortByOptions.map((name) => (<option selected={this.state.sortBy === name} value = {name}>{name.charAt(0).toUpperCase() + name.slice(1)}</option>))}
                         </select>
                     </div>
 
                     {this.state.loading ?
 
-                    <div id='member-page-error-body' className='body'>
-                        <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
+                        <div id='member-page-error-body' className='body'>
+                            <img src={LoadingWheel} className='loading-wheel' alt='loading'/>
                         </div>
                         
                         :
                         
                     <div className='catalog-member-listing'>
+                        <InfiniteScroll
+                            dataLength={this.state.data.length}
+                            next={this.fetchMoreMembers}
+                            hasMore={this.state.hasMore}
+                            loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                        >
                         {
                             this.state.data.map((member) => (
                                 <MemberPreview member={member} preview_stat={preview_stat(member)}
                                 />
                             ))
                         }
+
+                        </InfiniteScroll>
                     </div>
                     }
                 </div>
