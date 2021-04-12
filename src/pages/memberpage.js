@@ -264,6 +264,19 @@ class MemberPage extends React.Component {
 
                         <Helmet>
                             <title>The Hierarchy • {this.state.data.name}</title>
+
+                            <meta property="og:title" content={this.state.data.name} />
+                            <meta property="og:image" content={this.state.data.avatar_url} />
+                            <meta property="og:type" content="website" />
+                            <meta property="og:description" content={`${this.state.data.name}'s statistics`} />
+                            
+                            
+                            <meta property="og:site_name" content="The Hierarchy" />
+                            <meta property="theme-color" content="#7fcbab" />
+
+                            <meta name="twitter:card" content="summary_large_image" />
+                            <meta name="twitter:creator" content="@GhanbariZack" />
+                            <meta name="twitter:image:alt" content="Discord Avatar" />
                         </Helmet>
 
                         <div id='user-info' className={`${this.state.data.boosting ? 'premium-border' : ''}`} >
