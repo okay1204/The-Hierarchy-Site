@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import MemberPreview from '../components/memberpreview'
-
+import LoadingWheel from '../images/loading wheel.gif'
 class GangPreview extends React.Component {
 
     constructor(props) {
@@ -16,21 +16,28 @@ class GangPreview extends React.Component {
     
         this.state = {
             membersDropdown: false,
+            dropdownAnimation: null,
             hoveringButton: false,
             redirect: null,
-            members: [],
+            members: [this.props.gang.owner],
             page: 1,
-            hasMore: null
+            hasMore: false,
+            allMembers: false
         }
 
         this.toggleMembersDropdown = this.toggleMembersDropdown.bind(this)
         this.hoverButton = this.hoverButton.bind(this)
         this.unHoverButton = this.unHoverButton.bind(this)
         this.redirectIfNotDropdown = this.redirectIfNotDropdown.bind(this)
+        this.fetchMoreMembers = this.fetchMoreMembers.bind(this)
     }
 
     toggleMembersDropdown() {
-        this.setState({membersDropdown: !this.state.membersDropdown})
+        this.setState({membersDropdown: !this.state.membersDropdown, dropdownAnimation: Date.now(), hasMore: this.state.allMembers ? false : true})
+
+        if (this.state.members.length <= 1) {
+            this.fetchMoreMembers()
+        }
     }
 
     hoverButton() {
@@ -48,9 +55,19 @@ class GangPreview extends React.Component {
     }
 
     fetchMoreMembers() {
-        axios.get(`https://api.thehierarchy.me/gangs/${this.props.gang.id}/members`)
-        .then((res) => {
+        axios.get(`https://api.thehierarchy.me/gangs/${this.props.gang.id}/members?page=${this.state.page}`)
+        .then((nextPage) => {
 
+            nextPage = nextPage.data
+
+            if (nextPage.length > 0) {
+                this.setState({page: this.state.page + 1, members: this.state.members.concat(nextPage)})
+            } else {
+                this.setState({hasMore: false, allMembers: true})
+            }
+        })
+        .catch((err) => {
+            // this.setState({error: true, data: err})
         })
     }
 
@@ -90,8 +107,16 @@ class GangPreview extends React.Component {
                 </div>
                 
                 <div className='gang-member-list'
-                style={this.state.membersDropdown ? {border: `3px #${this.props.gang.color} solid`, borderTop: 'none', maxHeight: '250px'} : {}}>
-                    <MemberPreview member={this.props.gang.owner} whiteBorder className='gang-member-preview' />
+                style={this.state.membersDropdown ? {border: `3px #${this.props.gang.color} solid`, borderTop: 'none', maxHeight: Date.now() - this.state.dropdownAnimation >= 0.15 ? 'none' : '200px', backgroundColor: this.state.membersDropdown ? '#23272A' : 'none'} : {}}>
+                    <InfiniteScroll
+                        dataLength={this.state.members.length}
+                        next={this.fetchMoreMembers}
+                        hasMore={this.state.hasMore}
+                        loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                        scrollThreshold='50%'
+                    >
+                    {this.state.members.map((member) => <MemberPreview member={member} whiteBorder className='gang-member-preview' />)}
+                    </InfiniteScroll>
                 </div>
 
             </div>

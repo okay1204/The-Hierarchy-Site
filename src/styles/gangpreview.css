@@ -157,6 +157,10 @@
     .gang-preview-main {
         padding: 10px;
     }
+
+    .gang-member-preview {
+        margin: 10px 2px;
+    }
 }
 
 @media only screen and (max-width:500px) {
