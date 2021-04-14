@@ -1,4 +1,4 @@
-import '../styles/membercatalog.css'
+import '../styles/gangcatalog.css'
 import axios from 'axios'
 
 import React from 'react'
@@ -90,7 +90,7 @@ class GangCatalog extends React.Component {
 
             if (this.state.sortBy === 'member_count') {
                 // + 1 including owner
-                preview_stat = (gang) => `${gang.member_count+1} Members`
+                preview_stat = (gang) => `${gang.member_count+1}`
             } else if (this.state.sortBy === 'total_balance') {
                 preview_stat = (gang) => `$${gang.total_balance}`
             } else if (this.state.sortBy === 'recent') {
@@ -104,13 +104,13 @@ class GangCatalog extends React.Component {
             }
 
             return (
-                <div id='member-catalog' className='body'>
+                <div id='gang-catalog' className='body'>
 
                     <Helmet>
                         <title>The Hierarchy • Member Catalog</title>
                     </Helmet>
 
-                    <div className='sort-by-box'>
+                    <div className='gang-sort-by-box'>
                         <label><span>Sort By:</span></label>
                         <br />
                         <select name = 'options' value={this.state.sortBy ? this.state.sortBy : ''} onChange = {(e) => this.setOption(e.target.value)}>
@@ -125,13 +125,14 @@ class GangCatalog extends React.Component {
                         </select>
                     </div>
                                             
-                    <div className='catalog-member-listing'>
+                    <div className='catalog-gang-listing'>
                         <InfiniteScroll
                             dataLength={this.state.data.length}
                             next={this.fetchMoreGangs}
                             hasMore={this.state.hasMore}
                             loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
                             scrollThreshold='50%'
+                            className='gang-infinite-scroll'
                         >
                         {
                             this.state.data.map((gang) => (
@@ -147,7 +148,7 @@ class GangCatalog extends React.Component {
     
         else {
             return (
-                <div id='member-page-error-body' className='body'>
+                <div id='gang-page-error-body' className='body'>
                     <div className='error-box'>
                         <div className='error-box-img-wrapper'>
                             <img src={NotFound} alt=''/>

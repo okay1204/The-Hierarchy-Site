@@ -81,6 +81,35 @@
 
 .gang-preview .right {
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.gangs-members-dropdown-arrow {
+    display: block;
+    max-width: 50px;
+    margin: 10px;
+    
+    /* getting rid of all button styling */
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+
+    z-index: 20;
+
+
+}
+
+.gangs-members-dropdown-arrow img {
+    width: 100%;
+
+    transition: transform ease 100ms;
+    -webkit-transition: transform ease 100ms;
+    -moz-transition: transform ease 100ms;
+    -o-transition: transform ease 100ms;
 }
 
 .preview-stat {

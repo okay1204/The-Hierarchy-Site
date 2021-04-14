@@ -101,7 +101,7 @@ class MemberCatalog extends React.Component {
                         <title>The Hierarchy • Member Catalog</title>
                     </Helmet>
 
-                    <div className='sort-by-box'>
+                    <div className='member-sort-by-box'>
                         <label><span>Sort By:</span></label>
                         <br />
                         <select name = 'options' value={this.state.sortBy ? this.state.sortBy : ''} onChange = {(e) => this.setOption(e.target.value)}>

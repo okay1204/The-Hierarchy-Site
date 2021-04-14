@@ -1,13 +1,14 @@
-#member-catalog,
-#member-page-error-body {
+#gang-catalog,
+#gang-page-error-body {
     background-color: #7fcbab;
 }
 
-.catalog-member-listing a {
+.gang-infinite-scroll {
     width: 75%;
+    margin: 0 auto;
 }
 
-.member-sort-by-box {
+.gang-sort-by-box {
     display: block;
     background-color: #2C2F33;
     width: 50%;
@@ -18,23 +19,26 @@
     font-family: 'Uni Sans', sans-serif;
 }
 
-.member-sort-by-box span {
+.gang-sort-by-box span {
     font-size: 40px;
 }
 
-.member-sort-by-box select {
+.gang-sort-by-box select {
     margin: 10px;
     font-size: 20px;
 }
 
 @media only screen and (max-width:800px) {
-    .member-sort-by-box {
+    .sort-by-box {
         width: 80%;
     }
 
-    .catalog-member-listing a {
+    .gang-infinite-scroll {
         width: 95%;
-        padding: 10px;
+    }
+
+    .gang-infinite-scroll div {
+        padding: 2px;
     }
 }
 
