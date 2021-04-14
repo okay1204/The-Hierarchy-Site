@@ -1,0 +1,111 @@
+
+.gang-preview {
+    background-color: #2C2F33;
+    display: block;
+    color: white;
+    
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    
+    white-space: nowrap;
+    text-decoration: none;
+
+    transition: background-color ease-in 100ms;
+    -webkit-transition: background-color ease-in 100ms;
+    -moz-transition: background-color ease-in 100ms;
+    -o-transition: background-color ease-in 100ms;
+
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gang-preview:hover {
+    background-color: #3d3838;
+}
+
+.premium-border {
+    border: 3px #f47fff solid;
+}
+
+.white-border {
+    border: 3px #ddd5d5 solid;
+}
+
+.gang-preview .left {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.gang-preview .left .img-wrapper {
+    max-width: 200px;
+    flex-shrink: 0;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.gang-preview .left .img-wrapper .avatar {
+    width: 100%;
+    padding: 10px;
+}
+
+.gang-preview .left .name-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    text-align: left;
+    flex-shrink: 3;
+
+    overflow: hidden;
+}
+
+.gang-preview .left .name-wrapper {
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 30px;
+}
+
+.gang-preview .left .name-wrapper .name {
+    font-family: 'Uni Sans', sans-serif;
+    margin: 4vw;
+    font-size: min(7vw, 45px);
+}
+
+.gang-preview .left .name-wrapper .main-name .discriminator {
+    font-size: min(4vw, 20px);
+}
+
+.gang-preview .right {
+    flex-shrink: 0;
+}
+
+.preview-stat {
+    font-size: min(6vw, 30px);
+    margin-left: 10px;
+}
+
+@media only screen and (max-width:800px) {
+
+    .gang-preview .left .img-wrapper {
+        max-width: 125px;
+    }
+
+    .gang-preview .left .boosting {
+        font-size: min(3vw, 15px);
+        padding: 10px;
+    }
+
+    .gang-preview {
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width:500px) {
+    .gang-preview .left .img-wrapper {
+        max-width: 75px;
+    }
+}

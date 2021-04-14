@@ -2,11 +2,13 @@ import Home from './pages/home'
 import Help from './pages/help'
 import Stats from './pages/stats'
 
-import MemberPage from './pages/memberpage'
-import MemberCatalog from './pages/membercatalog'
+import MemberCatalog from './pages/membercatalog.js'
+import MemberPage from './pages/memberpage.js'
 
 import parseRoutes from './utils/parser'
-import GangPage from './pages/gangpage'
+
+import GangCatalog from './pages/gangcatalog.js'
+import GangPage from './pages/gangpage.js'
 
 const dflt = (props) => <div style = {{height: '50vh', fontSize: '50px'}}> Hello Zghan, recieved props of {JSON.stringify(props)} </div>
 
@@ -21,7 +23,7 @@ const routes = [
 		subRoutes: [
 			{
 				path: '/members',
-				component: dflt,
+				component: 'None',
 				subRoutes: [
 					{
 						path: '/catalog',
@@ -35,8 +37,17 @@ const routes = [
 			},
 			{
 				path: '/gangs',
-				component: dflt,
-				subRoutes: [{ path: '/:gangId', component: GangPage }],
+				component: 'None',
+				subRoutes: [
+					{
+						path: '/catalog',
+						component: GangCatalog
+					},
+					{
+						path: '/:gangId',
+						component: GangPage 
+					}
+				],
 			},
 			{
 				path: '/awards',

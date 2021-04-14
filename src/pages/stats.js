@@ -19,7 +19,7 @@ function Stats() {
                 </div>
 
                 <div className='section-2'>
-                    <a href='/stats'>Gangs</a>
+                    <a href='/stats/gangs/catalog'>Gangs</a>
                 </div>
 
                 <div className='section-3'>
