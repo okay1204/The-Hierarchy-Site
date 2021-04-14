@@ -97,7 +97,7 @@ class GangPage extends React.Component {
                                 <span className='gang-stats'>Created At:<br />{created_at}</span>
                                 <span className='gang-stats'>Gang Role: {this.state.data.role_id ? '✅' : '❌'}</span>
                                 <span className='gang-stats'>All Invite: {this.state.data.all_invite ? '✅' : '❌'}</span>
-                                <span className='gang-stats'>Gang Balance: ${this.state.data.total_bal}</span>
+                                <span className='gang-stats'>Gang Balance: ${this.state.data.total_balance}</span>
 
                             </div>
 
