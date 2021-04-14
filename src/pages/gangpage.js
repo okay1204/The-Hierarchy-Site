@@ -17,7 +17,6 @@ class GangPage extends React.Component {
         this.state = {
             error: false,
             data: {},
-            owner: {data: null, error: false},
             members: []
         }
     }
@@ -32,17 +31,6 @@ class GangPage extends React.Component {
             
             const data = res.data
             this.setState({data})
-
-            
-            // getting owner
-            axios.get(`https://api.thehierarchy.me/members/${data.owner.id}`)
-            .then(res => {
-                const data = res.data
-                this.setState({owner: {data, error: false}})
-            })
-            .catch(err => {
-                this.setState({owner: {data: err, error: true}})
-            })
         })
         .catch(err => {
             this.setState({error: true, data: err})
@@ -70,22 +58,6 @@ class GangPage extends React.Component {
                 let [year, month, day] = created_at.split('-')
                 
                 created_at = `${month}/${day}/${year}`
-                
-                // parsing owner
-                let owner = null;
-
-                if (!this.state.owner.data) { // loading
-                    owner = <img className='loading-owner' src={LoadingWheel} alt='loading owner'/>
-                } else if (!this.state.owner.error) { // success
-                    owner = <MemberPreview member={this.state.owner.data} white_border={true} />
-                } else { //error
-                    owner = (
-                        <div className='gang-member-error'>
-                            <h3>Whoops, something goofed</h3>
-                            <span>We couldn't find this member for some reason...</span>
-                        </div>
-                    )
-                }
                 
                 return (
                     <div id='gang-page-body' className='body'>
@@ -134,7 +106,7 @@ class GangPage extends React.Component {
                             <div className='gang-member-list'>
                                 <div className='gang-owner-div'>
                                     <span className='gang-owner'>Owner</span>
-                                    {owner}
+                                    <MemberPreview member={this.state.data.owner} whiteBorder/>
                                 </div>
                             </div>
 

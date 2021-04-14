@@ -5,7 +5,7 @@ import status_key from '../constants.js'
 function MemberPreview(props) {
 
     let default_border = ''
-    if (props.white_border) {
+    if (props.whiteBorder) {
         default_border = 'white-border'
     } 
 
