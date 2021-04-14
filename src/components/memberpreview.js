@@ -10,7 +10,7 @@ function MemberPreview(props) {
     } 
 
     return (
-        <a className={`member-preview ${props.member.boosting ? 'premium-border' : default_border}`} href={`/stats/members/${props.member.id}`}>
+        <a className={`member-preview ${props.member.boosting ? 'premium-border' : default_border} ${props.className}`} href={`/stats/members/${props.member.id}`}>
 
             <div className='left'>
                 <div className='img-wrapper'>
