@@ -8,8 +8,8 @@ import React from 'react'
 
 const links = {
     Home: '/',
-    Join: 'https://discord.gg/pZXFsSETnx',
-    Stats: '/stats'
+    Stats: '/stats',
+    Join: 'https://discord.gg/pZXFsSETnx'
 }
 
 class NavBar extends React.Component {
