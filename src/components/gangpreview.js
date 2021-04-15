@@ -6,6 +6,7 @@ import RightArrow from '../images/right arrow.png'
 
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import AnimateHeight from 'react-animate-height';
 
 import MemberPreview from '../components/memberpreview'
 import LoadingWheel from '../images/loading wheel.gif'
@@ -16,7 +17,6 @@ class GangPreview extends React.Component {
     
         this.state = {
             membersDropdown: false,
-            dropdownAnimation: null,
             hoveringButton: false,
             redirect: null,
             members: [this.props.gang.owner],
@@ -33,7 +33,7 @@ class GangPreview extends React.Component {
     }
 
     toggleMembersDropdown() {
-        this.setState({membersDropdown: !this.state.membersDropdown, dropdownAnimation: Date.now(), hasMore: this.state.allMembers ? false : true})
+        this.setState({membersDropdown: !this.state.membersDropdown, hasMore: this.state.allMembers ? false : true})
 
         if (this.state.members.length <= 1) {
             this.fetchMoreMembers()
@@ -106,8 +106,12 @@ class GangPreview extends React.Component {
                     </div>
                 </div>
                 
-                <div className='gang-member-list'
-                style={this.state.membersDropdown ? {border: `3px #${this.props.gang.color} solid`, borderTop: 'none', maxHeight: Date.now() - this.state.dropdownAnimation >= 0.15 ? 'none' : '200px'} : {}}>
+                <AnimateHeight
+                    duration={250}
+                    height={this.state.membersDropdown ? 'auto' : '0'}
+                    className='gang-member-list'
+                    style={this.state.membersDropdown ? {border: `3px #${this.props.gang.color} solid`, borderTop: 'none'} : {}}
+                >
                     <InfiniteScroll
                         dataLength={this.state.members.length}
                         next={this.fetchMoreMembers}
@@ -115,9 +119,9 @@ class GangPreview extends React.Component {
                         loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
                         scrollThreshold='50%'
                     >
-                    {this.state.members.map((member) => <MemberPreview member={member} whiteBorder className='gang-member-preview' />)}
+                        {this.state.members.map((member) => <MemberPreview member={member} whiteBorder className='gang-member-preview' />)}
                     </InfiniteScroll>
-                </div>
+                </AnimateHeight>
 
             </div>
         )

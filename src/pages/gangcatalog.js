@@ -9,7 +9,6 @@ import NotFound from '../images/notfound.png'
 import GangPreview from '../components/gangpreview'
 
 import { Helmet } from 'react-helmet'
-
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const sortByOptions = ['member_count', 'total_balance', 'recent']
