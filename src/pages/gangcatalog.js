@@ -130,7 +130,6 @@ class GangCatalog extends React.Component {
                             next={this.fetchMoreGangs}
                             hasMore={this.state.hasMore}
                             loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
-                            scrollThreshold='50%'
                             className='gang-infinite-scroll'
                         >
                         {
