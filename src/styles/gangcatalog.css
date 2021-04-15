@@ -36,10 +36,6 @@
     .gang-infinite-scroll {
         width: 95%;
     }
-
-    .gang-infinite-scroll div {
-        padding: 2px;
-    }
 }
 
 @font-face {

@@ -107,7 +107,7 @@ class GangPreview extends React.Component {
                 </div>
                 
                 <div className='gang-member-list'
-                style={this.state.membersDropdown ? {border: `3px #${this.props.gang.color} solid`, borderTop: 'none', maxHeight: Date.now() - this.state.dropdownAnimation >= 0.15 ? 'none' : '200px', backgroundColor: this.state.membersDropdown ? '#23272A' : 'none'} : {}}>
+                style={this.state.membersDropdown ? {border: `3px #${this.props.gang.color} solid`, borderTop: 'none', maxHeight: Date.now() - this.state.dropdownAnimation >= 0.15 ? 'none' : '200px'} : {}}>
                     <InfiniteScroll
                         dataLength={this.state.members.length}
                         next={this.fetchMoreMembers}

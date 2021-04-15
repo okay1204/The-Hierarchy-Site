@@ -48,7 +48,7 @@
 
 .member-preview .left .img-wrapper .avatar {
     border-radius: 50%;
-    width: 100%;
+    width: 100px;
 }
 
 .member-preview .left .img-wrapper .status {
@@ -113,6 +113,10 @@
 
     .member-preview .left .img-wrapper {
         max-width: 75px;
+    }
+
+    .member-preview .left .img-wrapper .avatar {
+        width: 75px;
     }
 
     .member-preview .left .boosting {
