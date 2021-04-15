@@ -9,6 +9,8 @@ import MemberPreview from '../components/memberpreview.js'
 import LoadingWheel from '../images/loading wheel.gif'
 
 import { Helmet } from 'react-helmet'
+
+import InfiniteScroll from 'react-infinite-scroll-component'
 class GangPage extends React.Component {
 
     constructor(props) {
@@ -103,13 +105,16 @@ class GangPage extends React.Component {
 
                             <hr />
 
-                            <div className='gang-member-list'>
-                                <div className='gang-owner-div'>
-                                    <span className='gang-owner'>Owner</span>
-                                    <MemberPreview member={this.state.data.owner} whiteBorder/>
-                                </div>
+                            <div className='gang-owner-div'>
+                                <span className='gang-owner'>Owner</span>
+                                <MemberPreview className='gang-page-owner-preview' member={this.state.data.owner} whiteBorder/>
                             </div>
-
+                            
+                            <hr />
+                            <div className='gang-page-member-div'>
+                                <span className='gang-page-members-title'>Members</span>
+                                
+                            </div>
                         </div>
                     </div>
                 )

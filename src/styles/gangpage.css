@@ -61,25 +61,25 @@
     margin: 20px;
 }
 
-.gang-owner-div a {
+.gang-page-owner-preview {
     width: 80%;
 }
 
-.loading-owner {
-    width: 20%;
+.gang-owner {
+    font-family: 'Uni Sans', sans-serif;
+    display: block;
+    font-size: 40px;
+    margin: 20px;
 }
 
-.gang-member-error h3 {
+.gang-page-member-div span {
     font-family: 'Uni Sans', sans-serif;
-    font-size: 25px;
-    margin: 5px;
-    color: rgb(255, 53, 53);
+    display: block;
+    font-size: 40px;
+    margin: 20px;
 }
 
-.gang-member-error span {
-    font-family: 'Uni Sans', sans-serif;
-    color: rgb(255, 128, 128);
-}
+
 
 @media only screen and (max-width:900px) {
     #gang-info {
