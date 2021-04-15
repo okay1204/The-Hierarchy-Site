@@ -115,7 +115,6 @@ class MemberCatalog extends React.Component {
                             next={this.fetchMoreMembers}
                             hasMore={this.state.hasMore}
                             loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
-                            scrollThreshold='50%'
                         >
                         {
                             this.state.data.map((member) => (
