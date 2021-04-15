@@ -89,7 +89,7 @@ class MemberCatalog extends React.Component {
             let preview_stat = (member) => null
 
             if (this.state.sortBy === 'money') {
-                preview_stat = (member) => `$${member.money + member.bank}`
+                preview_stat = (member) => `$${member.total}`
             } else if (this.state.sortBy === 'level') {
                 preview_stat = (member) => `Level ${member.level}`
             }
