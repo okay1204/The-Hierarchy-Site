@@ -72,21 +72,28 @@
     margin: 20px;
 }
 
-.gang-page-member-div span {
+.gang-page-members-title {
     font-family: 'Uni Sans', sans-serif;
-    display: block;
     font-size: 40px;
     margin: 20px;
+    display: block;
 }
 
-
+.gang-page-member-preview {
+    width: 80%;
+    margin: 20px auto;
+}
 
 @media only screen and (max-width:900px) {
     #gang-info {
         width: 95%;
     }
 
-    .gang-owner-div a {
+    .gang-page-owner-preview {
+        width: 100%;
+    }
+
+    .gang-page-member-preview {
         width: 100%;
     }
 

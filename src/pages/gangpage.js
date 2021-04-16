@@ -19,8 +19,12 @@ class GangPage extends React.Component {
         this.state = {
             error: false,
             data: {},
-            members: []
+            members: [],
+            hasMore: true,
+            page: 1
         }
+
+        this.fetchMoreMembers = this.fetchMoreMembers.bind(this)
     }
     
     componentDidMount() {
@@ -47,6 +51,23 @@ class GangPage extends React.Component {
         if (this.jail_timer) {
             clearInterval(this.jail_interval)
         }
+    }
+
+    fetchMoreMembers() {
+        axios.get(`https://api.thehierarchy.me/gangs/${this.state.data.id}/members?page=${this.state.page}`)
+        .then((nextPage) => {
+
+            nextPage = nextPage.data
+
+            if (nextPage.length > 0) {
+                this.setState({page: this.state.page + 1, members: this.state.members.concat(nextPage)})
+            } else {
+                this.setState({hasMore: false})
+            }
+        })
+        .catch((err) => {
+            // this.setState({error: true, data: err})
+        })
     }
 
     render() {
@@ -113,7 +134,15 @@ class GangPage extends React.Component {
                             <hr />
                             <div className='gang-page-member-div'>
                                 <span className='gang-page-members-title'>Members</span>
-                                
+                                <InfiniteScroll
+                                    dataLength={this.state.members.length}
+                                    next={this.fetchMoreMembers}
+                                    hasMore={this.state.hasMore}
+                                    loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                                    className='gang-page-members-list'
+                                >
+                                    {this.state.members.map((member) => <MemberPreview member={member} whiteBorder className='gang-page-member-preview'/>)}
+                                </InfiniteScroll>
                             </div>
                         </div>
                     </div>

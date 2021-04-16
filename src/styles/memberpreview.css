@@ -62,7 +62,6 @@
     flex-direction: column;
     text-align: left;
     flex-shrink: 3;
-
     overflow: hidden;
 }
 
@@ -134,5 +133,16 @@
 
     .member-page-gang-preview {
         width: 100%;
+    }
+}
+
+@media only screen and (max-width:400px) {
+
+    .member-preview .left .img-wrapper {
+        max-width: 50px;
+    }
+
+    .member-preview .left .img-wrapper .avatar {
+        width: 50px;
     }
 }
