@@ -9,6 +9,7 @@ import status_key from '../constants.js'
 import LoadingWheel from '../images/loading wheel.gif'
 
 import { Helmet } from 'react-helmet'
+import GangPreview from '../components/gangpreview'
 
 const parseTime = (future, now) => {
     const seconds = future-now
@@ -161,34 +162,6 @@ class MemberPage extends React.Component {
             let inJail = false;
             if (data.jailtime - epoch_now > 0)
                 inJail = true;
-
-            if (data.gang) {
-
-                let color = data.gang.color.toString(16)
-
-                while (color.length < 6) {
-                    color = '0' + color
-                }
-
-                color = '#' + color
-
-
-                data.gang = (
-                    <a className='mini-gang-embed-wrapper' href={`/stats/gangs/${data.gang.id}`} >
-                        <div className='mini-gang-embed' style={{border: `2px ${color} solid`}}>
-                            <span>{data.gang.name}</span>
-                            {data.gang.img_link && (
-                            <div className='mini-gang-img-wrapper'>
-                                <img src={data.gang.img_link} alt='gang icon'/>
-                            </div>
-                            )
-                            }                   
-                        </div>
-                    </a>
-                )
-            } else {
-                data.gang = <span className='member-gang-none'>None</span>
-            }
 
 
             if (data.awards.length > 0) {
@@ -410,7 +383,11 @@ class MemberPage extends React.Component {
                                 <div className='member-page-gang section'>
                                     <h2>Gang</h2>
 
-                                    {this.state.data.gang}
+                                    {this.state.data.gang ?
+                                    <GangPreview gang={this.state.data.gang} className='member-page-gang-preview'/>
+                                    :
+                                    <span className='member-gang-none'>None</span>
+                                    }
                                 </div>
 
                                 <hr className='section-divider' />

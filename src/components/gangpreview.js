@@ -74,7 +74,7 @@ class GangPreview extends React.Component {
     render() {
 
         return (
-            <div className='gang-preview'>
+            <div className={`gang-preview ${this.props.className !== undefined ? this.props.className : ''}`}>
                 <div className='gang-preview-main' onClick={this.redirectIfNotDropdown} style={{border: `3px #${this.props.gang.color} solid`}}>
 
                     {this.state.redirect && <Redirect to={this.state.redirect} />}

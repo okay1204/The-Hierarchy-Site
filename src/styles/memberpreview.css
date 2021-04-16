@@ -109,6 +109,10 @@
     margin-left: 10px;
 }
 
+.member-page-gang-preview {
+    width: 85%;
+}
+
 @media only screen and (max-width:800px) {
 
     .member-preview .left .img-wrapper {
@@ -126,5 +130,9 @@
 
     .member-preview {
         padding: 10px;
+    }
+
+    .member-page-gang-preview {
+        width: 100%;
     }
 }
