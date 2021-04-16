@@ -1,15 +1,15 @@
-import '../styles/gangpreview.css'
+import '../styles/gangPreview.css'
 import React from 'react'
-
 import InfiniteScroll from 'react-infinite-scroll-component'
 import RightArrow from '../images/right arrow.png'
-
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import AnimateHeight from 'react-animate-height';
-
 import MemberPreview from './memberPreview.js'
 import LoadingWheel from '../images/loading wheel.gif'
+import ErrorBox from '../components/errorBox.js'
+
+
 class GangPreview extends React.Component {
 
     constructor(props) {
@@ -22,6 +22,7 @@ class GangPreview extends React.Component {
             members: [this.props.gang.owner],
             page: 1,
             hasMore: false,
+            endMessage: null,
             allMembers: false
         }
 
@@ -67,7 +68,15 @@ class GangPreview extends React.Component {
             }
         })
         .catch((err) => {
-            // this.setState({error: true, data: err})
+            this.setState({
+                hasMore: false,
+                endMessage:
+                <ErrorBox
+                    header='Whoops!'
+                    description='An internal error occured fetching more members'
+                    theme='light'
+                />
+            })
         })
     }
 
@@ -94,9 +103,9 @@ class GangPreview extends React.Component {
                     
                     <div className='right'>
 
-                        {this.props.preview_stat && (
+                        {this.props.previewStat && (
                             <span className='preview-stat'>
-                                {this.props.preview_stat}
+                                {this.props.previewStat}
                             </span>
                         )}
                         
@@ -117,6 +126,7 @@ class GangPreview extends React.Component {
                         next={this.fetchMoreMembers}
                         hasMore={this.state.hasMore}
                         loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                        endMessage={this.state.endMessage}
                     >
                         {this.state.members.map((member) => <MemberPreview member={member} whiteBorder className='gang-member-preview' />)}
                     </InfiniteScroll>

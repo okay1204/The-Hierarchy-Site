@@ -1,29 +1,24 @@
-import '../styles/membercatalog.css'
+import '../styles/memberCatalog.css'
 import axios from 'axios'
-
 import React from 'react'
-
 import LoadingWheel from '../images/loading wheel.gif'
-import NotFound from '../images/notfound.png'
-
 import MemberPreview from '../components/memberPreview.js'
-
+import ErrorBox from '../components/errorBox.js'
 import { Helmet } from 'react-helmet'
-
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const sortByOptions = ['money', 'level']
 
+const sortByOptions = ['money', 'level']
 class MemberCatalog extends React.Component {
 
     constructor(props) {
         super(props)
     
         this.state = {
-            error: false,
             data: [],
             page: 1,
             hasMore: true,
+            endMessage: null,
             sortBy: null
         }
 
@@ -43,7 +38,7 @@ class MemberCatalog extends React.Component {
 
         const sortBy = this.setSortBy(sortOption)
  
-        this.setState({ error: false, data: [], page: 1, hasMore: true })   
+        this.setState({ data: [], page: 1, hasMore: true })   
         
         this.fetchMoreMembers(sortBy)
     }
@@ -68,7 +63,15 @@ class MemberCatalog extends React.Component {
             }
         })
         .catch((err) => {
-            this.setState({error: true, data: err})
+            this.setState({
+                hasMore: false,
+                endMessage:
+                <ErrorBox
+                    header='Whoops!'
+                    description='An internal error occured fetching more members'
+                    theme='dark'
+                />
+            })
         })
     }
 
@@ -84,66 +87,48 @@ class MemberCatalog extends React.Component {
 
     render() {
 
-        if (!this.state.error) {
+        let previewStat = (member) => null
 
-            let preview_stat = (member) => null
-
-            if (this.state.sortBy === 'money') {
-                preview_stat = (member) => `$${member.total}`
-            } else if (this.state.sortBy === 'level') {
-                preview_stat = (member) => `Level ${member.level}`
-            }
-
-            return (
-                <div id='member-catalog' className='body'>
-
-                    <Helmet>
-                        <title>The Hierarchy • Member Catalog</title>
-                    </Helmet>
-
-                    <div className='member-sort-by-box'>
-                        <label><span>Sort By:</span></label>
-                        <br />
-                        <select name = 'options' value={this.state.sortBy ? this.state.sortBy : ''} onChange = {(e) => this.setOption(e.target.value)}>
-                            {sortByOptions.map((name) => (<option value = {name}>{name.charAt(0).toUpperCase() + name.slice(1)}</option>))}
-                        </select>
-                    </div>
-                                            
-                    <div className='catalog-member-listing'>
-                        <InfiniteScroll
-                            dataLength={this.state.data.length}
-                            next={this.fetchMoreMembers}
-                            hasMore={this.state.hasMore}
-                            loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
-                        >
-                        {
-                            this.state.data.map((member) => (
-                                <MemberPreview member={member} preview_stat={preview_stat(member)}
-                                />
-                            ))
-                        }
-
-                        </InfiniteScroll>
-                    </div>
-                </div>
-            )
+        if (this.state.sortBy === 'money') {
+            previewStat = (member) => `$${member.total}`
+        } else if (this.state.sortBy === 'level') {
+            previewStat = (member) => `Level ${member.level}`
         }
-    
-        else {
-            return (
-                <div id='member-page-error-body' className='body'>
-                    <div className='error-box'>
-                        <div className='error-box-img-wrapper'>
-                            <img src={NotFound} alt=''/>
-                        </div>
-                        <div className='error-text'>
-                            <h3>Whoops!</h3>
-                            <span>An internal error has occured, please try again later</span>
-                        </div>
-                    </div>
+
+        return (
+            <div id='member-catalog' className='body'>
+
+                <Helmet>
+                    <title>The Hierarchy • Member Catalog</title>
+                </Helmet>
+
+                <div className='member-sort-by-box'>
+                    <label><span>Sort By:</span></label>
+                    <br />
+                    <select name = 'options' value={this.state.sortBy ? this.state.sortBy : ''} onChange = {(e) => this.setOption(e.target.value)}>
+                        {sortByOptions.map((name) => (<option value = {name}>{name.charAt(0).toUpperCase() + name.slice(1)}</option>))}
+                    </select>
                 </div>
-            )
-        }
+                                        
+                <div className='catalog-member-listing'>
+                    <InfiniteScroll
+                        dataLength={this.state.data.length}
+                        next={this.fetchMoreMembers}
+                        hasMore={this.state.hasMore}
+                        loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                        endMessage={this.state.endMessage}
+                    >
+                    {
+                        this.state.data.map((member) => (
+                            <MemberPreview member={member} previewStat={previewStat(member)}
+                            />
+                        ))
+                    }
+
+                    </InfiniteScroll>
+                </div>
+            </div>
+        )
         
     }
 }

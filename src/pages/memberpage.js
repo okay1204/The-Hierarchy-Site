@@ -1,15 +1,11 @@
-import '../styles/memberpage.css'
+import '../styles/memberPage.css'
 import axios from 'axios'
-
 import React from 'react'
-import NotFound from '../images/notfound.png'
-
 import status_key from '../constants.js'
-
 import LoadingWheel from '../images/loading wheel.gif'
-
 import { Helmet } from 'react-helmet'
 import GangPreview from '../components/gangPreview.js'
+import ErrorBox from '../components/errorBox.js'
 
 const parseTime = (future, now) => {
     const seconds = future-now
@@ -424,15 +420,12 @@ class MemberPage extends React.Component {
                 <Helmet>
                     <title>The Hierarchy • Member Not Found</title>
                 </Helmet>
-                <div className='error-box'>
-                    <div className='error-box-img-wrapper'>
-                        <img src={NotFound} alt=''/>
-                    </div>
-                    <div className='error-text'>
-                        <h3>Whoops!</h3>
-                        <span>We couldn't find the member you are looking for</span>
-                    </div>
-                </div>
+
+                <ErrorBox
+                    header='Whoops!'
+                    description="We couldn't find the member you are looking for"
+                    theme='dark'
+                />
             </div>
         )
     }

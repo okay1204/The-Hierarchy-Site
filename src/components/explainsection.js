@@ -1,4 +1,4 @@
-import '../styles/explainsection.css'
+import '../styles/explainSection.css'
 import React from 'react'
 import { Animated } from 'react-animated-css'
 

@@ -1,0 +1,42 @@
+.error-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.error-box-img-wrapper {
+    max-width: 200px;
+}
+
+.error-box-img-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+.error-text h3 {
+    font-size: 50px;
+    font-family: 'Lato', sans-serif;
+}
+
+
+.error-text span {
+    font-size: 20px;
+    color: rgb(199, 199, 199);
+}
+
+.error-text.error-box-light h3{
+    color: white;
+}
+
+.error-text.error-box-light span {
+    color: rgb(199, 199, 199);
+}
+
+.error-text.error-box-dark h3 {
+    color: rgb(0, 0, 0);
+}
+
+.error-text.error-box-dark span {
+    color: rgb(24, 24, 24);
+}

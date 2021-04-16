@@ -1,5 +1,4 @@
 import '../styles/stats.css'
-
 import { Helmet } from 'react-helmet'
 
 function Stats() {

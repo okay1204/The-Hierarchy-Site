@@ -1,15 +1,11 @@
-import '../styles/gangcatalog.css'
+import '../styles/gangCatalog.css'
 import axios from 'axios'
-
 import React from 'react'
-
 import LoadingWheel from '../images/loading wheel.gif'
-import NotFound from '../images/notfound.png'
-
 import GangPreview from '../components/gangPreview.js'
-
 import { Helmet } from 'react-helmet'
-import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteScroll from "react-infinite-scroll-component"
+import ErrorBox from '../components/errorBox.js'
 
 const sortByOptions = ['member_count', 'total_balance', 'recent']
 
@@ -19,10 +15,10 @@ class GangCatalog extends React.Component {
         super(props)
     
         this.state = {
-            error: false,
             data: [],
             page: 1,
             hasMore: true,
+            endMessage: null,
             sortBy: null
         }
 
@@ -42,7 +38,7 @@ class GangCatalog extends React.Component {
 
         const sortBy = this.setSortBy(sortOption)
  
-        this.setState({ error: false, data: [], page: 1, hasMore: true })   
+        this.setState({ data: [], page: 1, hasMore: true })   
         
         this.fetchMoreGangs(sortBy)
     }
@@ -67,7 +63,15 @@ class GangCatalog extends React.Component {
             }
         })
         .catch((err) => {
-            this.setState({error: true, data: err})
+            this.setState({
+                hasMore: false,
+                endMessage:
+                <ErrorBox
+                    header='Whoops!'
+                    description='An internal error occured fetching more gangs'
+                    theme='dark'
+                />
+            })
         })
     }
 
@@ -83,83 +87,64 @@ class GangCatalog extends React.Component {
 
     render() {
 
-        if (!this.state.error) {
+        let previewStat = (member) => null
 
-            let preview_stat = (member) => null
-
-            if (this.state.sortBy === 'member_count') {
-                // + 1 including owner
-                preview_stat = (gang) => `${gang.member_count+1}`
-            } else if (this.state.sortBy === 'total_balance') {
-                preview_stat = (gang) => `$${gang.total_balance}`
-            } else if (this.state.sortBy === 'recent') {
-                // parsing date
-                preview_stat = (gang) => {
-                    let created_at = gang.created_at.split(' ')[0]
-                    let [year, month, day] = created_at.split('-')
-                    
-                    return `${month}/${day}/${year}`
-                }
+        if (this.state.sortBy === 'member_count') {
+            // + 1 including owner
+            previewStat = (gang) => `${gang.member_count+1}`
+        } else if (this.state.sortBy === 'total_balance') {
+            previewStat = (gang) => `$${gang.total_balance}`
+        } else if (this.state.sortBy === 'recent') {
+            // parsing date
+            previewStat = (gang) => {
+                let created_at = gang.created_at.split(' ')[0]
+                let [year, month, day] = created_at.split('-')
+                
+                return `${month}/${day}/${year}`
             }
-
-            return (
-                <div id='gang-catalog' className='body'>
-
-                    <Helmet>
-                        <title>The Hierarchy • Member Catalog</title>
-                    </Helmet>
-
-                    <div className='gang-sort-by-box'>
-                        <label><span>Sort By:</span></label>
-                        <br />
-                        <select name = 'options' value={this.state.sortBy ? this.state.sortBy : ''} onChange = {(e) => this.setOption(e.target.value)}>
-                            {sortByOptions.map((name) => {
-
-                                // getting rid of underscores and capitalizing each word
-                                let displayName = name.split('_').map((name) => (name.charAt(0).toUpperCase() + name.slice(1)))
-                                displayName = displayName.join(' ')
-
-                                return <option value = {name}>{displayName}</option>
-                            })}
-                        </select>
-                    </div>
-                                            
-                    <div className='catalog-gang-listing'>
-                        <InfiniteScroll
-                            dataLength={this.state.data.length}
-                            next={this.fetchMoreGangs}
-                            hasMore={this.state.hasMore}
-                            loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
-                            className='gang-infinite-scroll'
-                        >
-                        {
-                            this.state.data.map((gang) => (
-                                <GangPreview gang={gang} preview_stat={preview_stat(gang)}/>
-                            ))
-                        }
-
-                        </InfiniteScroll>
-                    </div>
-                </div>
-            )
         }
-    
-        else {
-            return (
-                <div id='gang-page-error-body' className='body'>
-                    <div className='error-box'>
-                        <div className='error-box-img-wrapper'>
-                            <img src={NotFound} alt=''/>
-                        </div>
-                        <div className='error-text'>
-                            <h3>Whoops!</h3>
-                            <span>An internal error has occured, please try again later</span>
-                        </div>
-                    </div>
+
+        return (
+            <div id='gang-catalog' className='body'>
+
+                <Helmet>
+                    <title>The Hierarchy • Member Catalog</title>
+                </Helmet>
+
+                <div className='gang-sort-by-box'>
+                    <label><span>Sort By:</span></label>
+                    <br />
+                    <select name = 'options' value={this.state.sortBy ? this.state.sortBy : ''} onChange = {(e) => this.setOption(e.target.value)}>
+                        {sortByOptions.map((name) => {
+
+                            // getting rid of underscores and capitalizing each word
+                            let displayName = name.split('_').map((name) => (name.charAt(0).toUpperCase() + name.slice(1)))
+                            displayName = displayName.join(' ')
+
+                            return <option value = {name}>{displayName}</option>
+                        })}
+                    </select>
                 </div>
-            )
-        }
-        
+                                        
+                <div className='catalog-gang-listing'>
+                    <InfiniteScroll
+                        dataLength={this.state.data.length}
+                        next={this.fetchMoreGangs}
+                        hasMore={this.state.hasMore}
+                        loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                        endMessage={this.state.endMessage}
+                        className='gang-infinite-scroll'
+                    >
+                    {
+                        this.state.data.map((gang) => (
+                            <GangPreview gang={gang} previewStat={previewStat(gang)}/>
+                        ))
+                    }
+
+                    </InfiniteScroll>
+                </div>
+            </div>
+        )
     }
 }
 

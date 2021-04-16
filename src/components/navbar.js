@@ -1,9 +1,7 @@
 import '../styles/navbar.css'
-
 import Logo from '../images/logo.png'
 import Help from '../images/help.png'
 import RightArrow from '../images/right arrow.png'
-
 import React from 'react'
 
 const links = {

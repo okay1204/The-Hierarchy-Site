@@ -1,7 +1,14 @@
 #gang-catalog,
-#gang-page-error-body {
+#gang-catalog-error-body {
     background-color: #7fcbab;
 }
+
+#gang-catalog-error-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .gang-infinite-scroll {
     width: 75%;

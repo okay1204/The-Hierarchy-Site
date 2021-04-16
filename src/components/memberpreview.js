@@ -1,4 +1,4 @@
-import '../styles/memberpreview.css'
+import '../styles/memberPreview.css'
 
 import status_key from '../constants.js'
 
@@ -31,9 +31,9 @@ function MemberPreview(props) {
             </div>
             
             <div className='right'>
-                {props.preview_stat && (
+                {props.previewStat && (
                     <span className='preview-stat'>
-                        {props.preview_stat}
+                        {props.previewStat}
                     </span>
                 )}
             </div>

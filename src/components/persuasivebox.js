@@ -1,4 +1,4 @@
-import '../styles/persuasivebox.css'
+import '../styles/persuasiveBox.css'
 import React from 'react'
 import { Animated } from 'react-animated-css'
 

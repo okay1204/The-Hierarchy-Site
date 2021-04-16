@@ -1,16 +1,11 @@
-import '../styles/gangpage.css'
+import '../styles/gangPage.css'
 import axios from 'axios'
-
 import React from 'react'
-import NotFound from '../images/notfound.png'
-
 import MemberPreview from '../components/memberPreview.js'
-
 import LoadingWheel from '../images/loading wheel.gif'
-
 import { Helmet } from 'react-helmet'
-
 import InfiniteScroll from 'react-infinite-scroll-component'
+import ErrorBox from '../components/errorBox.js'
 class GangPage extends React.Component {
 
     constructor(props) {
@@ -55,7 +50,7 @@ class GangPage extends React.Component {
     }
 
     fetchMoreMembers() {
-        axios.get(`https://api.thehierarchy.me/gangs/${this.state.data.id}/memebers?page=${this.state.page}`)
+        axios.get(`https://api.thehierarchy.me/gangs/${this.state.data.id}/members?page=${this.state.page}`)
         .then((nextPage) => {
 
             nextPage = nextPage.data
@@ -67,7 +62,15 @@ class GangPage extends React.Component {
             }
         })
         .catch((err) => {
-            this.setState({hasMore: false, endMessage: 'welp'})
+            this.setState({
+                hasMore: false,
+                endMessage:
+                <ErrorBox
+                    header='Whoops!'
+                    description='An internal error occured fetching more members'
+                    theme='light'
+                />
+            })
         })
     }
 
@@ -165,19 +168,11 @@ class GangPage extends React.Component {
     else {
         return (
             <div id='gang-page-error-body' className='body'>
-                <Helmet>
-                    <title>The Hierarchy • Gang Not Found</title>
-                </Helmet>
-                
-                <div className='error-box'>
-                    <div className='error-box-img-wrapper'>
-                        <img src={NotFound} alt=''/>
-                    </div>
-                    <div className='error-text'>
-                        <h3>Whoops!</h3>
-                        <span>We couldn't find the gang you are looking for</span>
-                    </div>
-                </div>
+                <ErrorBox
+                    header='Whoops!'
+                    description="We couldn't find the gang you are looking for"
+                    theme='dark'
+                />
             </div>
         )
     }

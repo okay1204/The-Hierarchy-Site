@@ -1,17 +1,12 @@
 import '../styles/home.css'
-import '../styles/persuasivebox.css'
-
 import BannerRight from '../images/banner right.png'
 import BannerMiddle from '../images/banner middle.png'
 import BannerLeft from '../images/banner left.png'
-
-import PersuasiveBox from '../components/persuasivebox'
-import ExplainSection from '../components/explainsection'
-
+import PersuasiveBox from '../components/persuasiveBox.js'
+import ExplainSection from '../components/explainSection.js'
 import MoneyBag from '../images/money bag.png'
 import Crowd from '../images/crowd.png'
 import Strategy_Board from '../images/strategy board.png'
-
 import Tutorial from '../images/tutorial.png'
 import Shop from '../images/shop.png'
 import Universities from '../images/universities.png'
