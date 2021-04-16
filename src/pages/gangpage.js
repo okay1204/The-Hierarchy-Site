@@ -4,7 +4,7 @@ import axios from 'axios'
 import React from 'react'
 import NotFound from '../images/notfound.png'
 
-import MemberPreview from '../components/memberpreview.js'
+import MemberPreview from '../components/memberPreview.js'
 
 import LoadingWheel from '../images/loading wheel.gif'
 
@@ -21,7 +21,8 @@ class GangPage extends React.Component {
             data: {},
             members: [],
             hasMore: true,
-            page: 1
+            page: 1,
+            endMessage: null
         }
 
         this.fetchMoreMembers = this.fetchMoreMembers.bind(this)
@@ -54,7 +55,7 @@ class GangPage extends React.Component {
     }
 
     fetchMoreMembers() {
-        axios.get(`https://api.thehierarchy.me/gangs/${this.state.data.id}/members?page=${this.state.page}`)
+        axios.get(`https://api.thehierarchy.me/gangs/${this.state.data.id}/memebers?page=${this.state.page}`)
         .then((nextPage) => {
 
             nextPage = nextPage.data
@@ -66,7 +67,7 @@ class GangPage extends React.Component {
             }
         })
         .catch((err) => {
-            // this.setState({error: true, data: err})
+            this.setState({hasMore: false, endMessage: 'welp'})
         })
     }
 
@@ -139,6 +140,7 @@ class GangPage extends React.Component {
                                     next={this.fetchMoreMembers}
                                     hasMore={this.state.hasMore}
                                     loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                                    endMessage={this.state.endMessage}
                                     className='gang-page-members-list'
                                 >
                                     {this.state.members.map((member) => <MemberPreview member={member} whiteBorder className='gang-page-member-preview'/>)}

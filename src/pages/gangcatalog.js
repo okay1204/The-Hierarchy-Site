@@ -6,7 +6,7 @@ import React from 'react'
 import LoadingWheel from '../images/loading wheel.gif'
 import NotFound from '../images/notfound.png'
 
-import GangPreview from '../components/gangpreview'
+import GangPreview from '../components/gangPreview.js'
 
 import { Helmet } from 'react-helmet'
 import InfiniteScroll from "react-infinite-scroll-component";

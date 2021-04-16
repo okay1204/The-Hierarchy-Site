@@ -9,7 +9,7 @@ import status_key from '../constants.js'
 import LoadingWheel from '../images/loading wheel.gif'
 
 import { Helmet } from 'react-helmet'
-import GangPreview from '../components/gangpreview'
+import GangPreview from '../components/gangPreview.js'
 
 const parseTime = (future, now) => {
     const seconds = future-now

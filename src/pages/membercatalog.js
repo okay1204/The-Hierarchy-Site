@@ -6,7 +6,7 @@ import React from 'react'
 import LoadingWheel from '../images/loading wheel.gif'
 import NotFound from '../images/notfound.png'
 
-import MemberPreview from '../components/memberpreview'
+import MemberPreview from '../components/memberPreview.js'
 
 import { Helmet } from 'react-helmet'
 

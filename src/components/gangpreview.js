@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import AnimateHeight from 'react-animate-height';
 
-import MemberPreview from '../components/memberpreview'
+import MemberPreview from './memberPreview.js'
 import LoadingWheel from '../images/loading wheel.gif'
 class GangPreview extends React.Component {
 
