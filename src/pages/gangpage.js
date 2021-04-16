@@ -96,6 +96,9 @@ class GangPage extends React.Component {
                         <div id='gang-info' style={{border: `3px #${this.state.data.color} solid`}}>
 
                             <div className='header'>
+                                <div className='gangid-wrapper'>
+                                    <span className='gangid'>ID: {this.state.data.id}</span>
+                                </div>
 
                                 {this.state.data.img_link &&
 
@@ -114,6 +117,7 @@ class GangPage extends React.Component {
                                 :
                                 <span className='description'><em>No description set.</em></span>
                                 }
+
 
                             </div>
 

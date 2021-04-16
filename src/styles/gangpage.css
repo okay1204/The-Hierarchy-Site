@@ -47,6 +47,19 @@
     font-size: 25px;
 }
 
+#gang-info .header .gangid-wrapper {
+    margin-left: auto;
+    position: relative;
+    width: 50px;
+    height: 0;
+}
+
+#gang-info .header .gangid-wrapper .gangid {
+    position: absolute;
+    top: 0;
+    right: 0px;
+}
+
 .gang-stats {
     font-family: 'Uni Sans', sans-serif;
     display: block;
@@ -89,6 +102,11 @@
 }
 
 @media only screen and (max-width:900px) {
+
+    #gang-info .header .gangid-wrapper {
+        visibility: hidden;
+    }
+
     #gang-info {
         width: 95%;
     }
