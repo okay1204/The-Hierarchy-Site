@@ -29,6 +29,11 @@ class MemberCatalog extends React.Component {
     setSortBy(sortBySelection) {
         const searchParams = new URLSearchParams(this.props.location.search)
         searchParams.set('sortBy', sortBySelection)
+
+        if (sortBySelection !== 'search') {
+            searchParams.delete('search')
+        }
+        
         this.props.history.push(window.location.pathname + "?" + searchParams.toString())
         
         this.setState({ sortBy: sortBySelection })
@@ -56,8 +61,6 @@ class MemberCatalog extends React.Component {
         } else {
             query = `https://api.thehierarchy.me/members/search/${search}?page=${page}`
         }
-
-        console.log(search)
 
         axios.get(query)
         .then((nextPage) => {
@@ -133,6 +136,11 @@ class MemberCatalog extends React.Component {
                                 let search = event.target.value
                                 this.setState({ data: [], page: 1, hasMore: search ? true : false, search })
                                 this.fetchMoreMembers('search', search)
+
+                                const searchParams = new URLSearchParams(this.props.location.search)
+                                searchParams.set('sortBy', 'search')
+                                searchParams.set('search', search)
+                                this.props.history.push(window.location.pathname + "?" + searchParams.toString())
                             }}
                         />
                     )}
