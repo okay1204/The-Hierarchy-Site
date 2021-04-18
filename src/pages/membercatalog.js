@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet'
 import InfiniteScroll from "react-infinite-scroll-component";
 
 
-const sortByOptions = ['money', 'level']
+const sortByOptions = ['money', 'level', 'search']
 class MemberCatalog extends React.Component {
 
     constructor(props) {
@@ -19,7 +19,8 @@ class MemberCatalog extends React.Component {
             page: 1,
             hasMore: true,
             endMessage: null,
-            sortBy: null
+            sortBy: null,
+            search: null
         }
 
         this.fetchMoreMembers = this.fetchMoreMembers.bind(this)
@@ -43,12 +44,22 @@ class MemberCatalog extends React.Component {
         this.fetchMoreMembers(sortBy)
     }
 
-    fetchMoreMembers(sortByOverride=null) {
+    fetchMoreMembers(sortByOverride=null, searchOverride=null) {
 
         const page = sortByOverride ? 1 : this.state.page
         const sortBy = sortByOverride ? sortByOverride : this.state.sortBy
+        const search = searchOverride ? searchOverride : this.state.search
 
-        axios.get(`https://api.thehierarchy.me/members/top/${sortBy}?page=${page}`)
+        let query = null;
+        if (sortBy !== 'search') {
+            query = `https://api.thehierarchy.me/members/top/${sortBy}?page=${page}`
+        } else {
+            query = `https://api.thehierarchy.me/members/search/${search}?page=${page}`
+        }
+
+        console.log(search)
+
+        axios.get(query)
         .then((nextPage) => {
 
             nextPage = nextPage.data
@@ -56,7 +67,12 @@ class MemberCatalog extends React.Component {
             if (nextPage.length > 0) {
 
                 if (sortBy === this.state.sortBy) {
-                    this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
+
+                    if (sortBy !== 'search') {
+                        this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
+                    } else if (this.state.search === search) {
+                        this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
+                    }
                 }
             } else {
                 this.setState({hasMore: false})
@@ -68,7 +84,7 @@ class MemberCatalog extends React.Component {
                 endMessage:
                 <ErrorBox
                     header='Whoops!'
-                    description='An internal error occured fetching more members'
+                    description='An internal error occured fetching members'
                     theme='dark'
                 />
             })
@@ -108,6 +124,18 @@ class MemberCatalog extends React.Component {
                     <select name = 'options' value={this.state.sortBy ? this.state.sortBy : ''} onChange = {(e) => this.setOption(e.target.value)}>
                         {sortByOptions.map((name) => (<option value = {name}>{name.charAt(0).toUpperCase() + name.slice(1)}</option>))}
                     </select>
+                    {this.state.sortBy === 'search' && (
+                        <input 
+                            className='member-catalog-search-box'
+                            type='text'
+                            placeholder='Search name or nickname...'
+                            onChange={(event) => {
+                                let search = event.target.value
+                                this.setState({ data: [], page: 1, hasMore: search ? true : false, search })
+                                this.fetchMoreMembers('search', search)
+                            }}
+                        />
+                    )}
                 </div>
                                         
                 <div className='catalog-member-listing'>

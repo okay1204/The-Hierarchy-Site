@@ -67,7 +67,7 @@ class GangPage extends React.Component {
                 endMessage:
                 <ErrorBox
                     header='Whoops!'
-                    description='An internal error occured fetching more members'
+                    description='An internal error occured fetching members'
                     theme='light'
                 />
             })

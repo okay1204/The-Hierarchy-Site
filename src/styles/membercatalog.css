@@ -27,6 +27,11 @@
     font-size: 20px;
 }
 
+.member-catalog-search-box {
+    display: block;
+    margin: 0 auto;
+}
+
 @media only screen and (max-width:800px) {
     .member-sort-by-box {
         width: 80%;
