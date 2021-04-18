@@ -2,13 +2,13 @@ import Home from './pages/home'
 import Help from './pages/help'
 import Stats from './pages/stats'
 
-import MemberCatalog from './pages/memberCatalog.js'
-import MemberPage from './pages/memberPage.js'
+import MemberCatalog from './pages/memberCatalog'
+import MemberPage from './pages/memberPage'
 
 import parseRoutes from './utils/parser'
 
-import GangCatalog from './pages/gangCatalog.js'
-import GangPage from './pages/gangPage.js'
+import GangCatalog from './pages/gangCatalog'
+import GangPage from './pages/gangPage'
 
 const dflt = (props) => <div style = {{height: '50vh', fontSize: '50px'}}> Hello Zghan, recieved props of {JSON.stringify(props)} </div>
 
