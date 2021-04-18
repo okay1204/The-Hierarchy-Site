@@ -1,0 +1,51 @@
+#gang-catalog,
+#gang-catalog-error-body {
+    background-color: #7fcbab;
+}
+
+#gang-catalog-error-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.gang-infinite-scroll {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.gang-sort-by-box {
+    display: block;
+    background-color: #2C2F33;
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Uni Sans', sans-serif;
+}
+
+.gang-sort-by-box span {
+    font-size: 40px;
+}
+
+.gang-sort-by-box select {
+    margin: 10px;
+    font-size: 20px;
+}
+
+@media only screen and (max-width:800px) {
+    .sort-by-box {
+        width: 80%;
+    }
+
+    .gang-infinite-scroll {
+        width: 95%;
+    }
+}
+
+@font-face {
+    font-family: "Uni Sans";
+    src: local("Uni Sans"), url("../fonts/Uni\ Sans\ Heavy.otf") format("otf");
+}

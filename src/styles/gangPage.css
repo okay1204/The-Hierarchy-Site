@@ -1,0 +1,137 @@
+#gang-page-body,
+#gang-page-error-body {
+    background-color: #7fcbab;
+}
+
+#gang-page-error-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#gang-info {
+    background-color: #2C2F33;
+    display: block;
+    color: white;
+    
+    width: 75%;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#gang-info .header .img-wrapper {
+    display: block;
+    margin: 0 auto;
+    max-width: 250px;
+}
+
+#gang-info .header .img-wrapper img {
+    width: 100%;
+    margin: 50px 0;
+
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#gang-info .header .name {
+    display: block;
+    font-family: 'Uni Sans', sans-serif;
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+#gang-info .header .description {
+    font-family: 'Avenir', sans-serif;
+    margin: 20px;
+    font-size: 25px;
+}
+
+#gang-info .header .gangid-wrapper {
+    margin-left: auto;
+    position: relative;
+    width: 50px;
+    height: 0;
+}
+
+#gang-info .header .gangid-wrapper .gangid {
+    position: absolute;
+    top: 0;
+    right: 0px;
+}
+
+.gang-stats {
+    font-family: 'Uni Sans', sans-serif;
+    display: block;
+    font-size: 30px;
+    margin: 20px;
+}
+
+.gang-owner {
+    font-family: 'Uni Sans', sans-serif;
+    display: block;
+    font-size: 40px;
+    margin: 20px;
+}
+
+.gang-page-owner-preview {
+    width: 80%;
+}
+
+.gang-owner {
+    font-family: 'Uni Sans', sans-serif;
+    display: block;
+    font-size: 40px;
+    margin: 20px;
+}
+
+.gang-page-members-title {
+    font-family: 'Uni Sans', sans-serif;
+    font-size: 40px;
+    margin: 20px;
+    display: block;
+}
+
+.gang-page-member-preview {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.gang-page-members-list {
+    margin: 0 auto;
+}
+
+@media only screen and (max-width:900px) {
+
+    #gang-info .header .gangid-wrapper {
+        visibility: hidden;
+    }
+
+    #gang-info {
+        width: 95%;
+    }
+
+    .gang-page-owner-preview {
+        width: 100%;
+    }
+
+    .gang-page-member-preview {
+        width: 100%;
+    }
+
+    .loading-owner {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width:800px) {
+    
+    .error-box {
+        flex-direction: column;
+    }
+}
+
+@font-face {
+    font-family: "Uni Sans";
+    src: local("Uni Sans"), url("../fonts/Uni\ Sans\ Heavy.otf") format("otf");
+}

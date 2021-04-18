@@ -1,0 +1,49 @@
+#member-catalog,
+#member-page-error-body {
+    background-color: #7fcbab;
+}
+
+.catalog-member-listing a {
+    width: 75%;
+}
+
+.member-sort-by-box {
+    display: block;
+    background-color: #2C2F33;
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Uni Sans', sans-serif;
+}
+
+.member-sort-by-box span {
+    font-size: 40px;
+}
+
+.member-sort-by-box select {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.member-catalog-search-box {
+    display: block;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width:800px) {
+    .member-sort-by-box {
+        width: 80%;
+    }
+
+    .catalog-member-listing a {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
+@font-face {
+    font-family: "Uni Sans";
+    src: local("Uni Sans"), url("../fonts/Uni\ Sans\ Heavy.otf") format("otf");
+}
