@@ -58,8 +58,10 @@ class MemberCatalog extends React.Component {
         let query = null;
         if (sortBy !== 'search') {
             query = `https://api.thehierarchy.me/members/top/${sortBy}?page=${page}`
-        } else {
+        } else if (search) {
             query = `https://api.thehierarchy.me/members/search/${search}?page=${page}`
+        } else {
+            return this.setState({hasMore: false})
         }
 
         axios.get(query)
