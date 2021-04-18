@@ -33,7 +33,7 @@ class MemberCatalog extends React.Component {
         if (sortBySelection !== 'search') {
             searchParams.delete('search')
         }
-        
+
         this.props.history.push(window.location.pathname + "?" + searchParams.toString())
         
         this.setState({ sortBy: sortBySelection })
@@ -133,9 +133,12 @@ class MemberCatalog extends React.Component {
                             type='text'
                             placeholder='Search name or nickname...'
                             onChange={(event) => {
-                                let search = event.target.value
+                                const search = event.target.value
                                 this.setState({ data: [], page: 1, hasMore: search ? true : false, search })
-                                this.fetchMoreMembers('search', search)
+
+                                if (search) {
+                                    this.fetchMoreMembers('search', search)
+                                }
 
                                 const searchParams = new URLSearchParams(this.props.location.search)
                                 searchParams.set('sortBy', 'search')
