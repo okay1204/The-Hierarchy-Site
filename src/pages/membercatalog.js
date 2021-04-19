@@ -30,13 +30,16 @@ class MemberCatalog extends React.Component {
         const searchParams = new URLSearchParams(this.props.location.search)
         searchParams.set('sortBy', sortBySelection)
 
+        let search = null
         if (sortBySelection !== 'search') {
             searchParams.delete('search')
+        } else {
+            search = searchParams.get('search')
         }
 
         this.props.history.push(window.location.pathname + "?" + searchParams.toString())
-        
-        this.setState({ sortBy: sortBySelection })
+    
+        this.setState({ sortBy: sortBySelection, search })
         return sortBySelection
     }
 
@@ -44,7 +47,7 @@ class MemberCatalog extends React.Component {
 
         const sortBy = this.setSortBy(sortOption)
  
-        this.setState({ data: [], page: 1, hasMore: true })   
+        this.setState({ data: [], page: 1, hasMore: true, search: null })   
         
         this.fetchMoreMembers(sortBy)
     }
@@ -53,15 +56,17 @@ class MemberCatalog extends React.Component {
 
         const page = sortByOverride ? 1 : this.state.page
         const sortBy = sortByOverride ? sortByOverride : this.state.sortBy
-        const search = searchOverride ? searchOverride : this.state.search
+        const search = searchOverride !== null ? searchOverride : this.state.search
 
         let query = null;
         if (sortBy !== 'search') {
             query = `https://api.thehierarchy.me/members/top/${sortBy}?page=${page}`
-        } else if (search) {
-            query = `https://api.thehierarchy.me/members/search/${search}?page=${page}`
         } else {
-            return this.setState({hasMore: false})
+            if (search) {
+                query = `https://api.thehierarchy.me/members/search/${search}?page=${page}`
+            } else {
+                return this.setState({data: [], page: 1, hasMore: false})
+            }
         }
 
         axios.get(query)
@@ -73,14 +78,18 @@ class MemberCatalog extends React.Component {
 
                 if (sortBy === this.state.sortBy) {
 
-                    if (sortBy !== 'search') {
-                        this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
-                    } else if (this.state.search === search) {
-                        this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
+                    if (sortBy === 'search' && page === 1) {
+                        this.setState({data: []})
                     }
+                    
+                    this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
                 }
             } else {
                 this.setState({hasMore: false})
+
+                if (sortBy === 'search' && this.state.sortBy === 'search' && page === 1) {
+                    this.setState({data: []})
+                }
             }
         })
         .catch((err) => {
@@ -104,6 +113,11 @@ class MemberCatalog extends React.Component {
         
         this.setOption(updatedSort)
 
+    }
+
+    getInitialSearch() {
+        const searchParams = new URLSearchParams(this.props.location.search)
+        return searchParams.get('search')
     }
 
     render() {
@@ -133,18 +147,21 @@ class MemberCatalog extends React.Component {
                         <input 
                             className='member-catalog-search-box'
                             type='text'
+                            value={this.getInitialSearch()}
                             placeholder='Search name or nickname...'
                             onChange={(event) => {
                                 const search = event.target.value
-                                this.setState({ data: [], page: 1, hasMore: search ? true : false, search })
+                                this.setState({ hasMore: true, search })
 
-                                if (search) {
-                                    this.fetchMoreMembers('search', search)
-                                }
+                                this.fetchMoreMembers('search', search)
 
                                 const searchParams = new URLSearchParams(this.props.location.search)
                                 searchParams.set('sortBy', 'search')
                                 searchParams.set('search', search)
+                                if (!search) {
+                                    searchParams.delete('search')
+                                }
+
                                 this.props.history.push(window.location.pathname + "?" + searchParams.toString())
                             }}
                         />
@@ -156,7 +173,7 @@ class MemberCatalog extends React.Component {
                         dataLength={this.state.data.length}
                         next={this.fetchMoreMembers}
                         hasMore={this.state.hasMore}
-                        loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                        loader={this.state.sortBy !== 'search' ? <img src={LoadingWheel} className='loading-wheel' alt='loading'/> : null}
                         endMessage={this.state.endMessage}
                     >
                     {
