@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet'
 import InfiniteScroll from "react-infinite-scroll-component"
 import ErrorBox from '../components/errorBox.js'
 
-const sortByOptions = ['member_count', 'total_balance', 'recent']
+const sortByOptions = ['member_count', 'total_balance', 'recent', 'search']
 
 class GangCatalog extends React.Component {
 
@@ -19,10 +19,13 @@ class GangCatalog extends React.Component {
             page: 1,
             hasMore: true,
             endMessage: null,
-            sortBy: null
+            sortBy: null,
+            search: null
         }
 
         this.fetchMoreGangs = this.fetchMoreGangs.bind(this)
+        this.getInitialSearch = this.getInitialSearch.bind(this)
+        this.updateSearch = this.updateSearch.bind(this)
     }
 
     setSortBy(sortBySelection) {
@@ -43,12 +46,24 @@ class GangCatalog extends React.Component {
         this.fetchMoreGangs(sortBy)
     }
 
-    fetchMoreGangs(sortByOverride=null) {
+    fetchMoreGangs(sortByOverride=null, searchOverride=null) {
 
         const page = sortByOverride ? 1 : this.state.page
         const sortBy = sortByOverride ? sortByOverride : this.state.sortBy
+        const search = searchOverride !== null ? searchOverride : this.state.search
 
-        axios.get(`https://api.thehierarchy.me/gangs/top/${sortBy}?page=${page}&limit=10`)
+        let query = null;
+        if (sortBy !== 'search') {
+            query = `https://api.thehierarchy.me/gangs/top/${sortBy}?page=${page}`
+        } else {
+            if (search) {
+                query = `https://api.thehierarchy.me/gangs/search/${search}?page=${page}`
+            } else {
+                return this.setState({data: [], page: 1, hasMore: false})
+            }
+        }
+
+        axios.get(query)
         .then((nextPage) => {
 
             nextPage = nextPage.data
@@ -56,10 +71,19 @@ class GangCatalog extends React.Component {
             if (nextPage.length > 0) {
 
                 if (sortBy === this.state.sortBy) {
+
+                    if (sortBy === 'search' && page === 1) {
+                        this.setState({data: []})
+                    }
+                    
                     this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
                 }
             } else {
                 this.setState({hasMore: false})
+
+                if (sortBy === 'search' && this.state.sortBy === 'search' && page === 1) {
+                    this.setState({data: []})
+                }
             }
         })
         .catch((err) => {
@@ -68,7 +92,7 @@ class GangCatalog extends React.Component {
                 endMessage:
                 <ErrorBox
                     header='Whoops!'
-                    description='An internal error occured fetching more gangs'
+                    description='An internal error occured fetching members'
                     theme='dark'
                 />
             })
@@ -84,6 +108,38 @@ class GangCatalog extends React.Component {
         this.setOption(updatedSort)
 
     }
+
+    getInitialSearch() {
+        if (!this.state.initialSearchValue) {
+            const searchParams = new URLSearchParams(this.props.location.search)
+            const search = searchParams.get('search')
+            
+            
+            this.updateSearch({target: {value: search}})
+            
+            this.setState({initialSearchValue: true})
+            return search
+        } else {
+            return this.state.search ? this.state.search : ''
+        }
+    }
+
+    updateSearch(event) {
+        const search = event.target.value
+        this.setState({ hasMore: true, search })
+
+        this.fetchMoreGangs('search', search)
+
+        const searchParams = new URLSearchParams(this.props.location.search)
+        searchParams.set('sortBy', 'search')
+        searchParams.set('search', search)
+        if (!search) {
+            searchParams.delete('search')
+        }
+
+        this.props.history.push(window.location.pathname + "?" + searchParams.toString())
+    }
+
 
     render() {
 
@@ -124,6 +180,15 @@ class GangCatalog extends React.Component {
                             return <option value = {name}>{displayName}</option>
                         })}
                     </select>
+                    {this.state.sortBy === 'search' && (
+                        <input 
+                            className='gang-catalog-search-box'
+                            type='text'
+                            value={this.getInitialSearch()}
+                            placeholder='Search name or nickname...'
+                            onChange={this.updateSearch}
+                        />
+                    )}
                 </div>
                                         
                 <div className='catalog-gang-listing'>
@@ -131,7 +196,7 @@ class GangCatalog extends React.Component {
                         dataLength={this.state.data.length}
                         next={this.fetchMoreGangs}
                         hasMore={this.state.hasMore}
-                        loader={<img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
+                        loader={this.state.sortBy !== 'search' ? <img src={LoadingWheel} className='loading-wheel' alt='loading'/> : null}
                         endMessage={this.state.endMessage}
                         className='gang-infinite-scroll'
                     >

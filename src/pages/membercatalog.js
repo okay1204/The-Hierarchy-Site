@@ -20,10 +20,13 @@ class MemberCatalog extends React.Component {
             hasMore: true,
             endMessage: null,
             sortBy: null,
-            search: null
+            search: null,
+            initialSearchValue: false
         }
 
         this.fetchMoreMembers = this.fetchMoreMembers.bind(this)
+        this.updateSearch = this.updateSearch.bind(this)
+        this.getInitialSearch = this.getInitialSearch.bind(this)
     }
 
     setSortBy(sortBySelection) {
@@ -39,7 +42,7 @@ class MemberCatalog extends React.Component {
 
         this.props.history.push(window.location.pathname + "?" + searchParams.toString())
     
-        this.setState({ sortBy: sortBySelection, search })
+        this.setState({ sortBy: sortBySelection, search: search })
         return sortBySelection
     }
 
@@ -116,8 +119,34 @@ class MemberCatalog extends React.Component {
     }
 
     getInitialSearch() {
+        if (!this.state.initialSearchValue) {
+            const searchParams = new URLSearchParams(this.props.location.search)
+            const search = searchParams.get('search')
+            
+            
+            this.updateSearch({target: {value: search}})
+            
+            this.setState({initialSearchValue: true})
+            return search
+        } else {
+            return this.state.search ? this.state.search : ''
+        }
+    }
+
+    updateSearch(event) {
+        const search = event.target.value
+        this.setState({ hasMore: true, search })
+
+        this.fetchMoreMembers('search', search)
+
         const searchParams = new URLSearchParams(this.props.location.search)
-        return searchParams.get('search')
+        searchParams.set('sortBy', 'search')
+        searchParams.set('search', search)
+        if (!search) {
+            searchParams.delete('search')
+        }
+
+        this.props.history.push(window.location.pathname + "?" + searchParams.toString())
     }
 
     render() {
@@ -149,21 +178,7 @@ class MemberCatalog extends React.Component {
                             type='text'
                             value={this.getInitialSearch()}
                             placeholder='Search name or nickname...'
-                            onChange={(event) => {
-                                const search = event.target.value
-                                this.setState({ hasMore: true, search })
-
-                                this.fetchMoreMembers('search', search)
-
-                                const searchParams = new URLSearchParams(this.props.location.search)
-                                searchParams.set('sortBy', 'search')
-                                searchParams.set('search', search)
-                                if (!search) {
-                                    searchParams.delete('search')
-                                }
-
-                                this.props.history.push(window.location.pathname + "?" + searchParams.toString())
-                            }}
+                            onChange={this.updateSearch}
                         />
                     )}
                 </div>
