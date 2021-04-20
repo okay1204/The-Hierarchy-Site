@@ -14,11 +14,11 @@ function Stats() {
             <div id='stats-sections'>
 
                 <div className='section-1'>
-                    <a href='/stats/members/catalog'>Members</a>
+                    <a href='/stats/members'>Members</a>
                 </div>
 
                 <div className='section-2'>
-                    <a href='/stats/gangs/catalog'>Gangs</a>
+                    <a href='/stats/gangs'>Gangs</a>
                 </div>
 
                 <div className='section-3'>
