@@ -88,7 +88,7 @@ class MemberCatalog extends React.Component {
                     this.setState({page: this.state.page + 1, data: this.state.data.concat(nextPage)})
                 }
             } else {
-                this.setState({hasMore: false})
+                this.setState({hasMore: false, page: 1})
 
                 if (sortBy === 'search' && this.state.sortBy === 'search' && page === 1) {
                     this.setState({data: []})
@@ -188,7 +188,7 @@ class MemberCatalog extends React.Component {
                         dataLength={this.state.data.length}
                         next={this.fetchMoreMembers}
                         hasMore={this.state.hasMore}
-                        loader={this.state.sortBy !== 'search' ? <img src={LoadingWheel} className='loading-wheel' alt='loading'/> : null}
+                        loader={this.state.sortBy === 'search' && this.state.page === 1 ? null : <img src={LoadingWheel} className='loading-wheel' alt='loading'/>}
                         endMessage={this.state.endMessage}
                     >
                     {
