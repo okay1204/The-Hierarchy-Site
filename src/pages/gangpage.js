@@ -38,16 +38,6 @@ class GangPage extends React.Component {
             this.setState({error: true, data: err})
         })
     }
-    
-    componentWillUnmount() {
-        if (this.in_use_interval) {
-            clearInterval(this.in_use_interval)
-        }
-
-        if (this.jail_timer) {
-            clearInterval(this.jail_interval)
-        }
-    }
 
     fetchMoreMembers() {
         axios.get(`https://api.thehierarchy.me/gangs/${this.state.data.id}/members?page=${this.state.page}`)
@@ -88,7 +78,7 @@ class GangPage extends React.Component {
                 
                 return (
                     <div id='gang-page-body' className='body'>
-   
+
                         <Helmet>
                             <title>The Hierarchy • {this.state.data.name}</title>
                         </Helmet>
@@ -167,19 +157,19 @@ class GangPage extends React.Component {
                     </div>
                 )
             }
-    }
-    
-    else {
-        return (
-            <div id='gang-page-error-body' className='body'>
-                <ErrorBox
-                    header='Whoops!'
-                    description="We couldn't find the gang you are looking for"
-                    theme='dark'
-                />
-            </div>
-        )
-    }
+        }
+
+        else {
+            return (
+                <div id='gang-page-error-body' className='body'>
+                    <ErrorBox
+                        header='Whoops!'
+                        description="We couldn't find the gang you are looking for"
+                        theme='dark'
+                    />
+                </div>
+            )
+        }
         
     }
 }

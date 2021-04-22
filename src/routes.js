@@ -48,7 +48,7 @@ const routes = [
 				component: dflt,
 				subRoutes: [
 					{
-						path: '/:id',
+						path: '/:awardId',
 						component: AwardPage 
 					}
 				],

@@ -78,7 +78,7 @@ class GangPage extends React.Component {
                 
                 return (
                     <div id='gang-page-body' className='body'>
-   
+
                         <Helmet>
                             <title>The Hierarchy • {this.state.data.name}</title>
                         </Helmet>
@@ -157,19 +157,19 @@ class GangPage extends React.Component {
                     </div>
                 )
             }
-    }
-    
-    else {
-        return (
-            <div id='gang-page-error-body' className='body'>
-                <ErrorBox
-                    header='Whoops!'
-                    description="We couldn't find the gang you are looking for"
-                    theme='dark'
-                />
-            </div>
-        )
-    }
+        }
+
+        else {
+            return (
+                <div id='gang-page-error-body' className='body'>
+                    <ErrorBox
+                        header='Whoops!'
+                        description="We couldn't find the gang you are looking for"
+                        theme='dark'
+                    />
+                </div>
+            )
+        }
         
     }
 }

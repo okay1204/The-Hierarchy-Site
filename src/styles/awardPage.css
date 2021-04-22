@@ -1,0 +1,10 @@
+#award-page-body,
+#award-page-error-body {
+    background-color: #7fcbab;
+}
+
+#award-page-error-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
