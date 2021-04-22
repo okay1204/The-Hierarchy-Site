@@ -38,16 +38,6 @@ class GangPage extends React.Component {
             this.setState({error: true, data: err})
         })
     }
-    
-    componentWillUnmount() {
-        if (this.in_use_interval) {
-            clearInterval(this.in_use_interval)
-        }
-
-        if (this.jail_timer) {
-            clearInterval(this.jail_interval)
-        }
-    }
 
     fetchMoreMembers() {
         axios.get(`https://api.thehierarchy.me/gangs/${this.state.data.id}/members?page=${this.state.page}`)
