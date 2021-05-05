@@ -1,8 +1,13 @@
 import '../styles/help.css'
+import { Helmet } from 'react-helmet'
 
 function Help() {
     return(
         <div id="help-body" className='body'>
+
+            <Helmet>
+                <title>The Hierarchy • RICKROLLED</title>
+            </Helmet>
             <iframe
                 title='RICKROLL'
                 id="video-frame"
